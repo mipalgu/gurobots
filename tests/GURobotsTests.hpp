@@ -1,5 +1,5 @@
 /*
- * GUCoordinatesTests.hpp 
+ * GURobotsTests.hpp 
  * tests 
  *
  * Created by Callum McColl on 20/06/2020.
@@ -56,8 +56,8 @@
  *
  */
 
-#ifndef GUCOORDINATESTESTS_HPP
-#define GUCOORDINATESTESTS_HPP
+#ifndef GUROBOTSTESTS_HPP
+#define GUROBOTSTESTS_HPP
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
@@ -80,7 +80,8 @@
 #include "fff.h"
 #pragma clang diagnostic pop
 
-#include "../gucoordinates.h"
+#include <gucoordinates/gucoordinates.h>
+#include "gurobots.h"
 #include "fakes.h"
 #include "custom_fakes.h"
 
@@ -119,19 +120,19 @@
 namespace CGTEST {
 
     template <typename Class>
-    class GUCoordinatesTests: public ::testing::Test {
+    class GURobotsTests: public ::testing::Test {
         private:
 
         protected:
 
-            GU::Robot nao;
+            GU::NaoV5 nao;
             GU::Camera topCamera;
             GU::Camera bottomCamera;
 
             virtual void SetUp() {
                 ALL_FAKES(RESET_FAKE);
                 FFF_RESET_HISTORY();
-                nao = GU_NAO_V5_ROBOT(0.0f, 0.0f);
+                //nao = GU_NAO_V5_ROBOT(0.0f, 0.0f, 0, 0, 0);
                 topCamera = GU_NAO_V5_TOP_CAMERA;
                 bottomCamera = GU_NAO_V5_BOTTOM_CAMERA;
             }
@@ -314,7 +315,7 @@ namespace CGTEST {
                     );
             }
 
-            void equals(const GU::Robot lhs, const GU::Robot rhs)
+            void equals(const GU::CameraPivot lhs, const GU::CameraPivot rhs)
             {
                 ASSERT_TRUE(near(lhs.headPitch(), rhs.headPitch()));
                 ASSERT_TRUE(near(lhs.headYaw(), rhs.headYaw()));
@@ -332,7 +333,7 @@ namespace CGTEST {
                 }
             }
 
-            void nequals(const GU::Robot lhs, const GU::Robot rhs)
+            void nequals(const GU::CameraPivot lhs, const GU::CameraPivot rhs)
             {
                 if (!(near(lhs.headPitch(), rhs.headPitch())
                         && near(lhs.headYaw(), rhs.headYaw())
@@ -375,4 +376,4 @@ namespace CGTEST {
 
 }
 
-#endif  /* GUCOORDINATESTESTS_HPP */
+#endif  /* GUROBOTSTESTS_HPP */

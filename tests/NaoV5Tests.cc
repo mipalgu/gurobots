@@ -56,11 +56,11 @@
  *
  */
 
-#include "GUCoordinatesTests.hpp" 
+#include "GURobotsTests.hpp" 
 
 namespace CGTEST {
 
-    class NaoV5CPPTests: public GUCoordinatesTests<GU::NaoV5> {
+    class NaoV5CPPTests: public GURobotsTests<GU::NaoV5> {
 
         protected:
     
