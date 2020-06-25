@@ -61,4 +61,6 @@
 
 #include "robot.h"
 
+#include "NaoV5.hpp"
+
 #endif  /* GUROBOTS_H */
