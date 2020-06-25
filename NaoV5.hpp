@@ -59,6 +59,8 @@
 #ifndef NAO_V5_HPP
 #define NAO_V5_HPP
 
+#include "robot.h"
+
 #include "gucoordinates/gucoordinates.h"
 #include <cstdlib>
 
@@ -71,12 +73,8 @@
 
 namespace GU {
 
-    struct NaoV5 {
+    struct NaoV5: public gu_robot {
     
-    private:
-        degrees_f _headPitch;
-        degrees_f _headYaw;
-
     public:
         NaoV5();
         NaoV5(const degrees_f, const degrees_f);
@@ -88,7 +86,6 @@ namespace GU {
 #endif
         ~NaoV5();
         NaoV5& operator=(const NaoV5& other);
-        NaoV5& operator=(const ::wb_sensors_torsojointsensors& joints);
 #if __cplusplus >= 201103L
         NaoV5& operator=(NaoV5&& other);
 #endif
@@ -99,7 +96,7 @@ namespace GU {
         degrees_f headYaw() const;
         void set_headYaw(const degrees_f);
 
-        GU::CameraPivot toCameraPivot() const;
+        GU::CameraPivot head() const;
 
 /*
 #ifdef __cpp_lib_optional

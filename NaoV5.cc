@@ -79,16 +79,10 @@ GU::NaoV5::NaoV5(const NaoV5& other)
     set_headYaw(other.headYaw());
 }
 
-GU::NaoV5::NaoV5(const ::wb_sensors_torsojointsensors& joints)
-{
-    set_headPitch(rad_f_to_deg_f(f_to_rad_f(joints.HeadPitch())));
-    set_headYaw(rad_f_to_deg_f(f_to_rad_f(joints.HeadYaw())));
-}
-
 #if __cplusplus >= 201103L
 GU::NaoV5::NaoV5(NaoV5&& other) {
-    _headPitch = other.headPitch();
-    _headYaw = other.headYaw();
+    set_headPitch(other.headPitch());
+    set_headYaw(other.headYaw());
     other.set_headPitch(0.0f);
     other.set_headYaw(0.0f);
 }
@@ -102,13 +96,6 @@ GU::NaoV5& GU::NaoV5::operator=(const GU::NaoV5& other) {
     }
     set_headPitch(other.headPitch());
     set_headYaw(other.headYaw());
-    return *this;
-}
-
-GU::NaoV5& GU::NaoV5::operator=(const ::wb_sensors_torsojointsensors& joints)
-{
-    set_headPitch(rad_f_to_deg_f(f_to_rad_f(joints.HeadPitch())));
-    set_headYaw(rad_f_to_deg_f(f_to_rad_f(joints.HeadYaw())));
     return *this;
 }
 
@@ -127,27 +114,27 @@ GU::NaoV5& GU::NaoV5::operator=(GU::NaoV5&& other) {
 
 degrees_f GU::NaoV5::headPitch() const
 {
-    return _headPitch;
+    return gu_robot::head.pitch;
 }
 
 void GU::NaoV5::set_headPitch(const degrees_f newValue)
 {
-    _headPitch = newValue;
+    gu_robot::head.pitch = newValue;
 }
 
 degrees_f GU::NaoV5::headYaw() const
 {
-    return _headYaw;
+    return gu_robot::head.yaw;
 }
 
 void GU::NaoV5::set_headYaw(const degrees_f newValue)
 {
-    _headYaw = newValue;
+    gu_robot::head.yaw = newValue;
 }
 
-GU::CameraPivot GU::NaoV5::toCameraPivot() const
+GU::CameraPivot GU::NaoV5::head() const
 {
-    return GU_NAO_V5_HEAD(_headPitch, _headYaw);
+    return gu_robot::head;
 }
 
 
