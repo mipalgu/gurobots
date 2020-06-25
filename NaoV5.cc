@@ -61,16 +61,23 @@
 #include "robot.h"
 
 #include <guunits/guunits.h>
+#include <gu_util.h>
 
 GU::NaoV5::NaoV5() {
     set_headPitch(0.0f);
     set_headYaw(0.0f);
+    gu_robot::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
+    gu_robot::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
+    gu_robot::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
+    gu_robot::head.cameraHeightOffsets[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET;
+    gu_robot::head.numCameras = 2;
 }
 
-GU::NaoV5::NaoV5(const degrees_f t_headPitch, const degrees_f t_headYaw)
+GU::NaoV5::NaoV5(gu_simple_whiteboard *t_wb)
 {
-    set_headPitch(t_headPitch);
-    set_headYaw(t_headYaw);
+    wb = t_wb;
+    set_headPitch(0.0f);
+    set_headYaw(0.0f);
     gu_robot::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
     gu_robot::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
     gu_robot::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
@@ -80,6 +87,7 @@ GU::NaoV5::NaoV5(const degrees_f t_headPitch, const degrees_f t_headYaw)
 
 GU::NaoV5::NaoV5(const NaoV5& other)
 {
+    wb = other.wb;
     set_headPitch(other.headPitch());
     set_headYaw(other.headYaw());
     gu_robot::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
@@ -91,8 +99,10 @@ GU::NaoV5::NaoV5(const NaoV5& other)
 
 #if __cplusplus >= 201103L
 GU::NaoV5::NaoV5(NaoV5&& other) {
+    wb = other.wb;
     set_headPitch(other.headPitch());
     set_headYaw(other.headYaw());
+    other.wb = NULLPTR;
     other.set_headPitch(0.0f);
     other.set_headYaw(0.0f);
 }
@@ -114,8 +124,10 @@ GU::NaoV5& GU::NaoV5::operator=(GU::NaoV5&& other) {
     if (&other == this) {
         return *this;
     }
+    wb = other.wb;
     set_headPitch(other.headPitch());
     set_headYaw(other.headYaw());
+    other.wb = NULLPTR;
     other.set_headPitch(0.0f);
     other.set_headYaw(0.0f);
     return *this;
@@ -147,7 +159,10 @@ GU::CameraPivot GU::NaoV5::head() const
     return gu_robot::head;
 }
 
-
+void GU::NaoV5::update()
+{
+    update_robot_from_whiteboard(this, wb);
+}
 
 
 /*

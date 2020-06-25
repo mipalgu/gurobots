@@ -65,7 +65,7 @@
 #include <cstdlib>
 
 #include <guunits/guunits.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
+#include <gusimplewhiteboard/gusimplewhiteboard.h>
 
 #ifdef __cpp_lib_optional
 #include <optional>
@@ -74,13 +74,18 @@
 namespace GU {
 
     struct NaoV5: public gu_robot {
+
+    private:
+        gu_simple_whiteboard *wb;
+
+    protected:
+        void set_headPitch(const degrees_f);
+        void set_headYaw(const degrees_f);
     
     public:
         NaoV5();
-        NaoV5(const degrees_f, const degrees_f);
+        NaoV5(gu_simple_whiteboard *wb);
         NaoV5(const NaoV5& other);
-        NaoV5(const ::wb_sensors_torsojointsensors& joints);
-
 #if __cplusplus >= 201103L
         NaoV5(NaoV5&& other);
 #endif
@@ -91,12 +96,10 @@ namespace GU {
 #endif
 
         degrees_f headPitch() const;
-        void set_headPitch(const degrees_f);
-
         degrees_f headYaw() const;
-        void set_headYaw(const degrees_f);
-
         GU::CameraPivot head() const;
+
+        void update();
 
 /*
 #ifdef __cpp_lib_optional

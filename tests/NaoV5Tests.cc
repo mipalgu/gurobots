@@ -58,39 +58,53 @@
 
 #include "GURobotsTests.hpp" 
 
+#include <gusimplewhiteboard/gusimplewhiteboard.h>
+#include <gusimplewhiteboard/guwhiteboardtypelist_c_generated.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
+
 namespace CGTEST {
 
     class NaoV5CPPTests: public GURobotsTests<GU::NaoV5> {
 
         protected:
+
+        gu_simple_whiteboard *wb;
+
+        void postPitch(float pitch)
+        {
+            struct wb_sensors_torsojointsensors *nextMessage = reinterpret_cast<struct wb_sensors_torsojointsensors *>(gsw_current_message(wb, kSENSORSTorsoJointSensors_v));
+            nextMessage->set_HeadPitch(pitch);
+            (void) gsw_increment(wb, kSENSORSTorsoJointSensors_v);
+        }
+
+        virtual void SetUp()
+        {
+            GURobotsTests::SetUp();
+            gu_simple_whiteboard_descriptor * wbd = gsw_new_whiteboard("gurobots_tests");
+            wb = wbd->wb;
+        }
     
         GU::NaoV5 initial()
         {
-            return GU::NaoV5(2.0f, 3.0f);
+            postPitch(1.0f);
+            GU::NaoV5 nao = GU::NaoV5(wb);
+            nao.update();
+            return nao;
         }
 
         GU::NaoV5 empty()
         {
-            return GU::NaoV5(0.0f, 0.0f);
+            return GU::NaoV5(wb);
         }
 
         void change(GU::NaoV5 & obj)
         {
-            obj.set_headPitch(1.0f);
+            postPitch(2.0f);
+            obj.update();
         }
 
     };
 
     RO5_TEST_Fs(NaoV5)
-
-    TEST_F(NaoV5CPPTests, GettersSetters) {
-        GU::NaoV5 nao = GU::NaoV5(0.0f, 0.0f);
-        ASSERT_EQ(nao.headPitch(), 0.0f);
-        nao.set_headPitch(5.0f);
-        ASSERT_EQ(nao.headPitch(), 5.0f);
-        ASSERT_EQ(nao.headYaw(), 0.0f);
-        nao.set_headYaw(6.0f);
-        ASSERT_EQ(nao.headYaw(), 6.0f);
-    }
 
 }  // namespace
