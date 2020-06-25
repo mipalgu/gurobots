@@ -58,6 +58,8 @@
 
 #include "NaoV5.hpp"
 
+#include "robot.h"
+
 #include <guunits/guunits.h>
 
 GU::NaoV5::NaoV5() {
