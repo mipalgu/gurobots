@@ -71,12 +71,22 @@ GU::NaoV5::NaoV5(const degrees_f t_headPitch, const degrees_f t_headYaw)
 {
     set_headPitch(t_headPitch);
     set_headYaw(t_headYaw);
+    gu_robot::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
+    gu_robot::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
+    gu_robot::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
+    gu_robot::head.cameraHeightOffsets[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET;
+    gu_robot::head.numCameras = 2;
 }
 
 GU::NaoV5::NaoV5(const NaoV5& other)
 {
     set_headPitch(other.headPitch());
     set_headYaw(other.headYaw());
+    gu_robot::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
+    gu_robot::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
+    gu_robot::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
+    gu_robot::head.cameraHeightOffsets[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET;
+    gu_robot::head.numCameras = 2;
 }
 
 #if __cplusplus >= 201103L
