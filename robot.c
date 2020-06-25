@@ -75,8 +75,8 @@ bool gu_robot_equals(const gu_robot lhs, const gu_robot rhs, const float toleran
 void update_robot_from_whiteboard(gu_robot *robot, gu_simple_whiteboard *wb)
 {
     const struct wb_sensors_torsojointsensors sensors = *((struct wb_sensors_torsojointsensors *) (gsw_current_message(wb, kSENSORSTorsoJointSensors_v)));
-    robot->head.headPitch = rad_f_to_deg_f(f_to_rad_f(sensors.HeadPitch));
-    robot->head.headYaw = rad_f_to_deg_f(f_to_rad_f(sensors.HeadYaw));
+    robot->head.pitch = rad_f_to_deg_f(f_to_rad_f(sensors.HeadPitch));
+    robot->head.yaw = rad_f_to_deg_f(f_to_rad_f(sensors.HeadYaw));
     const struct wb_top_particles topParticles = *((struct wb_top_particles *) (gsw_current_message(wb, kTopParticles_v)));
     robot->position.position.x = i16_to_cm_t(topParticles.particles[0].position.x);
     robot->position.position.y = i16_to_cm_t(topParticles.particles[0].position.y);
