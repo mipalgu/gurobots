@@ -61,6 +61,7 @@
 
 #include <stdbool.h>
 #include <gucoordinates/gucoordinates.h>
+#include <gusimplewhiteboard/gusimplewhiteboard.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -91,6 +92,7 @@ typedef struct gu_robot
 } gu_robot;
 
 bool gu_robot_equals(const gu_robot, const gu_robot, const float);
+void update_robot_from_whiteboard(gu_robot *, gu_simple_whiteboard *);
 
 #ifdef __cplusplus
 }

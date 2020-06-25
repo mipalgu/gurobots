@@ -60,9 +60,25 @@
 
 #include <stdbool.h>
 
+#include <guunits/guunits.h>
+#include <gusimplewhiteboard/guwhiteboardtypelist_c_generated.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
+
 bool gu_robot_equals(const gu_robot lhs, const gu_robot rhs, const float tolerance)
 {
     return
         gu_camera_pivot_equals(lhs.head, rhs.head, tolerance)
         && gu_field_coordinate_equals(lhs.position, rhs.position);
+}
+
+void update_robot_from_whiteboard(gu_robot *robot, gu_simple_whiteboard *wb)
+{
+    const struct wb_sensors_torsojointsensors sensors = *((struct wb_sensors_torsojointsensors *) (gsw_current_message(wb, kSENSORSTorsoJointSensors_v)));
+    robot->head.headPitch = rad_f_to_deg_f(f_to_rad_f(sensors.HeadPitch));
+    robot->head.headYaw = rad_f_to_deg_f(f_to_rad_f(sensors.HeadYaw));
+    const struct wb_top_particles topParticles = *((struct wb_top_particles *) (gsw_current_message(wb, kTopParticles_v)));
+    robot->position.position.x = i16_to_cm_t(topParticles.particles[0].position.x);
+    robot->position.position.y = i16_to_cm_t(topParticles.particles[0].position.y);
+    robot->position.heading = i16_to_deg_t(topParticles.particles[0].headingInDegrees);
 }
