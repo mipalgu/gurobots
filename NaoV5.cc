@@ -63,7 +63,10 @@
 #include <guunits/guunits.h>
 #include <gu_util.h>
 
+#include <gusimplewhiteboard/gusimplewhiteboard.h>
+
 GU::NaoV5::NaoV5() {
+    wb = get_local_singleton_whiteboard()->wb;
     set_headPitch(0.0f);
     set_headYaw(0.0f);
     gu_robot::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
