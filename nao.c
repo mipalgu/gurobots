@@ -92,7 +92,7 @@ bool gu_nao_arm_equals(const gu_nao_arm lhs, const gu_nao_arm rhs)
 
 bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs)
 {
-    return gu_camera_pivot_equals(lhs.head, rhs.head, 0.0001f)
+    return gu_nao_head_equals(lhs.head, rhs.head)
         && gu_field_coordinate_equals(lhs.fieldPosition, rhs.fieldPosition)
         && gu_nao_arm_equals(lhs.leftArm, rhs.leftArm)
         && gu_nao_arm_equals(lhs.rightArm, rhs.rightArm);
@@ -104,8 +104,8 @@ void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
     const struct wb_top_particles topParticles = *((struct wb_top_particles*) gsw_current_message(wb, kTopParticles_v));
     const struct wb_sensors_hand_sensors handSensors = *((struct wb_sensors_hand_sensors*) gsw_current_message(wb, kSensorsHandSensors_v));
     // Head
-    nao->head.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadPitch));
-    nao->head.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadYaw));
+    nao->head.neck.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadPitch));
+    nao->head.neck.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadYaw));
     // Field Position
     nao->fieldPosition.position.x = i16_to_cm_t(topParticles.particles[0].position.x);
     nao->fieldPosition.position.y = i16_to_cm_t(topParticles.particles[0].position.y);
@@ -132,10 +132,6 @@ void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
 
 void gu_nao_empty(gu_nao * nao)
 {
-    gu_camera_pivot head = nao->head;
-    head.pitch = 0.0f;
-    head.yaw = 0.0f;
     const gu_nao empty = {};
     *nao = empty;
-    nao->head = head;
 }

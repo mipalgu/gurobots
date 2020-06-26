@@ -70,22 +70,12 @@
 
 GU::NaoV5::NaoV5() {
     wb = get_local_singleton_whiteboard()->wb;
-    gu_nao::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
-    gu_nao::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
-    gu_nao::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
-    gu_nao::head.cameraHeightOffsets[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET;
-    gu_nao::head.numCameras = 2;
     update();
 }
 
 GU::NaoV5::NaoV5(gu_simple_whiteboard *t_wb)
 {
     wb = t_wb;
-    gu_nao::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
-    gu_nao::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
-    gu_nao::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
-    gu_nao::head.cameraHeightOffsets[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET;
-    gu_nao::head.numCameras = 2;
     update();
 }
 
@@ -141,9 +131,14 @@ GU::NaoV5& GU::NaoV5::operator=(GU::NaoV5&& other) {
 }
 #endif
 
-GU::CameraPivot GU::NaoV5::head() const
+gu_nao_head GU::NaoV5::head() const
 {
     return gu_nao::head;
+}
+
+GU::CameraPivot GU::NaoV5::cameraPivot() const
+{
+    return gu_nao_head_to_camera_pivot(head());
 }
 
 GU::FieldCoordinate GU::NaoV5::fieldPosition() const

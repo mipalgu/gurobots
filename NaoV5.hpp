@@ -92,7 +92,8 @@ namespace GU {
         NaoV5& operator=(NaoV5&& other);
 #endif
 
-        GU::CameraPivot head() const;
+        gu_nao_head head() const;
+        GU::CameraPivot cameraPivot() const;
         GU::FieldCoordinate fieldPosition() const;
         gu_nao_arm leftArm() const;
         gu_nao_arm rightArm() const;

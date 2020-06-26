@@ -94,7 +94,7 @@ typedef struct gu_nao_arm {
 bool gu_nao_arm_equals(const gu_nao_arm lhs, const gu_nao_arm rhs);
 
 typedef struct gu_nao {
-    gu_camera_pivot head;
+    gu_nao_head head;
     gu_field_coordinate fieldPosition;
     gu_nao_arm leftArm;
     gu_nao_arm rightArm;
