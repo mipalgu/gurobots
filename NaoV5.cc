@@ -72,11 +72,11 @@ GU::NaoV5::NaoV5() {
     wb = get_local_singleton_whiteboard()->wb;
     set_headPitch(0.0f);
     set_headYaw(0.0f);
-    gu_robot::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
-    gu_robot::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
-    gu_robot::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
-    gu_robot::head.cameraHeightOffsets[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET;
-    gu_robot::head.numCameras = 2;
+    gu_nao::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
+    gu_nao::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
+    gu_nao::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
+    gu_nao::head.cameraHeightOffsets[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET;
+    gu_nao::head.numCameras = 2;
 }
 
 GU::NaoV5::NaoV5(gu_simple_whiteboard *t_wb)
@@ -84,11 +84,11 @@ GU::NaoV5::NaoV5(gu_simple_whiteboard *t_wb)
     wb = t_wb;
     set_headPitch(0.0f);
     set_headYaw(0.0f);
-    gu_robot::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
-    gu_robot::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
-    gu_robot::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
-    gu_robot::head.cameraHeightOffsets[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET;
-    gu_robot::head.numCameras = 2;
+    gu_nao::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
+    gu_nao::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
+    gu_nao::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
+    gu_nao::head.cameraHeightOffsets[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET;
+    gu_nao::head.numCameras = 2;
 }
 
 GU::NaoV5::NaoV5(const NaoV5& other)
@@ -96,11 +96,11 @@ GU::NaoV5::NaoV5(const NaoV5& other)
     wb = other.wb;
     set_headPitch(other.headPitch());
     set_headYaw(other.headYaw());
-    gu_robot::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
-    gu_robot::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
-    gu_robot::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
-    gu_robot::head.cameraHeightOffsets[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET;
-    gu_robot::head.numCameras = 2;
+    gu_nao::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
+    gu_nao::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
+    gu_nao::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
+    gu_nao::head.cameraHeightOffsets[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET;
+    gu_nao::head.numCameras = 2;
 }
 
 #if __cplusplus >= 201103L
@@ -140,27 +140,27 @@ GU::NaoV5& GU::NaoV5::operator=(GU::NaoV5&& other) {
 
 GU::CameraPivot GU::NaoV5::head() const
 {
-    return gu_robot::head;
+    return gu_nao::head;
 }
 
 degrees_f GU::NaoV5::headPitch() const
 {
-    return gu_robot::head.pitch;
+    return gu_nao::head.pitch;
 }
 
 void GU::NaoV5::set_headPitch(const degrees_f newValue)
 {
-    gu_robot::head.pitch = newValue;
+    gu_nao::head.pitch = newValue;
 }
 
 degrees_f GU::NaoV5::headYaw() const
 {
-    return gu_robot::head.yaw;
+    return gu_nao::head.yaw;
 }
 
 void GU::NaoV5::set_headYaw(const degrees_f newValue)
 {
-    gu_robot::head.yaw = newValue;
+    gu_nao::head.yaw = newValue;
 }
 
 degrees_f GU::NaoV5::leftShoulderPitch() const
@@ -215,58 +215,35 @@ degrees_f GU::NaoV5::rightWristYaw() const
 
 bool GU::NaoV5::leftHandTouchLeft() const
 {
-    return lHandTouchLeft_;
+    return gu_nao::handSensors.leftHandTouchLeft;
 }
 
 bool GU::NaoV5::leftHandTouchBack() const
 {
-    return lHandTouchBack_;
+    return gu_nao::handSensors.leftHandTouchBack;
 }
 
 bool GU::NaoV5::leftHandTouchRight() const
 {
-    return lHandTouchRight_;
+    return gu_nao::handSensors.leftHandTouchRight;
 }
 
 bool GU::NaoV5::rightHandTouchLeft() const
 {
-    return rHandTouchLeft_;
+    return gu_nao::handSensors.rightHandTouchLeft;
 }
 
 bool GU::NaoV5::rightHandTouchBack() const
 {
-    return rHandTouchBack_;
+    return gu_nao::handSensors.rightHandTouchBack;
 }
 
 bool GU::NaoV5::rightHandTouchRight() const
 {
-    return rHandTouchRight_;
+    return gu_nao::handSensors.rightHandTouchRight;
 }
 
 void GU::NaoV5::update()
 {
-    const struct wb_sensors_torsojointsensors torsoJointSensors =  *reinterpret_cast<struct wb_sensors_torsojointsensors *>(gsw_current_message(wb, kSENSORSTorsoJointSensors_v));
-    gu_robot::head.pitch = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.HeadPitch()));
-    gu_robot::head.yaw = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.HeadYaw()));
-    lShoulderPitch_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.LShoulderPitch()));
-    lShoulderRoll_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.LShoulderRoll()));
-    lElbowYaw_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.LElbowYaw()));
-    lElbowRoll_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.LElbowRoll()));
-    rShoulderPitch_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.RShoulderPitch()));
-    rShoulderRoll_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.RShoulderRoll()));
-    rElbowYaw_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.RElbowYaw()));
-    rElbowRoll_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.RElbowRoll()));
-    lWristYaw_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.LWristYaw()));
-    rWristYaw_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.RWristYaw()));
-    const struct wb_top_particles topParticles = *reinterpret_cast<struct wb_top_particles *>(gsw_current_message(wb, kTopParticles_v));
-    gu_robot::position.position.x = i16_to_cm_t(topParticles.particles(0).position().x());
-    gu_robot::position.position.y = i16_to_cm_t(topParticles.particles(0).position().y());
-    gu_robot::position.heading = i16_to_deg_t(topParticles.particles(0).headingInDegrees());
-    const struct wb_sensors_hand_sensors handSensors = *reinterpret_cast<struct wb_sensors_hand_sensors *>(gsw_current_message(wb, kSensorsHandSensors_v));
-    lHandTouchLeft_ = handSensors.LHand_Touch_Left();
-    lHandTouchBack_ = handSensors.LHand_Touch_Back();
-    lHandTouchRight_ = handSensors.LHand_Touch_Right();
-    rHandTouchLeft_ = handSensors.RHand_Touch_Left();
-    rHandTouchBack_ = handSensors.RHand_Touch_Back();
-    rHandTouchRight_ = handSensors.RHand_Touch_Right();
+    gu_nao_update_from_wb(this, wb);
 }

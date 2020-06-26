@@ -1,8 +1,8 @@
 /*
- * NaoV5.hpp
- * build
+ * nao.h 
+ * gurobots 
  *
- * Created by Callum McColl on 22/6/20.
+ * Created by Callum McColl on 27/06/2020.
  * Copyright © 2020 Callum McColl. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,95 +56,32 @@
  *
  */
 
-#ifndef NAO_V5_HPP
-#define NAO_V5_HPP
-
-#include "nao.h"
-
-#include "gucoordinates/gucoordinates.h"
-#include <cstdlib>
+#ifndef GUROBOTS_NAO_H
+#define GUROBOTS_NAO_H
 
 #include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
+#include <stdbool.h>
+
 #include <gusimplewhiteboard/gusimplewhiteboard.h>
 
-#ifdef __cpp_lib_optional
-#include <optional>
+#include "hand_sensors.h"
+
+#ifdef __cplusplus
+extern "C" {
 #endif
 
-namespace GU {
+typedef struct gu_nao {
+    gu_camera_pivot head;
+    gu_field_coordinate fieldPosition;
+    gu_hand_sensors handSensors;
+} gu_nao;
 
-    struct NaoV5: public gu_nao {
+bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs);
+void gu_nao_update_from_wb(gu_nao *, gu_simple_whiteboard *);
 
-    private:
-        gu_simple_whiteboard *wb;
-
-        degrees_f lShoulderPitch_;
-        degrees_f lShoulderRoll_;
-        degrees_f lElbowYaw_;
-        degrees_f lElbowRoll_;
-        degrees_f rShoulderPitch_;
-        degrees_f rShoulderRoll_;
-        degrees_f rElbowYaw_;
-        degrees_f rElbowRoll_;
-        degrees_f lWristYaw_;
-        degrees_f rWristYaw_;
-
-    protected:
-        void set_headPitch(const degrees_f);
-        void set_headYaw(const degrees_f);
-    
-    public:
-        NaoV5();
-        NaoV5(gu_simple_whiteboard *wb);
-        NaoV5(const NaoV5& other);
-#if __cplusplus >= 201103L
-        NaoV5(NaoV5&& other);
-#endif
-        ~NaoV5();
-        NaoV5& operator=(const NaoV5& other);
-#if __cplusplus >= 201103L
-        NaoV5& operator=(NaoV5&& other);
-#endif
-
-        GU::CameraPivot head() const;
-
-        degrees_f headPitch() const;
-        degrees_f headYaw() const;
-        degrees_f leftShoulderPitch() const;
-        degrees_f leftShoulderRoll() const;
-        degrees_f leftElbowYaw() const;
-        degrees_f leftElbowRoll() const;
-        degrees_f rightShoulderPitch() const;
-        degrees_f rightShoulderRoll() const;
-        degrees_f rightElbowYaw() const;
-        degrees_f rightElbowRoll() const;
-        degrees_f leftWristYaw() const;
-        degrees_f rightWristYaw() const;
-
-        bool leftHandTouchLeft() const;
-        bool leftHandTouchBack() const;
-        bool leftHandTouchRight() const;
-        bool rightHandTouchLeft() const;
-        bool rightHandTouchBack() const;
-        bool rightHandTouchRight() const;
-
-        void update();
-
-/*
-#ifdef __cpp_lib_optional
-        std::optional<RelativeCoordinate> topCameraRelativeCoordinate(const GU::CameraCoordinate &);
-        std::optional<RelativeCoordinate> topCameraRelativeCoordinate(const GU::PixelCoordinate &);
-        std::optional<RelativeCoordinate> topCameraRelativeCoordinate(const GU::PercentCoordinate &);
-        std::optional<RelativeCoordinate> bottomCameraRelativeCoordinate(const GU::CameraCoordinate &);
-        std::optional<RelativeCoordinate> bottomCameraRelativeCoordinate(const GU::PixelCoordinate &);
-        std::optional<RelativeCoordinate> bottomCameraRelativeCoordinate(const GU::PercentCoordinate &);
-#endif
-*/
-
-    };
-
+#ifdef __cplusplus
 }
+#endif
 
-
-
-#endif /* NAO_V5_HPP */
+#endif  /* GUROBOTS_NAO_H */
