@@ -58,9 +58,29 @@
 
 #include "nao.h"
 
+#include <guunits/guunits.h>
 #include <gusimplewhiteboard/guwhiteboardtypelist_c_generated.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
+
+#define GU_NAO_V5_TOP_CAMERA gu_camera_make(6.364f, 5.871f, 1.2f, 47.64f, 60.97f) 
+#define GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET 41.7f
+#define GU_NAO_V5_BOTTOM_CAMERA gu_camera_make(1.774f, 5.071f, 39.7f, 47.64f, 60.97f)
+#define GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET 41.7f
+
+#define GU_NAO_V5_HEAD(p, y) (gu_camera_pivot) { .pitch = p, .yaw = y, .cameras = {GU_NAO_V5_TOP_CAMERA, GU_NAO_V5_BOTTOM_CAMERA}, .cameraHeightOffsets = {GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET, GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET}, .numCameras = 2}
+
+bool gu_nao_head_equals(const gu_nao_head lhs, const gu_nao_head rhs)
+{
+    return gu_pitch_yaw_joint_equals(lhs.neck, rhs.neck, 0.0001f)
+        && gu_fmr_sensors_equals(lhs.buttons, rhs.buttons);
+}
+
+gu_camera_pivot gu_nao_head_to_camera_pivot(const gu_nao_head head)
+{
+    const gu_camera_pivot pivot = GU_NAO_V5_HEAD(head.neck.pitch, head.neck.yaw);
+    return pivot;
+}
 
 bool gu_nao_arm_equals(const gu_nao_arm lhs, const gu_nao_arm rhs)
 {

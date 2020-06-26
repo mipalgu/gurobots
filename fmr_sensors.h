@@ -1,5 +1,5 @@
 /*
- * nao.h 
+ * fmr_sensors.h 
  * gurobots 
  *
  * Created by Callum McColl on 27/06/2020.
@@ -56,56 +56,25 @@
  *
  */
 
-#ifndef GUROBOTS_NAO_H
-#define GUROBOTS_NAO_H
+#ifndef GUROBOTS_FMR_SENSORS_H
+#define GUROBOTS_FMR_SENSORS_H
 
-#include <guunits/guunits.h>
-#include <gucoordinates/gucoordinates.h>
 #include <stdbool.h>
-
-#include <gusimplewhiteboard/gusimplewhiteboard.h>
-
-#include "hand_sensors.h"
-#include "fmr_sensors.h"
-#include "pitch_roll_joint.h"
-#include "pitch_yaw_joint.h"
-#include "yaw_roll_joint.h"
-#include "yaw_joint.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef struct gu_nao_head {
-    gu_pitch_yaw_joint neck;
-    gu_fmr_sensors buttons;
-} gu_nao_head;
+typedef struct gu_fmr_sensors {
+    bool touchFront;
+    bool touchMiddle;
+    bool touchRear;
+} gu_fmr_sensors;
 
-bool gu_nao_head_equals(const gu_nao_head lhs, const gu_nao_head rhs);
-gu_camera_pivot gu_nao_head_to_camera_pivot(const gu_nao_head);
-
-typedef struct gu_nao_arm {
-    gu_pitch_roll_joint shoulder;
-    gu_yaw_roll_joint elbow;
-    gu_yaw_joint wrist;
-    gu_hand_sensors hand;
-} gu_nao_arm;
-
-bool gu_nao_arm_equals(const gu_nao_arm lhs, const gu_nao_arm rhs);
-
-typedef struct gu_nao {
-    gu_camera_pivot head;
-    gu_field_coordinate fieldPosition;
-    gu_nao_arm leftArm;
-    gu_nao_arm rightArm;
-} gu_nao;
-
-bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs);
-void gu_nao_update_from_wb(gu_nao *, gu_simple_whiteboard *);
-void gu_nao_empty(gu_nao *);
+bool gu_fmr_sensors_equals(const gu_fmr_sensors, const gu_fmr_sensors);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif  /* GUROBOTS_NAO_H */
+#endif  /* GUROBOTS_FMR_SENSORS_H */
