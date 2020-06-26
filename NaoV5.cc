@@ -61,7 +61,6 @@
 #include "robot.h"
 
 #include <guunits/guunits.h>
-#include <gu_util.h>
 
 #include <gusimplewhiteboard/gusimplewhiteboard.h>
 
@@ -105,7 +104,6 @@ GU::NaoV5::NaoV5(NaoV5&& other) {
     wb = other.wb;
     set_headPitch(other.headPitch());
     set_headYaw(other.headYaw());
-    other.wb = NULLPTR;
     other.set_headPitch(0.0f);
     other.set_headYaw(0.0f);
 }
@@ -130,7 +128,6 @@ GU::NaoV5& GU::NaoV5::operator=(GU::NaoV5&& other) {
     wb = other.wb;
     set_headPitch(other.headPitch());
     set_headYaw(other.headYaw());
-    other.wb = NULLPTR;
     other.set_headPitch(0.0f);
     other.set_headYaw(0.0f);
     return *this;

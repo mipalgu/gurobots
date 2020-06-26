@@ -197,12 +197,17 @@ namespace CGTEST {
 
             bool near(const float lhs, const float rhs) const
             {
-                const float tolerance = 0.00001f;
+                const float tolerance = 0.0001f;
                 return fabsf(lhs - rhs) < tolerance;
             }
 
             void assert_near(const float lhs, const float rhs, const float tolerance) const
             {
+                const float result = fabsf(lhs - rhs);
+                if (result > tolerance)
+                {
+                    std::cout << "lhs: " << lhs << ", rhs: " << rhs << std::endl;
+                }
                 ASSERT_LE(fabsf(lhs - rhs), tolerance);
             }
 
@@ -363,8 +368,8 @@ namespace CGTEST {
 
             void equals(const GU::NaoV5 lhs, const GU::NaoV5 rhs)
             {
-                assert_near(lhs.headPitch(), rhs.headPitch(), 0.0001f);
-                assert_near(lhs.headYaw(), rhs.headYaw(), 0.0001f);
+                assert_near(lhs.headPitch(), rhs.headPitch(), 0.001f);
+                assert_near(lhs.headYaw(), rhs.headYaw(), 0.001f);
             }
 
             void nequals(const GU::NaoV5 lhs, const GU::NaoV5 rhs)

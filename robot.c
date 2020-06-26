@@ -61,9 +61,13 @@
 #include <stdbool.h>
 
 #include <guunits/guunits.h>
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
 #include <gusimplewhiteboard/guwhiteboardtypelist_c_generated.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
+#pragma clang diagnostic pop
 
 bool gu_robot_equals(const gu_robot lhs, const gu_robot rhs, const float tolerance)
 {
