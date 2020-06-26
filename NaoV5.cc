@@ -63,6 +63,9 @@
 #include <guunits/guunits.h>
 
 #include <gusimplewhiteboard/gusimplewhiteboard.h>
+#include <gusimplewhiteboard/guwhiteboardtypelist_c_generated.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
 
 GU::NaoV5::NaoV5() {
     wb = get_local_singleton_whiteboard()->wb;
@@ -134,6 +137,11 @@ GU::NaoV5& GU::NaoV5::operator=(GU::NaoV5&& other) {
 }
 #endif
 
+GU::CameraPivot GU::NaoV5::head() const
+{
+    return gu_robot::head;
+}
+
 degrees_f GU::NaoV5::headPitch() const
 {
     return gu_robot::head.pitch;
@@ -154,47 +162,73 @@ void GU::NaoV5::set_headYaw(const degrees_f newValue)
     gu_robot::head.yaw = newValue;
 }
 
-GU::CameraPivot GU::NaoV5::head() const
+degrees_f GU::NaoV5::leftShoulderPitch() const
 {
-    return gu_robot::head;
+    return lShoulderPitch_;
+}
+
+degrees_f GU::NaoV5::leftShoulderRoll() const
+{
+    return lShoulderRoll_;
+}
+
+degrees_f GU::NaoV5::leftElbowYaw() const
+{
+    return lElbowYaw_;
+}
+
+degrees_f GU::NaoV5::leftElbowRoll() const
+{
+    return lElbowRoll_;
+}
+
+degrees_f GU::NaoV5::rightShoulderPitch() const
+{
+    return rShoulderPitch_;
+}
+
+degrees_f GU::NaoV5::rightShoulderRoll() const
+{
+    return rShoulderRoll_;
+}
+
+degrees_f GU::NaoV5::rightElbowYaw() const
+{
+    return rElbowYaw_;
+}
+
+degrees_f GU::NaoV5::rightElbowRoll() const
+{
+    return rElbowRoll_;
+}
+
+degrees_f GU::NaoV5::leftWristYaw() const
+{
+    return lWristYaw_;
+}
+
+degrees_f GU::NaoV5::rightWristYaw() const
+{
+    return rWristYaw_;
 }
 
 void GU::NaoV5::update()
 {
-    update_robot_from_whiteboard(this, wb);
+    const struct wb_sensors_torsojointsensors torsoJointSensors =  *reinterpret_cast<struct wb_sensors_torsojointsensors *>(gsw_current_message(wb, kSENSORSTorsoJointSensors_v));
+    gu_robot::head.pitch = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.HeadPitch()));
+    gu_robot::head.yaw = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.HeadYaw()));
+    lShoulderPitch_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.LShoulderPitch()));
+    lShoulderRoll_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.LShoulderRoll()));
+    lElbowYaw_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.LElbowYaw()));
+    lElbowRoll_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.LElbowRoll()));
+    rShoulderPitch_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.RShoulderPitch()));
+    rShoulderRoll_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.RShoulderRoll()));
+    rElbowYaw_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.RElbowYaw()));
+    rElbowRoll_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.RElbowRoll()));
+    lWristYaw_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.LWristYaw()));
+    rWristYaw_ = rad_f_to_deg_f(f_to_rad_f(torsoJointSensors.RWristYaw()));
+    const struct wb_top_particles topParticles = *reinterpret_cast<struct wb_top_particles *>(gsw_current_message(wb, kTopParticles_v));
+    gu_robot::position.position.x = i16_to_cm_t(topParticles.particles(0).position().x());
+    gu_robot::position.position.y = i16_to_cm_t(topParticles.particles(0).position().y());
+    gu_robot::position.heading = i16_to_deg_t(topParticles.particles(0).headingInDegrees());
 }
-
-
-/*
-#if __cplusplus 201703L
-std::optional<RelativeCoordinate> GU::NaoV5::topCameraRelativeCoordinate(const GU::CameraCoordinate & coord)
-{
-    return coord.relativeCoordinate(*this, NAO_V5_TOP_CAMERA_INDEX);
-}
-
-std::optional<RelativeCoordinate> GU::NaoV5::topCameraRelativeCoordinate(const GU::PixelCoordinate & coord)
-{
-    return coord.relativeCoordinate(*this, NAO_V5_TOP_CAMERA_INDEX);
-}
-
-std::optional<RelativeCoordinate> topCameraRelativeCoordinate(const GU::PercentCoordinate & coord)
-{
-    return coord.relativeCoordinate(*this, NAO_V5_TOP_CAMERA_INDEX);
-}
-
-std::optional<RelativeCoordinate> bottomCameraRelativeCoordinate(const GU::CameraCoordinate & coord)
-{
-    return coord.relativeCoordinate(*this, NAO_V5_BOTTOM_CAMERA_INDEX);
-}
-
-std::optional<RelativeCoordinate> bottomCameraRelativeCoordinate(const GU::PixelCoordinate & coord)
-{
-    return coord.relativeCoordinate(*this, NAO_V5_BOTTOM_CAMERA_INDEX);
-}
-
-std::optional<RelativeCoordinate> bottomCameraRelativeCoordinate(const GU::PercentCoordinate & coord)
-{
-    return coord.relativeCoordinate(*this, NAO_V5_BOTTOM_CAMERA_INDEX);
-}
-#endif
-*/

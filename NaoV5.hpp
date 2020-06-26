@@ -77,6 +77,16 @@ namespace GU {
 
     private:
         gu_simple_whiteboard *wb;
+        degrees_f lShoulderPitch_;
+        degrees_f lShoulderRoll_;
+        degrees_f lElbowYaw_;
+        degrees_f lElbowRoll_;
+        degrees_f rShoulderPitch_;
+        degrees_f rShoulderRoll_;
+        degrees_f rElbowYaw_;
+        degrees_f rElbowRoll_;
+        degrees_f lWristYaw_;
+        degrees_f rWristYaw_;
 
     protected:
         void set_headPitch(const degrees_f);
@@ -95,9 +105,20 @@ namespace GU {
         NaoV5& operator=(NaoV5&& other);
 #endif
 
+        GU::CameraPivot head() const;
+
         degrees_f headPitch() const;
         degrees_f headYaw() const;
-        GU::CameraPivot head() const;
+        degrees_f leftShoulderPitch() const;
+        degrees_f leftShoulderRoll() const;
+        degrees_f leftElbowYaw() const;
+        degrees_f leftElbowRoll() const;
+        degrees_f rightShoulderPitch() const;
+        degrees_f rightShoulderRoll() const;
+        degrees_f rightElbowYaw() const;
+        degrees_f rightElbowRoll() const;
+        degrees_f leftWristYaw() const;
+        degrees_f rightWristYaw() const;
 
         void update();
 
