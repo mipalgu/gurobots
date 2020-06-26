@@ -66,6 +66,7 @@
 #include <gusimplewhiteboard/guwhiteboardtypelist_c_generated.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_sensors_hand_sensors.h>
 
 GU::NaoV5::NaoV5() {
     wb = get_local_singleton_whiteboard()->wb;
@@ -212,6 +213,36 @@ degrees_f GU::NaoV5::rightWristYaw() const
     return rWristYaw_;
 }
 
+bool GU::NaoV5::leftHandTouchLeft() const
+{
+    return lHandTouchLeft_;
+}
+
+bool GU::NaoV5::leftHandTouchBack() const
+{
+    return lHandTouchBack_;
+}
+
+bool GU::NaoV5::leftHandTouchRight() const
+{
+    return lHandTouchRight_;
+}
+
+bool GU::NaoV5::rightHandTouchLeft() const
+{
+    return rHandTouchLeft_;
+}
+
+bool GU::NaoV5::rightHandTouchBack() const
+{
+    return rHandTouchBack_;
+}
+
+bool GU::NaoV5::rightHandTouchRight() const
+{
+    return rHandTouchRight_;
+}
+
 void GU::NaoV5::update()
 {
     const struct wb_sensors_torsojointsensors torsoJointSensors =  *reinterpret_cast<struct wb_sensors_torsojointsensors *>(gsw_current_message(wb, kSENSORSTorsoJointSensors_v));
@@ -231,4 +262,11 @@ void GU::NaoV5::update()
     gu_robot::position.position.x = i16_to_cm_t(topParticles.particles(0).position().x());
     gu_robot::position.position.y = i16_to_cm_t(topParticles.particles(0).position().y());
     gu_robot::position.heading = i16_to_deg_t(topParticles.particles(0).headingInDegrees());
+    const struct wb_sensors_hand_sensors handSensors = *reinterpret_cast<struct wb_sensors_hand_sensors *>(gsw_current_message(wb, kSensorsHandSensors_v));
+    lHandTouchLeft_ = handSensors.LHand_Touch_Left();
+    lHandTouchBack_ = handSensors.LHand_Touch_Back();
+    lHandTouchRight_ = handSensors.LHand_Touch_Right();
+    rHandTouchLeft_ = handSensors.RHand_Touch_Left();
+    rHandTouchBack_ = handSensors.RHand_Touch_Back();
+    rHandTouchRight_ = handSensors.RHand_Touch_Right();
 }

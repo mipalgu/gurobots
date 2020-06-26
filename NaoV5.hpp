@@ -77,6 +77,7 @@ namespace GU {
 
     private:
         gu_simple_whiteboard *wb;
+
         degrees_f lShoulderPitch_;
         degrees_f lShoulderRoll_;
         degrees_f lElbowYaw_;
@@ -87,6 +88,13 @@ namespace GU {
         degrees_f rElbowRoll_;
         degrees_f lWristYaw_;
         degrees_f rWristYaw_;
+
+        bool lHandTouchLeft_;
+        bool lHandTouchBack_;
+        bool lHandTouchRight_;
+        bool rHandTouchLeft_;
+        bool rHandTouchBack_;
+        bool rHandTouchRight_;
 
     protected:
         void set_headPitch(const degrees_f);
@@ -119,6 +127,13 @@ namespace GU {
         degrees_f rightElbowRoll() const;
         degrees_f leftWristYaw() const;
         degrees_f rightWristYaw() const;
+
+        bool leftHandTouchLeft() const;
+        bool leftHandTouchBack() const;
+        bool leftHandTouchRight() const;
+        bool rightHandTouchLeft() const;
+        bool rightHandTouchBack() const;
+        bool rightHandTouchRight() const;
 
         void update();
 
