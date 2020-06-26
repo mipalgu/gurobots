@@ -62,6 +62,7 @@
 #include <gusimplewhiteboard/guwhiteboardtypelist_c_generated.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_sensors_head_sensors.h>
 
 #define GU_NAO_V5_TOP_CAMERA gu_camera_make(6.364f, 5.871f, 1.2f, 47.64f, 60.97f) 
 #define GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET 41.7f
@@ -103,12 +104,17 @@ void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
     const struct wb_sensors_torsojointsensors torsoSensors = *((struct wb_sensors_torsojointsensors *) gsw_current_message(wb, kSENSORSTorsoJointSensors_v));
     const struct wb_top_particles topParticles = *((struct wb_top_particles*) gsw_current_message(wb, kTopParticles_v));
     const struct wb_sensors_hand_sensors handSensors = *((struct wb_sensors_hand_sensors*) gsw_current_message(wb, kSensorsHandSensors_v));
+    const struct wb_sensors_head_sensors headSensors = *((struct wb_sensors_head_sensors*) gsw_current_message(wb, kSensorsHeadSensors_v));
     // Head
     nao->head.neck.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadPitch));
     nao->head.neck.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadYaw));
+    nao->head.buttons.touchFront = headSensors.Head_Touch_Front;
+    nao->head.buttons.touchMiddle = headSensors.Head_Touch_Middle;
+    nao->head.buttons.touchRear = headSensors.Head_Touch_Rear;
     // Field Position
     nao->fieldPosition.position.x = i16_to_cm_t(topParticles.particles[0].position.x);
     nao->fieldPosition.position.y = i16_to_cm_t(topParticles.particles[0].position.y);
+    nao->fieldPosition.heading = i16_to_deg_t(topParticles.particles[0].headingInDegrees);
     // Left Arm
     nao->leftArm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderPitch));
     nao->leftArm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderRoll));
@@ -127,7 +133,6 @@ void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
     nao->rightArm.hand.touchLeft  = handSensors.RHand_Touch_Left;
     nao->rightArm.hand.touchBack  = handSensors.RHand_Touch_Back;
     nao->rightArm.hand.touchRight  = handSensors.RHand_Touch_Right;
-    nao->fieldPosition.heading = i16_to_deg_t(topParticles.particles[0].headingInDegrees);
 }
 
 void gu_nao_empty(gu_nao * nao)
