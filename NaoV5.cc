@@ -165,52 +165,52 @@ void GU::NaoV5::set_headYaw(const degrees_f newValue)
 
 degrees_f GU::NaoV5::leftShoulderPitch() const
 {
-    return lShoulderPitch_;
+    return gu_nao::armSensors.leftShoulderPitch;
 }
 
 degrees_f GU::NaoV5::leftShoulderRoll() const
 {
-    return lShoulderRoll_;
+    return gu_nao::armSensors.leftShoulderRoll;
 }
 
 degrees_f GU::NaoV5::leftElbowYaw() const
 {
-    return lElbowYaw_;
+    return gu_nao::armSensors.leftElbowYaw;
 }
 
 degrees_f GU::NaoV5::leftElbowRoll() const
 {
-    return lElbowRoll_;
+    return gu_nao::armSensors.leftElbowRoll;
 }
 
 degrees_f GU::NaoV5::rightShoulderPitch() const
 {
-    return rShoulderPitch_;
+    return gu_nao::armSensors.rightShoulderPitch;
 }
 
 degrees_f GU::NaoV5::rightShoulderRoll() const
 {
-    return rShoulderRoll_;
+    return gu_nao::armSensors.rightShoulderRoll;
 }
 
 degrees_f GU::NaoV5::rightElbowYaw() const
 {
-    return rElbowYaw_;
+    return gu_nao::armSensors.rightElbowYaw;
 }
 
 degrees_f GU::NaoV5::rightElbowRoll() const
 {
-    return rElbowRoll_;
+    return gu_nao::armSensors.rightElbowRoll;
 }
 
 degrees_f GU::NaoV5::leftWristYaw() const
 {
-    return lWristYaw_;
+    return gu_nao::armSensors.leftWristYaw;
 }
 
 degrees_f GU::NaoV5::rightWristYaw() const
 {
-    return rWristYaw_;
+    return gu_nao::armSensors.rightWristYaw;
 }
 
 bool GU::NaoV5::leftHandTouchLeft() const

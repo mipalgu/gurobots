@@ -65,6 +65,7 @@
 
 #include <gusimplewhiteboard/gusimplewhiteboard.h>
 
+#include "arm_sensors.h"
 #include "hand_sensors.h"
 
 #ifdef __cplusplus
@@ -74,6 +75,7 @@ extern "C" {
 typedef struct gu_nao {
     gu_camera_pivot head;
     gu_field_coordinate fieldPosition;
+    gu_arm_sensors armSensors;
     gu_hand_sensors handSensors;
 } gu_nao;
 

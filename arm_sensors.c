@@ -1,5 +1,5 @@
 /*
- * nao.c 
+ * arm_sensors.c 
  * gurobots 
  *
  * Created by Callum McColl on 27/06/2020.
@@ -56,28 +56,34 @@
  *
  */
 
-#include "nao.h"
+#include "arm_sensors.h"
 
-#include <gusimplewhiteboard/guwhiteboardtypelist_c_generated.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
 
-bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs)
+bool gu_arm_sensors_equals(const gu_arm_sensors lhs, const gu_arm_sensors rhs, const degrees_f tolerance)
 {
-    return gu_camera_pivot_equals(lhs.head, rhs.head, 0.0001f)
-        && gu_arm_sensors_equals(lhs.armSensors, rhs.armSensors, 0.0001f)
-        && gu_hand_sensors_equals(lhs.handSensors, rhs.handSensors);
+    return 
+        fabsf(lhs.leftShoulderPitch - rhs.leftShoulderPitch) <= tolerance
+        && fabsf(lhs.leftShoulderRoll - rhs.leftShoulderRoll) <= tolerance
+        && fabsf(lhs.leftElbowYaw - rhs.leftElbowYaw) <= tolerance
+        && fabsf(lhs.leftElbowRoll - rhs.leftElbowRoll) <= tolerance
+        && fabsf(lhs.rightShoulderPitch - rhs.rightShoulderPitch) <= tolerance
+        && fabsf(lhs.rightShoulderRoll - rhs.rightShoulderRoll) <= tolerance
+        && fabsf(lhs.rightElbowYaw - rhs.rightElbowYaw) <= tolerance
+        && fabsf(lhs.rightElbowRoll - rhs.rightElbowRoll) <= tolerance
+        && fabsf(lhs.leftWristYaw - rhs.leftWristYaw) <= tolerance
+        && fabsf(lhs.rightWristYaw - rhs.rightWristYaw) <= tolerance;
 }
-void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
+
+void gu_arm_sensors_update_from_wb(gu_arm_sensors * armSensors, const struct wb_sensors_torsojointsensors torsoSensors)
 {
-    const struct wb_sensors_torsojointsensors torsoSensors = *((struct wb_sensors_torsojointsensors *) gsw_current_message(wb, kSENSORSTorsoJointSensors_v));
-    nao->head.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadPitch));
-    nao->head.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadYaw));
-    gu_arm_sensors_update_from_wb(&nao->armSensors, torsoSensors);
-    const struct wb_top_particles topParticles = *((struct wb_top_particles*) gsw_current_message(wb, kTopParticles_v));
-    nao->fieldPosition.position.x = i16_to_cm_t(topParticles.particles[0].position.x);
-    nao->fieldPosition.position.y = i16_to_cm_t(topParticles.particles[0].position.y);
-    nao->fieldPosition.heading = i16_to_deg_t(topParticles.particles[0].headingInDegrees);
-    const struct wb_sensors_hand_sensors handSensors = *((struct wb_sensors_hand_sensors*) gsw_current_message(wb, kSensorsHandSensors_v));
-    gu_hand_sensors_update_from_wb(&nao->handSensors, handSensors);
+     armSensors->leftShoulderPitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderPitch));
+     armSensors->leftShoulderRoll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderRoll));
+     armSensors->leftElbowYaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LElbowYaw));
+     armSensors->leftElbowRoll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LElbowRoll));
+     armSensors->rightShoulderPitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RShoulderPitch));
+     armSensors->rightShoulderRoll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RShoulderRoll));
+     armSensors->rightElbowYaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RElbowYaw));
+     armSensors->rightElbowRoll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RElbowRoll));
+     armSensors->leftWristYaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LWristYaw));
+     armSensors->rightWristYaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RWristYaw));
 }

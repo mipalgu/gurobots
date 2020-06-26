@@ -78,17 +78,6 @@ namespace GU {
     private:
         gu_simple_whiteboard *wb;
 
-        degrees_f lShoulderPitch_;
-        degrees_f lShoulderRoll_;
-        degrees_f lElbowYaw_;
-        degrees_f lElbowRoll_;
-        degrees_f rShoulderPitch_;
-        degrees_f rShoulderRoll_;
-        degrees_f rElbowYaw_;
-        degrees_f rElbowRoll_;
-        degrees_f lWristYaw_;
-        degrees_f rWristYaw_;
-
     protected:
         void set_headPitch(const degrees_f);
         void set_headYaw(const degrees_f);
