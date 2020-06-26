@@ -64,7 +64,9 @@
 
 bool gu_nao_arm_equals(const gu_nao_arm lhs, const gu_nao_arm rhs)
 {
-    return gu_arm_sensors_equals(lhs.arm, rhs.arm, 0.0001f)
+    return gu_pitch_roll_joint_equals(lhs.shoulder, rhs.shoulder, 0.0001f)
+        && gu_yaw_roll_joint_equals(lhs.elbow, rhs.elbow, 0.0001f)
+        && gu_yaw_joint_equals(lhs.wrist, rhs.wrist, 0.0001f)
         && gu_hand_sensors_equals(lhs.hand, rhs.hand);
 }
 
@@ -88,20 +90,20 @@ void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
     nao->fieldPosition.position.x = i16_to_cm_t(topParticles.particles[0].position.x);
     nao->fieldPosition.position.y = i16_to_cm_t(topParticles.particles[0].position.y);
     // Left Arm
-    nao->leftArm.arm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderPitch));
-    nao->leftArm.arm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderRoll));
-    nao->leftArm.arm.elbow.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LElbowYaw));
-    nao->leftArm.arm.elbow.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LElbowRoll));
-    nao->leftArm.arm.wrist.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LWristYaw));
+    nao->leftArm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderPitch));
+    nao->leftArm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderRoll));
+    nao->leftArm.elbow.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LElbowYaw));
+    nao->leftArm.elbow.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LElbowRoll));
+    nao->leftArm.wrist.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LWristYaw));
     nao->leftArm.hand.touchLeft  = handSensors.LHand_Touch_Left;
     nao->leftArm.hand.touchBack  = handSensors.LHand_Touch_Back;
     nao->leftArm.hand.touchRight  = handSensors.LHand_Touch_Right;
     // Right Arm
-    nao->rightArm.arm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RShoulderPitch));
-    nao->rightArm.arm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RShoulderRoll));
-    nao->rightArm.arm.elbow.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RElbowYaw));
-    nao->rightArm.arm.elbow.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RElbowRoll));
-    nao->rightArm.arm.wrist.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RWristYaw));
+    nao->rightArm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RShoulderPitch));
+    nao->rightArm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RShoulderRoll));
+    nao->rightArm.elbow.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RElbowYaw));
+    nao->rightArm.elbow.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RElbowRoll));
+    nao->rightArm.wrist.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RWristYaw));
     nao->rightArm.hand.touchLeft  = handSensors.RHand_Touch_Left;
     nao->rightArm.hand.touchBack  = handSensors.RHand_Touch_Back;
     nao->rightArm.hand.touchRight  = handSensors.RHand_Touch_Right;

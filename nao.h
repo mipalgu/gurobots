@@ -65,15 +65,19 @@
 
 #include <gusimplewhiteboard/gusimplewhiteboard.h>
 
-#include "arm_sensors.h"
 #include "hand_sensors.h"
+#include "pitch_roll_joint.h"
+#include "yaw_roll_joint.h"
+#include "yaw_joint.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 typedef struct gu_nao_arm {
-    gu_arm_sensors arm;
+    gu_pitch_roll_joint shoulder;
+    gu_yaw_roll_joint elbow;
+    gu_yaw_joint wrist;
     gu_hand_sensors hand;
 } gu_nao_arm;
 
