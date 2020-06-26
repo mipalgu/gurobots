@@ -62,27 +62,21 @@
 #include <guunits/guunits.h>
 #include <stdbool.h>
 
-#include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
+#include "pitch_roll_joint.h"
+#include "yaw_roll_joint.h"
+#include "yaw_joint.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 typedef struct gu_arm_sensors {
-    degrees_f leftShoulderPitch;
-    degrees_f leftShoulderRoll;
-    degrees_f leftElbowYaw;
-    degrees_f leftElbowRoll;
-    degrees_f rightShoulderPitch;
-    degrees_f rightShoulderRoll;
-    degrees_f rightElbowYaw;
-    degrees_f rightElbowRoll;
-    degrees_f leftWristYaw;
-    degrees_f rightWristYaw;
+    gu_pitch_roll_joint shoulder;
+    gu_yaw_roll_joint elbow;
+    gu_yaw_joint wrist;
 } gu_arm_sensors;
 
 bool gu_arm_sensors_equals(const gu_arm_sensors lhs, const gu_arm_sensors rhs, const degrees_f tolerance);
-void gu_arm_sensors_update_from_wb(gu_arm_sensors *, const struct wb_sensors_torsojointsensors);
 
 #ifdef __cplusplus
 }

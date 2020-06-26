@@ -62,22 +62,58 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
 
+bool gu_nao_arm_equals(const gu_nao_arm lhs, const gu_nao_arm rhs)
+{
+    return gu_arm_sensors_equals(lhs.arm, rhs.arm, 0.0001f)
+        && gu_hand_sensors_equals(lhs.hand, rhs.hand);
+}
+
 bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs)
 {
     return gu_camera_pivot_equals(lhs.head, rhs.head, 0.0001f)
-        && gu_arm_sensors_equals(lhs.armSensors, rhs.armSensors, 0.0001f)
-        && gu_hand_sensors_equals(lhs.handSensors, rhs.handSensors);
+        && gu_field_coordinate_equals(lhs.fieldPosition, rhs.fieldPosition)
+        && gu_nao_arm_equals(lhs.leftArm, rhs.leftArm)
+        && gu_nao_arm_equals(lhs.rightArm, rhs.rightArm);
 }
+
 void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
 {
     const struct wb_sensors_torsojointsensors torsoSensors = *((struct wb_sensors_torsojointsensors *) gsw_current_message(wb, kSENSORSTorsoJointSensors_v));
+    const struct wb_top_particles topParticles = *((struct wb_top_particles*) gsw_current_message(wb, kTopParticles_v));
+    const struct wb_sensors_hand_sensors handSensors = *((struct wb_sensors_hand_sensors*) gsw_current_message(wb, kSensorsHandSensors_v));
+    // Head
     nao->head.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadPitch));
     nao->head.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadYaw));
-    gu_arm_sensors_update_from_wb(&nao->armSensors, torsoSensors);
-    const struct wb_top_particles topParticles = *((struct wb_top_particles*) gsw_current_message(wb, kTopParticles_v));
+    // Field Position
     nao->fieldPosition.position.x = i16_to_cm_t(topParticles.particles[0].position.x);
     nao->fieldPosition.position.y = i16_to_cm_t(topParticles.particles[0].position.y);
+    // Left Arm
+    nao->leftArm.arm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderPitch));
+    nao->leftArm.arm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderRoll));
+    nao->leftArm.arm.elbow.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LElbowYaw));
+    nao->leftArm.arm.elbow.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LElbowRoll));
+    nao->leftArm.arm.wrist.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LWristYaw));
+    nao->leftArm.hand.touchLeft  = handSensors.LHand_Touch_Left;
+    nao->leftArm.hand.touchBack  = handSensors.LHand_Touch_Back;
+    nao->leftArm.hand.touchRight  = handSensors.LHand_Touch_Right;
+    // Right Arm
+    nao->rightArm.arm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RShoulderPitch));
+    nao->rightArm.arm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RShoulderRoll));
+    nao->rightArm.arm.elbow.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RElbowYaw));
+    nao->rightArm.arm.elbow.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RElbowRoll));
+    nao->rightArm.arm.wrist.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RWristYaw));
+    nao->rightArm.hand.touchLeft  = handSensors.RHand_Touch_Left;
+    nao->rightArm.hand.touchBack  = handSensors.RHand_Touch_Back;
+    nao->rightArm.hand.touchRight  = handSensors.RHand_Touch_Right;
     nao->fieldPosition.heading = i16_to_deg_t(topParticles.particles[0].headingInDegrees);
-    const struct wb_sensors_hand_sensors handSensors = *((struct wb_sensors_hand_sensors*) gsw_current_message(wb, kSensorsHandSensors_v));
-    gu_hand_sensors_update_from_wb(&nao->handSensors, handSensors);
+}
+
+void gu_nao_empty(gu_nao * nao)
+{
+    gu_camera_pivot head = nao->head;
+    head.pitch = 0.0f;
+    head.yaw = 0.0f;
+    const gu_nao empty = {};
+    *nao = empty;
+    nao->head = head;
 }

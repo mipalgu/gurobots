@@ -77,11 +77,8 @@ namespace GU {
 
     private:
         gu_simple_whiteboard *wb;
+        void empty();
 
-    protected:
-        void set_headPitch(const degrees_f);
-        void set_headYaw(const degrees_f);
-    
     public:
         NaoV5();
         NaoV5(gu_simple_whiteboard *wb);
@@ -96,26 +93,9 @@ namespace GU {
 #endif
 
         GU::CameraPivot head() const;
-
-        degrees_f headPitch() const;
-        degrees_f headYaw() const;
-        degrees_f leftShoulderPitch() const;
-        degrees_f leftShoulderRoll() const;
-        degrees_f leftElbowYaw() const;
-        degrees_f leftElbowRoll() const;
-        degrees_f rightShoulderPitch() const;
-        degrees_f rightShoulderRoll() const;
-        degrees_f rightElbowYaw() const;
-        degrees_f rightElbowRoll() const;
-        degrees_f leftWristYaw() const;
-        degrees_f rightWristYaw() const;
-
-        bool leftHandTouchLeft() const;
-        bool leftHandTouchBack() const;
-        bool leftHandTouchRight() const;
-        bool rightHandTouchLeft() const;
-        bool rightHandTouchBack() const;
-        bool rightHandTouchRight() const;
+        GU::FieldCoordinate fieldPosition() const;
+        gu_nao_arm leftArm() const;
+        gu_nao_arm rightArm() const;
 
         void update();
 

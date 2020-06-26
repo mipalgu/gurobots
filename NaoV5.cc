@@ -70,46 +70,45 @@
 
 GU::NaoV5::NaoV5() {
     wb = get_local_singleton_whiteboard()->wb;
-    set_headPitch(0.0f);
-    set_headYaw(0.0f);
     gu_nao::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
     gu_nao::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
     gu_nao::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
     gu_nao::head.cameraHeightOffsets[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET;
     gu_nao::head.numCameras = 2;
+    update();
 }
 
 GU::NaoV5::NaoV5(gu_simple_whiteboard *t_wb)
 {
     wb = t_wb;
-    set_headPitch(0.0f);
-    set_headYaw(0.0f);
     gu_nao::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
     gu_nao::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
     gu_nao::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
     gu_nao::head.cameraHeightOffsets[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET;
     gu_nao::head.numCameras = 2;
+    update();
 }
 
 GU::NaoV5::NaoV5(const NaoV5& other)
 {
     wb = other.wb;
-    set_headPitch(other.headPitch());
-    set_headYaw(other.headYaw());
-    gu_nao::head.cameras[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA;
-    gu_nao::head.cameras[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA;
-    gu_nao::head.cameraHeightOffsets[GU_NAO_V5_TOP_CAMERA_INDEX] = GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET;
-    gu_nao::head.cameraHeightOffsets[GU_NAO_V5_BOTTOM_CAMERA_INDEX] = GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET;
-    gu_nao::head.numCameras = 2;
+    const gu_nao temp = other;
+    gu_nao::head = temp.head;
+    gu_nao::fieldPosition = temp.fieldPosition;
+    gu_nao::leftArm = temp.leftArm;
+    gu_nao::rightArm = temp.rightArm;
 }
 
 #if __cplusplus >= 201103L
 GU::NaoV5::NaoV5(NaoV5&& other) {
     wb = other.wb;
-    set_headPitch(other.headPitch());
-    set_headYaw(other.headYaw());
-    other.set_headPitch(0.0f);
-    other.set_headYaw(0.0f);
+    const gu_nao temp = other;
+    gu_nao::head = temp.head;
+    gu_nao::fieldPosition = temp.fieldPosition;
+    gu_nao::leftArm = temp.leftArm;
+    gu_nao::rightArm = temp.rightArm;
+    gu_nao_empty(&other);
+    other.wb = wb;
 }
 #endif
 
@@ -119,8 +118,10 @@ GU::NaoV5& GU::NaoV5::operator=(const GU::NaoV5& other) {
     if (&other == this) {
         return *this;
     }
-    set_headPitch(other.headPitch());
-    set_headYaw(other.headYaw());
+    gu_nao::head = other.head();
+    gu_nao::fieldPosition = other.fieldPosition();
+    gu_nao::leftArm = other.leftArm();
+    gu_nao::rightArm = other.rightArm();
     return *this;
 }
 
@@ -130,10 +131,12 @@ GU::NaoV5& GU::NaoV5::operator=(GU::NaoV5&& other) {
         return *this;
     }
     wb = other.wb;
-    set_headPitch(other.headPitch());
-    set_headYaw(other.headYaw());
-    other.set_headPitch(0.0f);
-    other.set_headYaw(0.0f);
+    gu_nao::head = other.head();
+    gu_nao::fieldPosition = other.fieldPosition();
+    gu_nao::leftArm = other.leftArm();
+    gu_nao::rightArm = other.rightArm();
+    gu_nao_empty(&other);
+    other.wb = wb;
     return *this;
 }
 #endif
@@ -143,104 +146,24 @@ GU::CameraPivot GU::NaoV5::head() const
     return gu_nao::head;
 }
 
-degrees_f GU::NaoV5::headPitch() const
+GU::FieldCoordinate GU::NaoV5::fieldPosition() const
 {
-    return gu_nao::head.pitch;
+    return gu_nao::fieldPosition;
 }
 
-void GU::NaoV5::set_headPitch(const degrees_f newValue)
+gu_nao_arm GU::NaoV5::leftArm() const
 {
-    gu_nao::head.pitch = newValue;
+    return gu_nao::leftArm;
 }
 
-degrees_f GU::NaoV5::headYaw() const
+gu_nao_arm GU::NaoV5::rightArm() const
 {
-    return gu_nao::head.yaw;
+    return gu_nao::rightArm;
 }
 
-void GU::NaoV5::set_headYaw(const degrees_f newValue)
+void GU::NaoV5::empty()
 {
-    gu_nao::head.yaw = newValue;
-}
-
-degrees_f GU::NaoV5::leftShoulderPitch() const
-{
-    return gu_nao::armSensors.leftShoulderPitch;
-}
-
-degrees_f GU::NaoV5::leftShoulderRoll() const
-{
-    return gu_nao::armSensors.leftShoulderRoll;
-}
-
-degrees_f GU::NaoV5::leftElbowYaw() const
-{
-    return gu_nao::armSensors.leftElbowYaw;
-}
-
-degrees_f GU::NaoV5::leftElbowRoll() const
-{
-    return gu_nao::armSensors.leftElbowRoll;
-}
-
-degrees_f GU::NaoV5::rightShoulderPitch() const
-{
-    return gu_nao::armSensors.rightShoulderPitch;
-}
-
-degrees_f GU::NaoV5::rightShoulderRoll() const
-{
-    return gu_nao::armSensors.rightShoulderRoll;
-}
-
-degrees_f GU::NaoV5::rightElbowYaw() const
-{
-    return gu_nao::armSensors.rightElbowYaw;
-}
-
-degrees_f GU::NaoV5::rightElbowRoll() const
-{
-    return gu_nao::armSensors.rightElbowRoll;
-}
-
-degrees_f GU::NaoV5::leftWristYaw() const
-{
-    return gu_nao::armSensors.leftWristYaw;
-}
-
-degrees_f GU::NaoV5::rightWristYaw() const
-{
-    return gu_nao::armSensors.rightWristYaw;
-}
-
-bool GU::NaoV5::leftHandTouchLeft() const
-{
-    return gu_nao::handSensors.leftHandTouchLeft;
-}
-
-bool GU::NaoV5::leftHandTouchBack() const
-{
-    return gu_nao::handSensors.leftHandTouchBack;
-}
-
-bool GU::NaoV5::leftHandTouchRight() const
-{
-    return gu_nao::handSensors.leftHandTouchRight;
-}
-
-bool GU::NaoV5::rightHandTouchLeft() const
-{
-    return gu_nao::handSensors.rightHandTouchLeft;
-}
-
-bool GU::NaoV5::rightHandTouchBack() const
-{
-    return gu_nao::handSensors.rightHandTouchBack;
-}
-
-bool GU::NaoV5::rightHandTouchRight() const
-{
-    return gu_nao::handSensors.rightHandTouchRight;
+    gu_nao_empty(this);
 }
 
 void GU::NaoV5::update()

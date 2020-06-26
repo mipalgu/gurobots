@@ -61,29 +61,7 @@
 
 bool gu_arm_sensors_equals(const gu_arm_sensors lhs, const gu_arm_sensors rhs, const degrees_f tolerance)
 {
-    return 
-        fabsf(lhs.leftShoulderPitch - rhs.leftShoulderPitch) <= tolerance
-        && fabsf(lhs.leftShoulderRoll - rhs.leftShoulderRoll) <= tolerance
-        && fabsf(lhs.leftElbowYaw - rhs.leftElbowYaw) <= tolerance
-        && fabsf(lhs.leftElbowRoll - rhs.leftElbowRoll) <= tolerance
-        && fabsf(lhs.rightShoulderPitch - rhs.rightShoulderPitch) <= tolerance
-        && fabsf(lhs.rightShoulderRoll - rhs.rightShoulderRoll) <= tolerance
-        && fabsf(lhs.rightElbowYaw - rhs.rightElbowYaw) <= tolerance
-        && fabsf(lhs.rightElbowRoll - rhs.rightElbowRoll) <= tolerance
-        && fabsf(lhs.leftWristYaw - rhs.leftWristYaw) <= tolerance
-        && fabsf(lhs.rightWristYaw - rhs.rightWristYaw) <= tolerance;
-}
-
-void gu_arm_sensors_update_from_wb(gu_arm_sensors * armSensors, const struct wb_sensors_torsojointsensors torsoSensors)
-{
-     armSensors->leftShoulderPitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderPitch));
-     armSensors->leftShoulderRoll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderRoll));
-     armSensors->leftElbowYaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LElbowYaw));
-     armSensors->leftElbowRoll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LElbowRoll));
-     armSensors->rightShoulderPitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RShoulderPitch));
-     armSensors->rightShoulderRoll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RShoulderRoll));
-     armSensors->rightElbowYaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RElbowYaw));
-     armSensors->rightElbowRoll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RElbowRoll));
-     armSensors->leftWristYaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LWristYaw));
-     armSensors->rightWristYaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RWristYaw));
+    return gu_pitch_roll_joint_equals(lhs.shoulder, rhs.shoulder, tolerance)
+        && gu_yaw_roll_joint_equals(lhs.elbow, rhs.elbow, tolerance)
+        && gu_yaw_joint_equals(lhs.wrist, rhs.wrist, tolerance);
 }

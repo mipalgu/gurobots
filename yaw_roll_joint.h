@@ -1,5 +1,5 @@
 /*
- * nao.h 
+ * yaw_roll_joint.h 
  * gurobots 
  *
  * Created by Callum McColl on 27/06/2020.
@@ -56,42 +56,25 @@
  *
  */
 
-#ifndef GUROBOTS_NAO_H
-#define GUROBOTS_NAO_H
+#ifndef GUROBOTS_YAW_ROLL_JOINT_H
+#define GUROBOTS_YAW_ROLL_JOINT_H
 
 #include <guunits/guunits.h>
-#include <gucoordinates/gucoordinates.h>
 #include <stdbool.h>
-
-#include <gusimplewhiteboard/gusimplewhiteboard.h>
-
-#include "arm_sensors.h"
-#include "hand_sensors.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef struct gu_nao_arm {
-    gu_arm_sensors arm;
-    gu_hand_sensors hand;
-} gu_nao_arm;
+typedef struct gu_yaw_roll_joint {
+    degrees_f yaw;
+    degrees_f roll;
+} gu_yaw_roll_joint;
 
-bool gu_nao_arm_equals(const gu_nao_arm lhs, const gu_nao_arm rhs);
-
-typedef struct gu_nao {
-    gu_camera_pivot head;
-    gu_field_coordinate fieldPosition;
-    gu_nao_arm leftArm;
-    gu_nao_arm rightArm;
-} gu_nao;
-
-bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs);
-void gu_nao_update_from_wb(gu_nao *, gu_simple_whiteboard *);
-void gu_nao_empty(gu_nao *);
+bool gu_yaw_roll_joint_equals(const gu_yaw_roll_joint lhs, const gu_yaw_roll_joint rhs, const degrees_f tolerance);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif  /* GUROBOTS_NAO_H */
+#endif  /* GUROBOTS_YAW_ROLL_JOINT_H */

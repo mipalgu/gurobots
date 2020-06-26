@@ -60,20 +60,7 @@
 
 bool gu_hand_sensors_equals(const gu_hand_sensors lhs, const gu_hand_sensors rhs)
 {
-    return lhs.leftHandTouchLeft == rhs.leftHandTouchLeft
-        && lhs.leftHandTouchBack == rhs.leftHandTouchBack
-        && lhs.leftHandTouchRight == rhs.leftHandTouchRight
-        && lhs.rightHandTouchLeft == rhs.rightHandTouchLeft
-        && lhs.rightHandTouchBack == rhs.rightHandTouchBack
-        && lhs.rightHandTouchRight == rhs.rightHandTouchRight;
-}
-
-void gu_hand_sensors_update_from_wb(gu_hand_sensors * handSensors, const struct wb_sensors_hand_sensors wbSensors)
-{
-    handSensors->leftHandTouchLeft = wbSensors.LHand_Touch_Left;
-    handSensors->leftHandTouchBack = wbSensors.LHand_Touch_Back;
-    handSensors->leftHandTouchRight = wbSensors.LHand_Touch_Right;
-    handSensors->rightHandTouchLeft = wbSensors.RHand_Touch_Left;
-    handSensors->rightHandTouchBack = wbSensors.RHand_Touch_Back;
-    handSensors->rightHandTouchRight = wbSensors.RHand_Touch_Right;
+    return lhs.touchLeft == rhs.touchLeft
+        && lhs.touchBack == rhs.touchBack
+        && lhs.touchRight == rhs.touchRight;
 }

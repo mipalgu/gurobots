@@ -69,16 +69,12 @@ extern "C" {
 #endif
 
 typedef struct gu_hand_sensors {
-    bool leftHandTouchLeft;
-    bool leftHandTouchBack;
-    bool leftHandTouchRight;
-    bool rightHandTouchLeft;
-    bool rightHandTouchBack;
-    bool rightHandTouchRight;
+    bool touchLeft;
+    bool touchBack;
+    bool touchRight;
 } gu_hand_sensors;
 
 bool gu_hand_sensors_equals(const gu_hand_sensors, const gu_hand_sensors);
-void gu_hand_sensors_update_from_wb(gu_hand_sensors *, const struct wb_sensors_hand_sensors);
 
 #ifdef __cplusplus
 }
