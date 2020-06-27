@@ -1,8 +1,8 @@
 /*
- * NaoV5.cc
- * build
+ * pitch_joint.c 
+ * gurobots 
  *
- * Created by Callum McColl on 22/6/20.
+ * Created by Callum McColl on 27/06/2020.
  * Copyright © 2020 Callum McColl. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,122 +56,11 @@
  *
  */
 
-#include "NaoV5.hpp"
+#include "pitch_joint.h"
 
-#include "robot.h"
+#include <math.h>
 
-#include <guunits/guunits.h>
-
-#include <gusimplewhiteboard/gusimplewhiteboard.h>
-#include <gusimplewhiteboard/guwhiteboardtypelist_c_generated.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_sensors_hand_sensors.h>
-
-GU::NaoV5::NaoV5() {
-    wb = get_local_singleton_whiteboard()->wb;
-    update();
-}
-
-GU::NaoV5::NaoV5(gu_simple_whiteboard *t_wb)
+bool gu_pitch_joint_equals(const gu_pitch_joint lhs, const gu_pitch_joint rhs, const degrees_f tolerance)
 {
-    wb = t_wb;
-    update();
-}
-
-GU::NaoV5::NaoV5(const NaoV5& other)
-{
-    wb = other.wb;
-    const gu_nao temp = other;
-    gu_nao::head = temp.head;
-    gu_nao::fieldPosition = temp.fieldPosition;
-    gu_nao::leftArm = temp.leftArm;
-    gu_nao::rightArm = temp.rightArm;
-}
-
-#if __cplusplus >= 201103L
-GU::NaoV5::NaoV5(NaoV5&& other) {
-    wb = other.wb;
-    const gu_nao temp = other;
-    gu_nao::head = temp.head;
-    gu_nao::fieldPosition = temp.fieldPosition;
-    gu_nao::leftArm = temp.leftArm;
-    gu_nao::rightArm = temp.rightArm;
-    gu_nao_empty(&other);
-    other.wb = wb;
-}
-#endif
-
-GU::NaoV5::~NaoV5() {}
-
-GU::NaoV5& GU::NaoV5::operator=(const GU::NaoV5& other) {
-    if (&other == this) {
-        return *this;
-    }
-    gu_nao::head = other.head();
-    gu_nao::fieldPosition = other.fieldPosition();
-    gu_nao::leftArm = other.leftArm();
-    gu_nao::rightArm = other.rightArm();
-    return *this;
-}
-
-#if __cplusplus >= 201103L
-GU::NaoV5& GU::NaoV5::operator=(GU::NaoV5&& other) {
-    if (&other == this) {
-        return *this;
-    }
-    wb = other.wb;
-    gu_nao::head = other.head();
-    gu_nao::fieldPosition = other.fieldPosition();
-    gu_nao::leftArm = other.leftArm();
-    gu_nao::rightArm = other.rightArm();
-    gu_nao_empty(&other);
-    other.wb = wb;
-    return *this;
-}
-#endif
-
-gu_nao_head GU::NaoV5::head() const
-{
-    return gu_nao::head;
-}
-
-GU::CameraPivot GU::NaoV5::cameraPivot() const
-{
-    return gu_nao_head_to_camera_pivot(head());
-}
-
-GU::FieldCoordinate GU::NaoV5::fieldPosition() const
-{
-    return gu_nao::fieldPosition;
-}
-
-gu_nao_arm GU::NaoV5::leftArm() const
-{
-    return gu_nao::leftArm;
-}
-
-gu_nao_arm GU::NaoV5::rightArm() const
-{
-    return gu_nao::rightArm;
-}
-
-gu_nao_leg GU::NaoV5::leftLeg() const
-{
-    return gu_nao::leftLeg;
-}
-
-gu_nao_leg GU::NaoV5::rightLeg() const
-{
-    return gu_nao::rightLeg;
-}
-
-void GU::NaoV5::empty()
-{
-    gu_nao_empty(this);
-}
-
-void GU::NaoV5::update()
-{
-    gu_nao_update_from_wb(this, wb);
+    return fabsf(lhs.pitch - rhs.pitch) <= tolerance;
 }

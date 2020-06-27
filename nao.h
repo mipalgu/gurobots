@@ -67,10 +67,12 @@
 
 #include "hand_sensors.h"
 #include "fmr_sensors.h"
+#include "pitch_joint.h"
 #include "pitch_roll_joint.h"
 #include "pitch_yaw_joint.h"
 #include "yaw_roll_joint.h"
 #include "yaw_joint.h"
+#include "yp_joint.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -93,11 +95,21 @@ typedef struct gu_nao_arm {
 
 bool gu_nao_arm_equals(const gu_nao_arm lhs, const gu_nao_arm rhs);
 
+typedef struct gu_nao_leg {
+    gu_yp_joint hip; 
+    gu_pitch_joint knee;
+    gu_pitch_roll_joint ankle;
+} gu_nao_leg;
+
+bool gu_nao_leg_equals(const gu_nao_leg lhs, const gu_nao_leg rhs);
+
 typedef struct gu_nao {
     gu_nao_head head;
     gu_field_coordinate fieldPosition;
     gu_nao_arm leftArm;
     gu_nao_arm rightArm;
+    gu_nao_leg leftLeg;
+    gu_nao_leg rightLeg;
 } gu_nao;
 
 bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs);

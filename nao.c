@@ -63,6 +63,7 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_head_sensors.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_sensors_legjointsensors.h>
 
 #define GU_NAO_V5_TOP_CAMERA gu_camera_make(6.364f, 5.871f, 1.2f, 47.64f, 60.97f) 
 #define GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET 41.7f
@@ -91,12 +92,21 @@ bool gu_nao_arm_equals(const gu_nao_arm lhs, const gu_nao_arm rhs)
         && gu_hand_sensors_equals(lhs.hand, rhs.hand);
 }
 
+bool gu_nao_leg_equals(const gu_nao_leg lhs, const gu_nao_leg rhs)
+{
+    return gu_yp_joint_equals(lhs.hip, rhs.hip, 0.0001f)
+        && gu_pitch_joint_equals(lhs.knee, rhs.knee, 0.0001f)
+        && gu_pitch_roll_joint_equals(lhs.ankle, rhs.ankle, 0.0001f);
+}
+
 bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs)
 {
     return gu_nao_head_equals(lhs.head, rhs.head)
         && gu_field_coordinate_equals(lhs.fieldPosition, rhs.fieldPosition)
         && gu_nao_arm_equals(lhs.leftArm, rhs.leftArm)
-        && gu_nao_arm_equals(lhs.rightArm, rhs.rightArm);
+        && gu_nao_arm_equals(lhs.rightArm, rhs.rightArm)
+        && gu_nao_leg_equals(lhs.leftLeg, rhs.leftLeg)
+        && gu_nao_leg_equals(lhs.rightLeg, rhs.rightLeg);
 }
 
 void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
@@ -105,6 +115,7 @@ void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
     const struct wb_top_particles topParticles = *((struct wb_top_particles*) gsw_current_message(wb, kTopParticles_v));
     const struct wb_sensors_hand_sensors handSensors = *((struct wb_sensors_hand_sensors*) gsw_current_message(wb, kSensorsHandSensors_v));
     const struct wb_sensors_head_sensors headSensors = *((struct wb_sensors_head_sensors*) gsw_current_message(wb, kSensorsHeadSensors_v));
+    const struct wb_sensors_legjointsensors legSensors = *((struct wb_sensors_legjointsensors*) gsw_current_message(wb, kSENSORSLegJointSensors_v));
     // Head
     nao->head.neck.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadPitch));
     nao->head.neck.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadYaw));
@@ -121,18 +132,32 @@ void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
     nao->leftArm.elbow.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LElbowYaw));
     nao->leftArm.elbow.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LElbowRoll));
     nao->leftArm.wrist.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LWristYaw));
-    nao->leftArm.hand.touchLeft  = handSensors.LHand_Touch_Left;
-    nao->leftArm.hand.touchBack  = handSensors.LHand_Touch_Back;
-    nao->leftArm.hand.touchRight  = handSensors.LHand_Touch_Right;
+    nao->leftArm.hand.touchLeft = handSensors.LHand_Touch_Left;
+    nao->leftArm.hand.touchBack = handSensors.LHand_Touch_Back;
+    nao->leftArm.hand.touchRight = handSensors.LHand_Touch_Right;
     // Right Arm
     nao->rightArm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RShoulderPitch));
     nao->rightArm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RShoulderRoll));
     nao->rightArm.elbow.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RElbowYaw));
     nao->rightArm.elbow.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RElbowRoll));
     nao->rightArm.wrist.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RWristYaw));
-    nao->rightArm.hand.touchLeft  = handSensors.RHand_Touch_Left;
-    nao->rightArm.hand.touchBack  = handSensors.RHand_Touch_Back;
-    nao->rightArm.hand.touchRight  = handSensors.RHand_Touch_Right;
+    nao->rightArm.hand.touchLeft = handSensors.RHand_Touch_Left;
+    nao->rightArm.hand.touchBack = handSensors.RHand_Touch_Back;
+    nao->rightArm.hand.touchRight = handSensors.RHand_Touch_Right;
+    // Left Leg
+    nao->leftLeg.hip.pitch = rad_f_to_deg_f(f_to_rad_f(legSensors.LHipPitch));
+    nao->leftLeg.hip.yawPitch = rad_f_to_deg_f(f_to_rad_f(legSensors.LHipYawPitch));
+    nao->leftLeg.hip.roll = rad_f_to_deg_f(f_to_rad_f(legSensors.LHipYawPitch));
+    nao->leftLeg.knee.pitch = rad_f_to_deg_f(f_to_rad_f(legSensors.LKneePitch));
+    nao->leftLeg.ankle.pitch = rad_f_to_deg_f(f_to_rad_f(legSensors.LAnklePitch));
+    nao->leftLeg.ankle.roll = rad_f_to_deg_f(f_to_rad_f(legSensors.LAnkleRoll));
+    // Right Leg
+    nao->rightLeg.hip.pitch = rad_f_to_deg_f(f_to_rad_f(legSensors.RHipPitch));
+    nao->rightLeg.hip.yawPitch = rad_f_to_deg_f(f_to_rad_f(legSensors.RHipYawPitch));
+    nao->rightLeg.hip.roll = rad_f_to_deg_f(f_to_rad_f(legSensors.RHipYawPitch));
+    nao->rightLeg.knee.pitch = rad_f_to_deg_f(f_to_rad_f(legSensors.RKneePitch));
+    nao->rightLeg.ankle.pitch = rad_f_to_deg_f(f_to_rad_f(legSensors.RAnklePitch));
+    nao->rightLeg.ankle.roll = rad_f_to_deg_f(f_to_rad_f(legSensors.RAnkleRoll));
 }
 
 void gu_nao_empty(gu_nao * nao)

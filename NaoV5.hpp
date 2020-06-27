@@ -97,6 +97,8 @@ namespace GU {
         GU::FieldCoordinate fieldPosition() const;
         gu_nao_arm leftArm() const;
         gu_nao_arm rightArm() const;
+        gu_nao_leg leftLeg() const;
+        gu_nao_leg rightLeg() const;
 
         void update();
 
