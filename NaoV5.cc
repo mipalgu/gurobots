@@ -83,20 +83,16 @@ GU::NaoV5::NaoV5(const NaoV5& other)
 {
     wb = other.wb;
     const gu_nao temp = other;
-    gu_nao::head = temp.head;
     gu_nao::fieldPosition = temp.fieldPosition;
-    gu_nao::leftArm = temp.leftArm;
-    gu_nao::rightArm = temp.rightArm;
+    gu_nao::joints = temp.joints;
 }
 
 #if __cplusplus >= 201103L
 GU::NaoV5::NaoV5(NaoV5&& other) {
     wb = other.wb;
     const gu_nao temp = other;
-    gu_nao::head = temp.head;
     gu_nao::fieldPosition = temp.fieldPosition;
-    gu_nao::leftArm = temp.leftArm;
-    gu_nao::rightArm = temp.rightArm;
+    gu_nao::joints = temp.joints;
     gu_nao_empty(&other);
     other.wb = wb;
 }
@@ -108,10 +104,8 @@ GU::NaoV5& GU::NaoV5::operator=(const GU::NaoV5& other) {
     if (&other == this) {
         return *this;
     }
-    gu_nao::head = other.head();
     gu_nao::fieldPosition = other.fieldPosition();
-    gu_nao::leftArm = other.leftArm();
-    gu_nao::rightArm = other.rightArm();
+    gu_nao::joints = other.joints();
     return *this;
 }
 
@@ -121,24 +115,17 @@ GU::NaoV5& GU::NaoV5::operator=(GU::NaoV5&& other) {
         return *this;
     }
     wb = other.wb;
-    gu_nao::head = other.head();
     gu_nao::fieldPosition = other.fieldPosition();
-    gu_nao::leftArm = other.leftArm();
-    gu_nao::rightArm = other.rightArm();
+    gu_nao::joints = other.joints();
     gu_nao_empty(&other);
     other.wb = wb;
     return *this;
 }
 #endif
 
-gu_nao_head GU::NaoV5::head() const
-{
-    return gu_nao::head;
-}
-
 GU::CameraPivot GU::NaoV5::cameraPivot() const
 {
-    return gu_nao_head_to_camera_pivot(head());
+    return gu_nao_head_to_camera_pivot(gu_nao::joints.head);
 }
 
 GU::FieldCoordinate GU::NaoV5::fieldPosition() const
@@ -146,24 +133,9 @@ GU::FieldCoordinate GU::NaoV5::fieldPosition() const
     return gu_nao::fieldPosition;
 }
 
-gu_nao_arm GU::NaoV5::leftArm() const
+gu_nao_joints GU::NaoV5::joints() const
 {
-    return gu_nao::leftArm;
-}
-
-gu_nao_arm GU::NaoV5::rightArm() const
-{
-    return gu_nao::rightArm;
-}
-
-gu_nao_leg GU::NaoV5::leftLeg() const
-{
-    return gu_nao::leftLeg;
-}
-
-gu_nao_leg GU::NaoV5::rightLeg() const
-{
-    return gu_nao::rightLeg;
+    return gu_nao::joints;
 }
 
 void GU::NaoV5::empty()

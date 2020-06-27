@@ -103,13 +103,19 @@ typedef struct gu_nao_leg {
 
 bool gu_nao_leg_equals(const gu_nao_leg lhs, const gu_nao_leg rhs);
 
-typedef struct gu_nao {
+typedef struct gu_nao_joints {
     gu_nao_head head;
-    gu_field_coordinate fieldPosition;
     gu_nao_arm leftArm;
     gu_nao_arm rightArm;
     gu_nao_leg leftLeg;
     gu_nao_leg rightLeg;
+} gu_nao_joints;
+
+bool gu_nao_joints_equals(const gu_nao_joints lhs, const gu_nao_joints rhs);
+
+typedef struct gu_nao {
+    gu_field_coordinate fieldPosition;
+    gu_nao_joints joints;
 } gu_nao;
 
 bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs);

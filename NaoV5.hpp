@@ -92,13 +92,10 @@ namespace GU {
         NaoV5& operator=(NaoV5&& other);
 #endif
 
-        gu_nao_head head() const;
-        GU::CameraPivot cameraPivot() const;
         GU::FieldCoordinate fieldPosition() const;
-        gu_nao_arm leftArm() const;
-        gu_nao_arm rightArm() const;
-        gu_nao_leg leftLeg() const;
-        gu_nao_leg rightLeg() const;
+        gu_nao_joints joints() const;
+
+        GU::CameraPivot cameraPivot() const;
 
         void update();
 
