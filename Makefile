@@ -39,7 +39,7 @@ PKGCONFIG_VERSION=1.0
 PKGCONFIG_DESCRIPTION=Utilities for converting between coordinate systems.
 
 #WFLAGS=-Weverything wn-warning-option ${WERROR}
-WFLAGS=-Wall -Weverything -Wno-unknown-pragmas -Wno-unknown-warning-option -Wno-c99-extensions -Werror
+WFLAGS=-Wall -Weverything -Wno-unknown-pragmas -Wno-unknown-warning-option -Wno-c99-extensions -Wno-padded -Werror
 CPP03_EXTRA_WFLAGS=-Wno-c++98-compat -Wno-c++98-compat-pedantic -Wc++98-compat-extra-semi
 CPP11_EXTRA_WFLAGS=-Wno-c++98-compat -Wno-c++98-compat-pedantic -Wc++98-compat-extra-semi
 CPP14_EXTRA_WFLAGS=-Wno-c++98-compat -Wno-c++98-compat-pedantic -Wc++98-compat-extra-semi

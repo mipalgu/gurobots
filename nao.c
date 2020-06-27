@@ -162,6 +162,6 @@ void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
 
 void gu_nao_empty(gu_nao * nao)
 {
-    const gu_nao empty = {};
+    const gu_nao empty = { .head = { .neck = { .pitch = 0.0f} } };
     *nao = empty;
 }
