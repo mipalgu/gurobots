@@ -94,6 +94,7 @@ namespace GU {
 
         GU::FieldCoordinate fieldPosition() const;
         gu_nao_joints joints() const;
+        gu_nao_sightings sightings() const;
 
         GU::CameraPivot cameraPivot() const;
 

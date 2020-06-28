@@ -64,6 +64,7 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_head_sensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_legjointsensors.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_location.h>
 
 #define GU_NAO_V5_TOP_CAMERA gu_camera_make(6.364f, 5.871f, 1.2f, 47.64f, 60.97f) 
 #define GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET 41.7f
@@ -113,14 +114,14 @@ bool gu_nao_sightings_equals(const gu_nao_sightings lhs, const gu_nao_sightings 
     return gu_optional_relative_coordinate_equals(lhs.ball, rhs.ball)
         && gu_optional_relative_coordinate_equals(lhs.leftGoalPost, rhs.leftGoalPost)
         && gu_optional_relative_coordinate_equals(lhs.rightGoalPost, rhs.rightGoalPost)
-        && gu_optional_relative_coordinate_equals(lhs.genericGoalPost, rhs.genericGoalPost)
         && gu_optional_relative_coordinate_equals(lhs.goal, rhs.goal);
 }
 
 bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs)
 {
     return gu_field_coordinate_equals(lhs.fieldPosition, rhs.fieldPosition)
-        && gu_nao_joints_equals(lhs.joints, rhs.joints);
+        && gu_nao_joints_equals(lhs.joints, rhs.joints)
+        && gu_nao_sightings_equals(lhs.sightings, rhs.sightings);
 }
 
 void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
@@ -130,6 +131,10 @@ void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
     const struct wb_sensors_hand_sensors handSensors = *((struct wb_sensors_hand_sensors*) gsw_current_message(wb, kSensorsHandSensors_v));
     const struct wb_sensors_head_sensors headSensors = *((struct wb_sensors_head_sensors*) gsw_current_message(wb, kSensorsHeadSensors_v));
     const struct wb_sensors_legjointsensors legSensors = *((struct wb_sensors_legjointsensors*) gsw_current_message(wb, kSENSORSLegJointSensors_v));
+    const struct wb_location ballLocation = *((struct wb_location*) gsw_current_message(wb, kBallLocation_v));
+    const struct wb_location leftGoalPostLocation = *((struct wb_location*) gsw_current_message(wb, kLeftGoalPostLocation_v));
+    const struct wb_location rightGoalPostLocation = *((struct wb_location*) gsw_current_message(wb, kRightGoalPostLocation_v));
+    const struct wb_location goalLocation = *((struct wb_location*) gsw_current_message(wb, kGoalLocation_v));
     // Head
     nao->joints.head.neck.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadPitch));
     nao->joints.head.neck.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadYaw));
@@ -172,6 +177,11 @@ void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
     nao->joints.rightLeg.knee.pitch = rad_f_to_deg_f(f_to_rad_f(legSensors.RKneePitch));
     nao->joints.rightLeg.ankle.pitch = rad_f_to_deg_f(f_to_rad_f(legSensors.RAnklePitch));
     nao->joints.rightLeg.ankle.roll = rad_f_to_deg_f(f_to_rad_f(legSensors.RAnkleRoll));
+    // Sightings
+    nao->sightings.ball = wb_location_to_optional_relative_coordinate(ballLocation);
+    nao->sightings.leftGoalPost = wb_location_to_optional_relative_coordinate(leftGoalPostLocation);
+    nao->sightings.rightGoalPost = wb_location_to_optional_relative_coordinate(rightGoalPostLocation);
+    nao->sightings.goal = wb_location_to_optional_relative_coordinate(goalLocation);
 }
 
 void gu_nao_empty(gu_nao * nao)

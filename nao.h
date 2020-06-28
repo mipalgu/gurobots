@@ -118,7 +118,6 @@ typedef struct gu_nao_sightings {
     gu_optional_relative_coordinate ball;
     gu_optional_relative_coordinate leftGoalPost;
     gu_optional_relative_coordinate rightGoalPost;
-    gu_optional_relative_coordinate genericGoalPost;
     gu_optional_relative_coordinate goal;
 } gu_nao_sightings;
 
@@ -127,6 +126,7 @@ bool gu_nao_sightings_equals(const gu_nao_sightings lhs, const gu_nao_sightings 
 typedef struct gu_nao {
     gu_field_coordinate fieldPosition;
     gu_nao_joints joints;
+    gu_nao_sightings sightings;
 } gu_nao;
 
 bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs);

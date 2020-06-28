@@ -61,6 +61,7 @@
 
 #include <stdbool.h>
 #include <gucoordinates/gucoordinates.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_location.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -72,6 +73,7 @@ typedef struct gu_optional_relative_coordinate {
 } gu_optional_relative_coordinate;
 
 bool gu_optional_relative_coordinate_equals(const gu_optional_relative_coordinate lhs, const gu_optional_relative_coordinate rhs);
+gu_optional_relative_coordinate wb_location_to_optional_relative_coordinate(const struct wb_location location);
 
 #ifdef __cplusplus
 }
