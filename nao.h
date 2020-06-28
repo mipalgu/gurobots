@@ -80,6 +80,9 @@
 extern "C" {
 #endif
 
+#define GU_NAO_V5_TOP_CAMERA_INDEX 0
+#define GU_NAO_V5_BOTTOM_CAMERA_INDEX 1 
+
 typedef struct gu_nao_head {
     gu_pitch_yaw_joint neck;
     gu_fmr_sensors buttons;

@@ -58,8 +58,6 @@
 
 #include "NaoV5.hpp"
 
-#include "robot.h"
-
 #include <guunits/guunits.h>
 
 #include <gusimplewhiteboard/gusimplewhiteboard.h>
@@ -184,6 +182,36 @@ bool GU::NaoV5::goalSighting(GU::RelativeCoordinate & coordinate) const
     return true;
 }
 
+bool GU::NaoV5::topCameraRelativeCoordinate(const GU::CameraCoordinate & coordinate, GU::RelativeCoordinate & out)
+{
+    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_TOP_CAMERA_INDEX, out);
+}
+
+bool GU::NaoV5::topCameraRelativeCoordinate(const GU::PixelCoordinate & coordinate, GU::RelativeCoordinate & out)
+{
+    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_TOP_CAMERA_INDEX, out);
+}
+
+bool GU::NaoV5::topCameraRelativeCoordinate(const GU::PercentCoordinate & coordinate, GU::RelativeCoordinate & out)
+{
+    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_TOP_CAMERA_INDEX, out);
+}
+
+bool GU::NaoV5::bottomCameraRelativeCoordinate(const GU::CameraCoordinate & coordinate, GU::RelativeCoordinate & out)
+{
+    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_BOTTOM_CAMERA_INDEX, out);
+}
+
+bool GU::NaoV5::bottomCameraRelativeCoordinate(const GU::PixelCoordinate & coordinate, GU::RelativeCoordinate & out)
+{
+    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_BOTTOM_CAMERA_INDEX, out);
+}
+
+bool GU::NaoV5::bottomCameraRelativeCoordinate(const GU::PercentCoordinate & coordinate, GU::RelativeCoordinate & out)
+{
+    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_BOTTOM_CAMERA_INDEX, out);
+}
+
 #if __cplusplus >= 201703L
 std::optional<GU::FieldCoordinate> GU::NaoV5::fieldPosition() const
 {
@@ -220,6 +248,35 @@ std::optional<GU::RelativeCoordinate> GU::NaoV5::goalSighting() const
     return std::optional<GU::RelativeCoordinate>(gu_nao::sightings.goal.coordinate);
 }
 
+std::optional<GU::RelativeCoordinate> GU::NaoV5::topCameraRelativeCoordinate(const GU::CameraCoordinate & coordinate)
+{
+    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_TOP_CAMERA_INDEX);
+}
+
+std::optional<GU::RelativeCoordinate> GU::NaoV5::topCameraRelativeCoordinate(const GU::PixelCoordinate & coordinate)
+{
+    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_TOP_CAMERA_INDEX);
+}
+
+std::optional<GU::RelativeCoordinate> GU::NaoV5::topCameraRelativeCoordinate(const GU::PercentCoordinate & coordinate)
+{
+    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_TOP_CAMERA_INDEX);
+}
+
+std::optional<GU::RelativeCoordinate> GU::NaoV5::bottomCameraRelativeCoordinate(const GU::CameraCoordinate & coordinate)
+{
+    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_BOTTOM_CAMERA_INDEX);
+}
+
+std::optional<GU::RelativeCoordinate> GU::NaoV5::bottomCameraRelativeCoordinate(const GU::PixelCoordinate & coordinate)
+{
+    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_BOTTOM_CAMERA_INDEX);
+}
+
+std::optional<GU::RelativeCoordinate> GU::NaoV5::bottomCameraRelativeCoordinate(const GU::PercentCoordinate & coordinate)
+{
+    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_BOTTOM_CAMERA_INDEX);
+}
 #endif
 
 void GU::NaoV5::empty()

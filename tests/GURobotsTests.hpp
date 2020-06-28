@@ -125,16 +125,9 @@ namespace CGTEST {
 
         protected:
 
-            GU::NaoV5 nao;
-            GU::Camera topCamera;
-            GU::Camera bottomCamera;
-
             virtual void SetUp() {
                 ALL_FAKES(RESET_FAKE);
                 FFF_RESET_HISTORY();
-                //nao = GU_NAO_V5_ROBOT(0.0f, 0.0f, 0, 0, 0);
-                topCamera = GU_NAO_V5_TOP_CAMERA;
-                bottomCamera = GU_NAO_V5_BOTTOM_CAMERA;
             }
 
             virtual void TearDown() {
