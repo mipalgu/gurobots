@@ -119,7 +119,7 @@ bool gu_nao_sightings_equals(const gu_nao_sightings lhs, const gu_nao_sightings 
 
 bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs)
 {
-    return gu_field_coordinate_equals(lhs.fieldPosition, rhs.fieldPosition)
+    return gu_optional_field_coordinate_equals(lhs.fieldPosition, rhs.fieldPosition)
         && gu_nao_joints_equals(lhs.joints, rhs.joints)
         && gu_nao_sightings_equals(lhs.sightings, rhs.sightings);
 }
@@ -142,9 +142,10 @@ void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
     nao->joints.head.buttons.touchMiddle = headSensors.Head_Touch_Middle;
     nao->joints.head.buttons.touchRear = headSensors.Head_Touch_Rear;
     // Field Position
-    nao->fieldPosition.position.x = i16_to_cm_t(topParticles.particles[0].position.x);
-    nao->fieldPosition.position.y = i16_to_cm_t(topParticles.particles[0].position.y);
-    nao->fieldPosition.heading = i16_to_deg_t(topParticles.particles[0].headingInDegrees);
+    nao->fieldPosition.hasCoordinate = topParticles.particles[0].confidence > 0.6f;
+    nao->fieldPosition.field_coordinate.position.x = i16_to_cm_t(topParticles.particles[0].position.x);
+    nao->fieldPosition.field_coordinate.position.y = i16_to_cm_t(topParticles.particles[0].position.y);
+    nao->fieldPosition.field_coordinate.heading = i16_to_deg_t(topParticles.particles[0].headingInDegrees);
     // Left Arm
     nao->joints.leftArm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderPitch));
     nao->joints.leftArm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderRoll));

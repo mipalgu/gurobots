@@ -67,7 +67,7 @@
 #include <guunits/guunits.h>
 #include <gusimplewhiteboard/gusimplewhiteboard.h>
 
-#ifdef __cpp_lib_optional
+#if __cplusplus >= 201703L
 #include <optional>
 #endif
 
@@ -92,11 +92,16 @@ namespace GU {
         NaoV5& operator=(NaoV5&& other);
 #endif
 
-        GU::FieldCoordinate fieldPosition() const;
         gu_nao_joints joints() const;
         gu_nao_sightings sightings() const;
 
         GU::CameraPivot cameraPivot() const;
+
+        bool fieldPosition(GU::FieldCoordinate &) const;
+
+#if __cplusplus >= 201703L
+        std::optional<GU::FieldCoordinate> fieldPosition() const;
+#endif
 
         void update();
 

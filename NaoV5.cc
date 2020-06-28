@@ -85,6 +85,7 @@ GU::NaoV5::NaoV5(const NaoV5& other)
     const gu_nao temp = other;
     gu_nao::fieldPosition = temp.fieldPosition;
     gu_nao::joints = temp.joints;
+    gu_nao::sightings = temp.sightings;
 }
 
 #if __cplusplus >= 201103L
@@ -93,6 +94,7 @@ GU::NaoV5::NaoV5(NaoV5&& other) {
     const gu_nao temp = other;
     gu_nao::fieldPosition = temp.fieldPosition;
     gu_nao::joints = temp.joints;
+    gu_nao::sightings = temp.sightings;
     gu_nao_empty(&other);
     other.wb = wb;
 }
@@ -104,8 +106,10 @@ GU::NaoV5& GU::NaoV5::operator=(const GU::NaoV5& other) {
     if (&other == this) {
         return *this;
     }
-    gu_nao::fieldPosition = other.fieldPosition();
-    gu_nao::joints = other.joints();
+    const gu_nao temp = other;
+    gu_nao::fieldPosition = temp.fieldPosition;
+    gu_nao::joints = temp.joints;
+    gu_nao::sightings = temp.sightings;
     return *this;
 }
 
@@ -115,8 +119,10 @@ GU::NaoV5& GU::NaoV5::operator=(GU::NaoV5&& other) {
         return *this;
     }
     wb = other.wb;
-    gu_nao::fieldPosition = other.fieldPosition();
-    gu_nao::joints = other.joints();
+    const gu_nao temp = other;
+    gu_nao::fieldPosition = temp.fieldPosition;
+    gu_nao::joints = temp.joints;
+    gu_nao::sightings = temp.sightings;
     gu_nao_empty(&other);
     other.wb = wb;
     return *this;
@@ -128,11 +134,6 @@ GU::CameraPivot GU::NaoV5::cameraPivot() const
     return gu_nao_head_to_camera_pivot(gu_nao::joints.head);
 }
 
-GU::FieldCoordinate GU::NaoV5::fieldPosition() const
-{
-    return gu_nao::fieldPosition;
-}
-
 gu_nao_joints GU::NaoV5::joints() const
 {
     return gu_nao::joints;
@@ -142,6 +143,23 @@ gu_nao_sightings GU::NaoV5::sightings() const
 {
     return gu_nao::sightings;
 }
+
+bool GU::NaoV5::fieldPosition(GU::FieldCoordinate & coordinate) const
+{
+    if (!gu_nao::fieldPosition.hasCoordinate)
+        return false;
+    coordinate = gu_nao::fieldPosition.field_coordinate;
+    return true;
+}
+
+#if __cplusplus >= 201703L
+std::optional<GU::FieldCoordinate> GU::NaoV5::fieldPosition() const
+{
+    if (!gu_nao::fieldPosition.hasCoordinate)
+        return std::nullopt;
+    return std::optional<GU::FieldCoordinate>(gu_nao::fieldPosition.field_coordinate);
+}
+#endif
 
 void GU::NaoV5::empty()
 {
