@@ -98,9 +98,17 @@ namespace GU {
         GU::CameraPivot cameraPivot() const;
 
         bool fieldPosition(GU::FieldCoordinate &) const;
+        bool ballSighting(GU::RelativeCoordinate &) const;
+        bool leftGoalPostSighting(GU::RelativeCoordinate &) const;
+        bool rightGoalPostSighting(GU::RelativeCoordinate &) const;
+        bool goalSighting(GU::RelativeCoordinate &) const;
 
 #if __cplusplus >= 201703L
         std::optional<GU::FieldCoordinate> fieldPosition() const;
+        std::optional<GU::RelativeCoordinate> ballSighting() const;
+        std::optional<GU::RelativeCoordinate> leftGoalPostSighting() const;
+        std::optional<GU::RelativeCoordinate> rightGoalPostSighting() const;
+        std::optional<GU::RelativeCoordinate> goalSighting() const;
 #endif
 
         void update();

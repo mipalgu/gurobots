@@ -152,6 +152,38 @@ bool GU::NaoV5::fieldPosition(GU::FieldCoordinate & coordinate) const
     return true;
 }
 
+bool GU::NaoV5::ballSighting(GU::RelativeCoordinate & coordinate) const
+{
+    if (!gu_nao::sightings.ball.canSee)
+        return false;
+    coordinate = gu_nao::sightings.ball.coordinate;
+    return true;
+}
+
+bool GU::NaoV5::leftGoalPostSighting(GU::RelativeCoordinate & coordinate) const
+{
+    if (!gu_nao::sightings.leftGoalPost.canSee)
+        return false;
+    coordinate = gu_nao::sightings.leftGoalPost.coordinate;
+    return true;
+}
+
+bool GU::NaoV5::rightGoalPostSighting(GU::RelativeCoordinate & coordinate) const
+{
+    if (!gu_nao::sightings.rightGoalPost.canSee)
+        return false;
+    coordinate = gu_nao::sightings.rightGoalPost.coordinate;
+    return true;
+}
+
+bool GU::NaoV5::goalSighting(GU::RelativeCoordinate & coordinate) const
+{
+    if (!gu_nao::sightings.goal.canSee)
+        return false;
+    coordinate = gu_nao::sightings.goal.coordinate;
+    return true;
+}
+
 #if __cplusplus >= 201703L
 std::optional<GU::FieldCoordinate> GU::NaoV5::fieldPosition() const
 {
@@ -159,6 +191,35 @@ std::optional<GU::FieldCoordinate> GU::NaoV5::fieldPosition() const
         return std::nullopt;
     return std::optional<GU::FieldCoordinate>(gu_nao::fieldPosition.field_coordinate);
 }
+
+std::optional<GU::RelativeCoordinate> GU::NaoV5::ballSighting() const
+{
+    if (!gu_nao::sightings.ball.canSee)
+        return std::nullopt;
+    return std::optional<GU::RelativeCoordinate>(gu_nao::sightings.ball.coordinate);
+}
+
+std::optional<GU::RelativeCoordinate> GU::NaoV5::leftGoalPostSighting() const
+{
+    if (!gu_nao::sightings.leftGoalPost.canSee)
+        return std::nullopt;
+    return std::optional<GU::RelativeCoordinate>(gu_nao::sightings.leftGoalPost.coordinate);
+}
+
+std::optional<GU::RelativeCoordinate> GU::NaoV5::rightGoalPostSighting() const
+{
+    if (!gu_nao::sightings.rightGoalPost.canSee)
+        return std::nullopt;
+    return std::optional<GU::RelativeCoordinate>(gu_nao::sightings.rightGoalPost.coordinate);
+}
+
+std::optional<GU::RelativeCoordinate> GU::NaoV5::goalSighting() const
+{
+    if (!gu_nao::sightings.goal.canSee)
+        return std::nullopt;
+    return std::optional<GU::RelativeCoordinate>(gu_nao::sightings.goal.coordinate);
+}
+
 #endif
 
 void GU::NaoV5::empty()
