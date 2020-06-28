@@ -56,13 +56,8 @@
  *
  */
 
-#ifndef GUROBOTS_H
-#define GUROBOTS_H
-
 #include "nao.h"
 
 #ifdef __cplusplus
 #include "NaoV5.hpp"
 #endif
-
-#endif  /* GUROBOTS_H */
