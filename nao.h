@@ -73,6 +73,7 @@
 #include "yaw_roll_joint.h"
 #include "yaw_joint.h"
 #include "yp_joint.h"
+#include "optional_relative_coordinate.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -112,6 +113,16 @@ typedef struct gu_nao_joints {
 } gu_nao_joints;
 
 bool gu_nao_joints_equals(const gu_nao_joints lhs, const gu_nao_joints rhs);
+
+typedef struct gu_nao_sightings {
+    gu_optional_relative_coordinate ball;
+    gu_optional_relative_coordinate leftGoalPost;
+    gu_optional_relative_coordinate rightGoalPost;
+    gu_optional_relative_coordinate genericGoalPost;
+    gu_optional_relative_coordinate goal;
+} gu_nao_sightings;
+
+bool gu_nao_sightings_equals(const gu_nao_sightings lhs, const gu_nao_sightings rhs);
 
 typedef struct gu_nao {
     gu_field_coordinate fieldPosition;
