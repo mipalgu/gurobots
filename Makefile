@@ -34,9 +34,9 @@ SPECIFIC_LIBS+=-lgucoordinates
 LOCAL=_LOCAL
 
 ${MODULE_BASE}_HDRS=${ALL_HDRS}
-PKGCONFIG_NAME=gucoordinates
+PKGCONFIG_NAME=gurobots
 PKGCONFIG_VERSION=1.0
-PKGCONFIG_DESCRIPTION=Utilities for converting between coordinate systems.
+PKGCONFIG_DESCRIPTION=Utilities for monitoring sensors for specific robots.
 
 #WFLAGS=-Weverything wn-warning-option ${WERROR}
 WFLAGS=-Wall -Weverything -Wno-unknown-pragmas -Wno-unknown-warning-option -Wno-c99-extensions -Wno-padded -Werror
