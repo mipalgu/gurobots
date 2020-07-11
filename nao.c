@@ -67,11 +67,9 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_location.h>
 
 #define GU_NAO_V5_TOP_CAMERA gu_camera_make(6.364f, 5.871f, 1.2f, 47.64f, 60.97f) 
-#define GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET 41.7f
 #define GU_NAO_V5_BOTTOM_CAMERA gu_camera_make(1.774f, 5.071f, 39.7f, 47.64f, 60.97f)
-#define GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET 41.7f
 
-#define GU_NAO_V5_HEAD(p, y) (gu_camera_pivot) { .pitch = p, .yaw = y, .cameras = {GU_NAO_V5_TOP_CAMERA, GU_NAO_V5_BOTTOM_CAMERA}, .cameraHeightOffsets = {GU_NAO_V5_TOP_CAMERA_HEIGHT_OFFSET, GU_NAO_V5_BOTTOM_CAMERA_HEIGHT_OFFSET}, .numCameras = 2}
+#define GU_NAO_V5_HEAD(p, y) (gu_camera_pivot) { .pitch = p, .yaw = y, .height = 41.7f, .cameras = {GU_NAO_V5_TOP_CAMERA, GU_NAO_V5_BOTTOM_CAMERA}, .numCameras = 2}
 
 bool gu_nao_head_equals(const gu_nao_head lhs, const gu_nao_head rhs)
 {
