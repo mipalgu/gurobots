@@ -63,6 +63,7 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_head_sensors.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_sensors_hand_sensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_legjointsensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_location.h>
 
@@ -83,12 +84,19 @@ gu_camera_pivot gu_nao_head_to_camera_pivot(const gu_nao_head head)
     return pivot;
 }
 
+bool gu_nao_hand_sensors_equals(const gu_nao_hand_sensors lhs, const gu_nao_hand_sensors rhs)
+{
+    return lhs.touchLeft == rhs.touchLeft
+        && lhs.touchBack == rhs.touchBack
+        && lhs.touchRight == rhs.touchRight;
+}
+
 bool gu_nao_arm_equals(const gu_nao_arm lhs, const gu_nao_arm rhs)
 {
     return gu_pitch_roll_joint_equals(lhs.shoulder, rhs.shoulder, 0.0001f)
         && gu_yaw_roll_joint_equals(lhs.elbow, rhs.elbow, 0.0001f)
         && gu_yaw_joint_equals(lhs.wrist, rhs.wrist, 0.0001f)
-        && gu_hand_sensors_equals(lhs.hand, rhs.hand);
+        && gu_nao_hand_sensors_equals(lhs.hand, rhs.hand);
 }
 
 bool gu_nao_leg_equals(const gu_nao_leg lhs, const gu_nao_leg rhs)

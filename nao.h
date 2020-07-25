@@ -65,7 +65,6 @@
 
 #include <gusimplewhiteboard/gusimplewhiteboard.h>
 
-#include "hand_sensors.h"
 #include "fmr_sensors.h"
 #include "pitch_joint.h"
 #include "pitch_roll_joint.h"
@@ -92,11 +91,19 @@ typedef struct gu_nao_head {
 bool gu_nao_head_equals(const gu_nao_head lhs, const gu_nao_head rhs);
 gu_camera_pivot gu_nao_head_to_camera_pivot(const gu_nao_head);
 
+typedef struct gu_nao_hand_sensors {
+    bool touchLeft;
+    bool touchBack;
+    bool touchRight;
+} gu_nao_hand_sensors;
+
+bool gu_nao_hand_sensors_equals(const gu_nao_hand_sensors, const gu_nao_hand_sensors);
+
 typedef struct gu_nao_arm {
     gu_pitch_roll_joint shoulder;
     gu_yaw_roll_joint elbow;
     gu_yaw_joint wrist;
-    gu_hand_sensors hand;
+    gu_nao_hand_sensors hand;
 } gu_nao_arm;
 
 bool gu_nao_arm_equals(const gu_nao_arm lhs, const gu_nao_arm rhs);
