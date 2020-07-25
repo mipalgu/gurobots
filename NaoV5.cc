@@ -137,7 +137,7 @@ gu_nao_joints GU::NaoV5::joints() const
     return gu_nao::joints;
 }
 
-gu_nao_sightings GU::NaoV5::sightings() const
+gu_soccer_sightings GU::NaoV5::sightings() const
 {
     return gu_nao::sightings;
 }

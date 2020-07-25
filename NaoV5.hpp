@@ -93,7 +93,7 @@ namespace GU {
 #endif
 
         gu_nao_joints joints() const;
-        gu_nao_sightings sightings() const;
+        gu_soccer_sightings sightings() const;
 
         GU::CameraPivot cameraPivot() const;
 

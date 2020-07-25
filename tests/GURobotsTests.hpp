@@ -327,7 +327,6 @@ namespace CGTEST {
                     ASSERT_TRUE(near(lcamera.vDirection(), rcamera.vDirection()));
                     ASSERT_TRUE(near(lcamera.vFov(), rcamera.vFov()));
                     ASSERT_TRUE(near(lcamera.hFov(), rcamera.hFov()));
-                    ASSERT_TRUE(near(lhs.cameraHeightOffset(i), rhs.cameraHeightOffset(i)));
                 }
             }
 
@@ -354,7 +353,6 @@ namespace CGTEST {
                             && near(lcamera.vDirection(), rcamera.vDirection())
                             && near(lcamera.vFov(), rcamera.vFov())
                             && near(lcamera.hFov(), rcamera.hFov())
-                            && near(lhs.cameraHeightOffset(i), rhs.cameraHeightOffset(i))
                             );
                 }
             }

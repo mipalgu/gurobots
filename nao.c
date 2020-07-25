@@ -107,19 +107,11 @@ bool gu_nao_joints_equals(const gu_nao_joints lhs, const gu_nao_joints rhs)
         && gu_nao_leg_equals(lhs.rightLeg, rhs.rightLeg);
 }
 
-bool gu_nao_sightings_equals(const gu_nao_sightings lhs, const gu_nao_sightings rhs)
-{
-    return gu_optional_relative_coordinate_equals(lhs.ball, rhs.ball)
-        && gu_optional_relative_coordinate_equals(lhs.leftGoalPost, rhs.leftGoalPost)
-        && gu_optional_relative_coordinate_equals(lhs.rightGoalPost, rhs.rightGoalPost)
-        && gu_optional_relative_coordinate_equals(lhs.goal, rhs.goal);
-}
-
 bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs)
 {
     return gu_optional_field_coordinate_equals(lhs.fieldPosition, rhs.fieldPosition)
         && gu_nao_joints_equals(lhs.joints, rhs.joints)
-        && gu_nao_sightings_equals(lhs.sightings, rhs.sightings);
+        && gu_soccer_sightings_equals(lhs.sightings, rhs.sightings);
 }
 
 void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
