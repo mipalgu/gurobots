@@ -65,7 +65,6 @@
 
 #include <gusimplewhiteboard/gusimplewhiteboard.h>
 
-#include "fmr_sensors.h"
 #include "pitch_joint.h"
 #include "pitch_roll_joint.h"
 #include "pitch_yaw_joint.h"
@@ -83,9 +82,17 @@ extern "C" {
 #define GU_NAO_V5_TOP_CAMERA_INDEX 0
 #define GU_NAO_V5_BOTTOM_CAMERA_INDEX 1 
 
+typedef struct gu_nao_head_sensors {
+    bool touchFront;
+    bool touchMiddle;
+    bool touchRear;
+} gu_nao_head_sensors;
+
+bool gu_nao_head_sensors_equals(const gu_nao_head_sensors, const gu_nao_head_sensors);
+
 typedef struct gu_nao_head {
     gu_pitch_yaw_joint neck;
-    gu_fmr_sensors buttons;
+    gu_nao_head_sensors buttons;
 } gu_nao_head;
 
 bool gu_nao_head_equals(const gu_nao_head lhs, const gu_nao_head rhs);

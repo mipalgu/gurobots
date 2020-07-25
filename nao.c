@@ -72,10 +72,17 @@
 
 #define GU_NAO_V5_HEAD(p, y) (gu_camera_pivot) { .pitch = p, .yaw = y, .height = 41.7f, .cameras = {GU_NAO_V5_TOP_CAMERA, GU_NAO_V5_BOTTOM_CAMERA}, .numCameras = 2}
 
+bool gu_nao_head_sensors_equals(const gu_nao_head_sensors lhs, const gu_nao_head_sensors rhs)
+{
+    return lhs.touchFront == rhs.touchFront
+        && lhs.touchMiddle == rhs.touchMiddle
+        && lhs.touchRear == rhs.touchRear;
+}
+
 bool gu_nao_head_equals(const gu_nao_head lhs, const gu_nao_head rhs)
 {
     return gu_pitch_yaw_joint_equals(lhs.neck, rhs.neck, 0.0001f)
-        && gu_fmr_sensors_equals(lhs.buttons, rhs.buttons);
+        && gu_nao_head_sensors_equals(lhs.buttons, rhs.buttons);
 }
 
 gu_camera_pivot gu_nao_head_to_camera_pivot(const gu_nao_head head)
