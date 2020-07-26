@@ -1,5 +1,5 @@
 /*
- * PitchYawJoint.cc 
+ * YawJoint.cc 
  * gurobots 
  *
  * Created by Callum McColl on 27/07/2020.
@@ -56,93 +56,75 @@
  *
  */
 
-#include "PitchYawJoint.hpp"
+#include "YawJoint.hpp"
 
-GU::PitchYawJoint::PitchYawJoint() {}
+GU::YawJoint::YawJoint() {}
 
-GU::PitchYawJoint::PitchYawJoint(const degrees_f pitch, const degrees_f yaw)
+GU::YawJoint::YawJoint(const degrees_f yaw)
 {
-    set_pitch(pitch);
     set_yaw(yaw);
 }
 
-GU::PitchYawJoint::PitchYawJoint(const GU::PitchYawJoint& other)
+GU::YawJoint::YawJoint(const GU::YawJoint& other)
 {
-    set_pitch(other.pitch());
     set_yaw(other.yaw());
 }
 
-GU::PitchYawJoint::PitchYawJoint(const gu_pitch_yaw_joint &other)
+GU::YawJoint::YawJoint(const gu_yaw_joint &other)
 {
-    set_pitch(other.pitch);
     set_yaw(other.yaw);
 }
 
 #if __cplusplus >= 201103L
-GU::PitchYawJoint::PitchYawJoint(GU::PitchYawJoint&& other)
+GU::YawJoint::YawJoint(GU::YawJoint&& other)
 {
-    set_pitch(other.pitch());
-    other.set_pitch(0.0f);
     set_yaw(other.yaw());
     other.set_yaw(0.0f);
 }
 #endif
 
-GU::PitchYawJoint::~PitchYawJoint() {}
+GU::YawJoint::~YawJoint() {}
 
-GU::PitchYawJoint& GU::PitchYawJoint::operator=(const GU::PitchYawJoint& other)
+GU::YawJoint& GU::YawJoint::operator=(const GU::YawJoint& other)
 {
     if (&other == this)
     {
         return *this;
     }
-    set_pitch(other.pitch());
     set_yaw(other.yaw());
     return *this;
 }
 
-GU::PitchYawJoint& GU::PitchYawJoint::operator=(const gu_pitch_yaw_joint& other)
+GU::YawJoint& GU::YawJoint::operator=(const gu_yaw_joint& other)
 {
     if (&other == this)
     {
         return *this;
     }
-    set_pitch(other.pitch);
     set_yaw(other.yaw);
     return *this;
 }
 
 #if __cplusplus >= 201103L
-GU::PitchYawJoint& GU::PitchYawJoint::operator=(GU::PitchYawJoint&& other)
+GU::YawJoint& GU::YawJoint::operator=(GU::YawJoint&& other)
 {
     if (&other == this)
     {
         return *this;
     }
-    set_pitch(other.pitch());
-    other.set_pitch(0.0f);
     set_yaw(other.yaw());
     other.set_yaw(0.0f);
     return *this;
 }
 #endif
 
-degrees_f GU::PitchYawJoint::pitch() const
+degrees_f GU::YawJoint::yaw() const
 {
-    return gu_pitch_yaw_joint::pitch;
+    return gu_yaw_joint::yaw;
 }
 
-void GU::PitchYawJoint::set_pitch(const degrees_f newValue)
+void GU::YawJoint::set_yaw(const degrees_f newValue)
 {
-    gu_pitch_yaw_joint::pitch = newValue;
+    gu_yaw_joint::yaw = newValue;
 }
 
-degrees_f GU::PitchYawJoint::yaw() const
-{
-    return gu_pitch_yaw_joint::yaw;
-}
-
-void GU::PitchYawJoint::set_yaw(const degrees_f newValue)
-{
-    gu_pitch_yaw_joint::yaw = newValue;
-}

@@ -71,7 +71,7 @@ namespace GU {
     struct PitchRollJoint: public gu_pitch_roll_joint {
 
         PitchRollJoint();
-        PitchRollJoint(const degrees_f);
+        PitchRollJoint(const degrees_f, const degrees_f);
         PitchRollJoint(const PitchRollJoint& other);
         PitchRollJoint(const gu_pitch_roll_joint& other);
 #if __cplusplus >= 201103L

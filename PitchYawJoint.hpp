@@ -71,7 +71,7 @@ namespace GU {
     struct PitchYawJoint: public gu_pitch_yaw_joint {
 
         PitchYawJoint();
-        PitchYawJoint(const degrees_f);
+        PitchYawJoint(const degrees_f, const degrees_f);
         PitchYawJoint(const PitchYawJoint& other);
         PitchYawJoint(const gu_pitch_yaw_joint& other);
 #if __cplusplus >= 201103L

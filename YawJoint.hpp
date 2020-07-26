@@ -1,5 +1,5 @@
 /*
- * PitchYawJoint.cc 
+ * YawJoint.hpp 
  * gurobots 
  *
  * Created by Callum McColl on 27/07/2020.
@@ -56,93 +56,39 @@
  *
  */
 
-#include "PitchYawJoint.hpp"
+#ifndef GUROBOTS_YAWJOINT_HPP
+#define GUROBOTS_YAWJOINT_HPP
 
-GU::PitchYawJoint::PitchYawJoint() {}
+#include "yaw_joint.h"
 
-GU::PitchYawJoint::PitchYawJoint(const degrees_f pitch, const degrees_f yaw)
-{
-    set_pitch(pitch);
-    set_yaw(yaw);
-}
+#include <guunits/guunits.h>
+#include <gucoordinates/gucoordinates.h>
 
-GU::PitchYawJoint::PitchYawJoint(const GU::PitchYawJoint& other)
-{
-    set_pitch(other.pitch());
-    set_yaw(other.yaw());
-}
+#include <cstdlib>
 
-GU::PitchYawJoint::PitchYawJoint(const gu_pitch_yaw_joint &other)
-{
-    set_pitch(other.pitch);
-    set_yaw(other.yaw);
-}
+namespace GU {
 
+    struct YawJoint: public gu_yaw_joint {
+
+        YawJoint();
+        YawJoint(const degrees_f);
+        YawJoint(const YawJoint& other);
+        YawJoint(const gu_yaw_joint& other);
 #if __cplusplus >= 201103L
-GU::PitchYawJoint::PitchYawJoint(GU::PitchYawJoint&& other)
-{
-    set_pitch(other.pitch());
-    other.set_pitch(0.0f);
-    set_yaw(other.yaw());
-    other.set_yaw(0.0f);
-}
+        YawJoint(YawJoint&& other);
+#endif
+        ~YawJoint();
+        YawJoint& operator=(const YawJoint& other);
+        YawJoint& operator=(const gu_yaw_joint& other);
+#if __cplusplus >= 201103L
+        YawJoint& operator=(YawJoint&& other);
 #endif
 
-GU::PitchYawJoint::~PitchYawJoint() {}
+        degrees_f yaw() const;
+        void set_yaw(const degrees_f);
 
-GU::PitchYawJoint& GU::PitchYawJoint::operator=(const GU::PitchYawJoint& other)
-{
-    if (&other == this)
-    {
-        return *this;
-    }
-    set_pitch(other.pitch());
-    set_yaw(other.yaw());
-    return *this;
+    };
+
 }
 
-GU::PitchYawJoint& GU::PitchYawJoint::operator=(const gu_pitch_yaw_joint& other)
-{
-    if (&other == this)
-    {
-        return *this;
-    }
-    set_pitch(other.pitch);
-    set_yaw(other.yaw);
-    return *this;
-}
-
-#if __cplusplus >= 201103L
-GU::PitchYawJoint& GU::PitchYawJoint::operator=(GU::PitchYawJoint&& other)
-{
-    if (&other == this)
-    {
-        return *this;
-    }
-    set_pitch(other.pitch());
-    other.set_pitch(0.0f);
-    set_yaw(other.yaw());
-    other.set_yaw(0.0f);
-    return *this;
-}
-#endif
-
-degrees_f GU::PitchYawJoint::pitch() const
-{
-    return gu_pitch_yaw_joint::pitch;
-}
-
-void GU::PitchYawJoint::set_pitch(const degrees_f newValue)
-{
-    gu_pitch_yaw_joint::pitch = newValue;
-}
-
-degrees_f GU::PitchYawJoint::yaw() const
-{
-    return gu_pitch_yaw_joint::yaw;
-}
-
-void GU::PitchYawJoint::set_yaw(const degrees_f newValue)
-{
-    gu_pitch_yaw_joint::yaw = newValue;
-}
+#endif  /* GUROBOTS_YAWJOINT_HPP */

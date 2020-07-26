@@ -60,19 +60,22 @@
 
 GU::PitchRollJoint::PitchRollJoint() {}
 
-GU::PitchRollJoint::PitchRollJoint(const degrees_f pitch)
+GU::PitchRollJoint::PitchRollJoint(const degrees_f pitch, const degrees_f roll)
 {
     set_pitch(pitch);
+    set_roll(roll);
 }
 
 GU::PitchRollJoint::PitchRollJoint(const GU::PitchRollJoint& other)
 {
     set_pitch(other.pitch());
+    set_roll(other.roll());
 }
 
 GU::PitchRollJoint::PitchRollJoint(const gu_pitch_roll_joint &other)
 {
     set_pitch(other.pitch);
+    set_roll(other.roll);
 }
 
 #if __cplusplus >= 201103L
@@ -80,6 +83,8 @@ GU::PitchRollJoint::PitchRollJoint(GU::PitchRollJoint&& other)
 {
     set_pitch(other.pitch());
     other.set_pitch(0.0f);
+    set_roll(other.roll());
+    other.set_roll(0.0f);
 }
 #endif
 
@@ -92,6 +97,7 @@ GU::PitchRollJoint& GU::PitchRollJoint::operator=(const GU::PitchRollJoint& othe
         return *this;
     }
     set_pitch(other.pitch());
+    set_roll(other.roll());
     return *this;
 }
 
@@ -102,6 +108,7 @@ GU::PitchRollJoint& GU::PitchRollJoint::operator=(const gu_pitch_roll_joint& oth
         return *this;
     }
     set_pitch(other.pitch);
+    set_roll(other.roll);
     return *this;
 }
 
@@ -114,6 +121,8 @@ GU::PitchRollJoint& GU::PitchRollJoint::operator=(GU::PitchRollJoint&& other)
     }
     set_pitch(other.pitch());
     other.set_pitch(0.0f);
+    set_roll(other.roll());
+    other.set_roll(0.0f);
     return *this;
 }
 #endif
