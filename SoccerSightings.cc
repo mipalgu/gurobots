@@ -63,6 +63,9 @@ GU::SoccerSightings::SoccerSightings() {}
 GU::SoccerSightings::SoccerSightings(const GU::OptionalRelativeCoordinate rawBall, const GU::OptionalRelativeCoordinate rawLeftGoalPost, const GU::OptionalRelativeCoordinate rawRightGoalPost, const GU::OptionalRelativeCoordinate rawGoal)
 {
     set_rawBall(rawBall);
+    set_rawLeftGoalPost(rawLeftGoalPost);
+    set_rawRightGoalPost(rawRightGoalPost);
+    set_rawGoal(rawGoal);
 }
 
 #if __cplusplus >= 201703L
@@ -78,11 +81,17 @@ GU::SoccerSightings::SoccerSightings(const std::optional<GU::RelativeCoordinate>
 GU::SoccerSightings::SoccerSightings(const GU::SoccerSightings& other)
 {
     set_rawBall(other.rawBall());
+    set_rawLeftGoalPost(other.rawLeftGoalPost());
+    set_rawRightGoalPost(other.rawRightGoalPost());
+    set_rawGoal(other.rawGoal());
 }
 
 GU::SoccerSightings::SoccerSightings(const gu_soccer_sightings &other)
 {
     set_rawBall(other.ball);
+    set_rawLeftGoalPost(other.leftGoalPost);
+    set_rawRightGoalPost(other.rightGoalPost);
+    set_rawGoal(other.goal);
 }
 
 #if __cplusplus >= 201103L
@@ -90,6 +99,12 @@ GU::SoccerSightings::SoccerSightings(GU::SoccerSightings&& other)
 {
     set_rawBall(other.rawBall());
     other.set_rawBall(GU::OptionalRelativeCoordinate());
+    set_rawLeftGoalPost(other.rawLeftGoalPost());
+    other.set_rawLeftGoalPost(GU::OptionalRelativeCoordinate());
+    set_rawRightGoalPost(other.rawRightGoalPost());
+    other.set_rawRightGoalPost(GU::OptionalRelativeCoordinate());
+    set_rawGoal(other.rawGoal());
+    other.set_rawGoal(GU::OptionalRelativeCoordinate());
 }
 #endif
 
@@ -102,6 +117,9 @@ GU::SoccerSightings& GU::SoccerSightings::operator=(const GU::SoccerSightings& o
         return *this;
     }
     set_rawBall(other.rawBall());
+    set_rawLeftGoalPost(other.rawLeftGoalPost());
+    set_rawRightGoalPost(other.rawRightGoalPost());
+    set_rawGoal(other.rawGoal());
     return *this;
 }
 
@@ -112,6 +130,9 @@ GU::SoccerSightings& GU::SoccerSightings::operator=(const gu_soccer_sightings& o
         return *this;
     }
     set_rawBall(other.ball);
+    set_rawLeftGoalPost(other.leftGoalPost);
+    set_rawRightGoalPost(other.rightGoalPost);
+    set_rawGoal(other.goal);
     return *this;
 }
 
@@ -124,6 +145,12 @@ GU::SoccerSightings& GU::SoccerSightings::operator=(GU::SoccerSightings&& other)
     }
     set_rawBall(other.rawBall());
     other.set_rawBall(GU::OptionalRelativeCoordinate());
+    set_rawLeftGoalPost(other.rawLeftGoalPost());
+    other.set_rawLeftGoalPost(GU::OptionalRelativeCoordinate());
+    set_rawRightGoalPost(other.rawRightGoalPost());
+    other.set_rawRightGoalPost(GU::OptionalRelativeCoordinate());
+    set_rawGoal(other.rawGoal());
+    other.set_rawGoal(GU::OptionalRelativeCoordinate());
     return *this;
 }
 #endif
