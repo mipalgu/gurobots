@@ -41,6 +41,8 @@
 		F2F25C6524CDD78F00810A55 /* YawJoint.cc in Sources */ = {isa = PBXBuildFile; fileRef = F2F25C6324CDD78F00810A55 /* YawJoint.cc */; };
 		F2F25C6824CDD90600810A55 /* YawRollJoint.cc in Sources */ = {isa = PBXBuildFile; fileRef = F2F25C6624CDD90600810A55 /* YawRollJoint.cc */; };
 		F2F25C6924CDD90600810A55 /* YawRollJoint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C6724CDD90600810A55 /* YawRollJoint.hpp */; };
+		F2F25C6C24CDD9A500810A55 /* YPJoint.cc in Sources */ = {isa = PBXBuildFile; fileRef = F2F25C6A24CDD9A400810A55 /* YPJoint.cc */; };
+		F2F25C6D24CDD9A500810A55 /* YPJoint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C6B24CDD9A500810A55 /* YPJoint.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +136,8 @@
 		F2F25C6324CDD78F00810A55 /* YawJoint.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = YawJoint.cc; sourceTree = "<group>"; };
 		F2F25C6624CDD90600810A55 /* YawRollJoint.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = YawRollJoint.cc; sourceTree = "<group>"; };
 		F2F25C6724CDD90600810A55 /* YawRollJoint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = YawRollJoint.hpp; sourceTree = "<group>"; };
+		F2F25C6A24CDD9A400810A55 /* YPJoint.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = YPJoint.cc; sourceTree = "<group>"; };
+		F2F25C6B24CDD9A500810A55 /* YPJoint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = YPJoint.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,8 @@
 				F2F25C6224CDD78F00810A55 /* YawJoint.hpp */,
 				F2F25C6624CDD90600810A55 /* YawRollJoint.cc */,
 				F2F25C6724CDD90600810A55 /* YawRollJoint.hpp */,
+				F2F25C6A24CDD9A400810A55 /* YPJoint.cc */,
+				F2F25C6B24CDD9A500810A55 /* YPJoint.hpp */,
 				F2F25BDE24CDD13500810A55 /* optional_field_coordinate.c */,
 				F2F25BBE24CDD13500810A55 /* optional_field_coordinate.h */,
 				F2F25BBA24CDD13500810A55 /* optional_relative_coordinate.c */,
@@ -288,6 +294,7 @@
 				F2F25C0E24CDD13600810A55 /* pitch_roll_joint.h in Headers */,
 				F2F25C2A24CDD13600810A55 /* yp_joint.h in Headers */,
 				F2F25C5424CDD13600810A55 /* nao.h in Headers */,
+				F2F25C6D24CDD9A500810A55 /* YPJoint.hpp in Headers */,
 				F2F25C5D24CDD62B00810A55 /* PitchRollJoint.hpp in Headers */,
 				F2F25C5524CDD13600810A55 /* yaw_roll_joint.h in Headers */,
 				F2F25C5024CDD13600810A55 /* optional_relative_coordinate.h in Headers */,
@@ -360,6 +367,7 @@
 				F2F25C2924CDD13600810A55 /* soccer_sightings.c in Sources */,
 				F2F25C2E24CDD13600810A55 /* yp_joint.c in Sources */,
 				F2F25C0C24CDD13600810A55 /* yaw_joint.c in Sources */,
+				F2F25C6C24CDD9A500810A55 /* YPJoint.cc in Sources */,
 				F2F25C2D24CDD13600810A55 /* optional_field_coordinate.c in Sources */,
 				F2F25C5324CDD13600810A55 /* yaw_roll_joint.c in Sources */,
 				F2F25C2F24CDD13600810A55 /* nao.c in Sources */,
