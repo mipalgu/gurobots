@@ -59,13 +59,6 @@
 #include "nao.h"
 
 #include <guunits/guunits.h>
-#include <gusimplewhiteboard/guwhiteboardtypelist_c_generated.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_sensors_head_sensors.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_sensors_hand_sensors.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_sensors_legjointsensors.h>
-#include <gusimplewhiteboard/typeClassDefs/wb_location.h>
 
 #define GU_NAO_V5_TOP_CAMERA gu_camera_make(6.364f, 5.871f, 1.2f, 47.64f, 60.97f) 
 #define GU_NAO_V5_BOTTOM_CAMERA gu_camera_make(1.774f, 5.071f, 39.7f, 47.64f, 60.97f)
@@ -158,13 +151,13 @@ gu_nao_wb_indexes gu_nao_wb_indexes_default()
     return temp;
 }
 
-void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
+gu_nao_wb_types gu_nao_wb_types_from_wb(gu_simple_whiteboard * wb)
 {
     const gu_nao_wb_indexes indexes = gu_nao_wb_indexes_default();
-    gu_nao_update_from_custom_wb(nao, wb, indexes);
+    return gu_nao_wb_types_from_custom_wb(wb, indexes);
 }
 
-void gu_nao_update_from_custom_wb(gu_nao * nao, gu_simple_whiteboard * wb, const gu_nao_wb_indexes indexes)
+gu_nao_wb_types gu_nao_wb_types_from_custom_wb(gu_simple_whiteboard * wb, const gu_nao_wb_indexes indexes)
 {
     const struct wb_sensors_torsojointsensors torsoSensors = *((struct wb_sensors_torsojointsensors *) gsw_current_message(wb, indexes.torsoSensors));
     const struct wb_top_particles topParticles = *((struct wb_top_particles*) gsw_current_message(wb, indexes.topParticles));
@@ -175,54 +168,82 @@ void gu_nao_update_from_custom_wb(gu_nao * nao, gu_simple_whiteboard * wb, const
     const struct wb_location leftGoalPostLocation = *((struct wb_location*) gsw_current_message(wb, indexes.leftGoalPostLocation));
     const struct wb_location rightGoalPostLocation = *((struct wb_location*) gsw_current_message(wb, indexes.rightGoalPostLocation));
     const struct wb_location goalLocation = *((struct wb_location*) gsw_current_message(wb, indexes.goalLocation));
+    const gu_nao_wb_types temp = {
+        torsoSensors,
+        topParticles,
+        handSensors,
+        headSensors,
+        legSensors,
+        ballLocation,
+        leftGoalPostLocation,
+        rightGoalPostLocation,
+        goalLocation
+    };
+    return temp;
+}
+
+void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
+{
+    const gu_nao_wb_indexes indexes = gu_nao_wb_indexes_default();
+    gu_nao_update_from_custom_wb(nao, wb, indexes);
+}
+
+void gu_nao_update_from_custom_wb(gu_nao * nao, gu_simple_whiteboard * wb, const gu_nao_wb_indexes indexes)
+{
+    const gu_nao_wb_types types = gu_nao_wb_types_from_custom_wb(wb, indexes);
+    gu_nao_update_from_wb_types(nao, types);
+}
+
+void gu_nao_update_from_wb_types(gu_nao * nao, const gu_nao_wb_types types)
+{
     // Head
-    nao->joints.head.neck.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadPitch));
-    nao->joints.head.neck.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadYaw));
-    nao->joints.head.buttons.touchFront = headSensors.Head_Touch_Front;
-    nao->joints.head.buttons.touchMiddle = headSensors.Head_Touch_Middle;
-    nao->joints.head.buttons.touchRear = headSensors.Head_Touch_Rear;
+    nao->joints.head.neck.pitch = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.HeadPitch));
+    nao->joints.head.neck.yaw = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.HeadYaw));
+    nao->joints.head.buttons.touchFront = types.headSensors.Head_Touch_Front;
+    nao->joints.head.buttons.touchMiddle = types.headSensors.Head_Touch_Middle;
+    nao->joints.head.buttons.touchRear = types.headSensors.Head_Touch_Rear;
     // Field Position
-    nao->fieldPosition.hasCoordinate = topParticles.particles[0].confidence > 0.6f;
-    nao->fieldPosition.field_coordinate.position.x = i16_to_cm_t(topParticles.particles[0].position.x);
-    nao->fieldPosition.field_coordinate.position.y = i16_to_cm_t(topParticles.particles[0].position.y);
-    nao->fieldPosition.field_coordinate.heading = i16_to_deg_t(topParticles.particles[0].headingInDegrees);
+    nao->fieldPosition.hasCoordinate = types.topParticles.particles[0].confidence > 0.6f;
+    nao->fieldPosition.field_coordinate.position.x = i16_to_cm_t(types.topParticles.particles[0].position.x);
+    nao->fieldPosition.field_coordinate.position.y = i16_to_cm_t(types.topParticles.particles[0].position.y);
+    nao->fieldPosition.field_coordinate.heading = i16_to_deg_t(types.topParticles.particles[0].headingInDegrees);
     // Left Arm
-    nao->joints.leftArm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderPitch));
-    nao->joints.leftArm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LShoulderRoll));
-    nao->joints.leftArm.elbow.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LElbowYaw));
-    nao->joints.leftArm.elbow.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LElbowRoll));
-    nao->joints.leftArm.wrist.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.LWristYaw));
-    nao->joints.leftArm.hand.touchLeft = handSensors.LHand_Touch_Left;
-    nao->joints.leftArm.hand.touchBack = handSensors.LHand_Touch_Back;
-    nao->joints.leftArm.hand.touchRight = handSensors.LHand_Touch_Right;
+    nao->joints.leftArm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.LShoulderPitch));
+    nao->joints.leftArm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.LShoulderRoll));
+    nao->joints.leftArm.elbow.yaw = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.LElbowYaw));
+    nao->joints.leftArm.elbow.roll = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.LElbowRoll));
+    nao->joints.leftArm.wrist.yaw = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.LWristYaw));
+    nao->joints.leftArm.hand.touchLeft = types.handSensors.LHand_Touch_Left;
+    nao->joints.leftArm.hand.touchBack = types.handSensors.LHand_Touch_Back;
+    nao->joints.leftArm.hand.touchRight = types.handSensors.LHand_Touch_Right;
     // Right Arm
-    nao->joints.rightArm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RShoulderPitch));
-    nao->joints.rightArm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RShoulderRoll));
-    nao->joints.rightArm.elbow.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RElbowYaw));
-    nao->joints.rightArm.elbow.roll = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RElbowRoll));
-    nao->joints.rightArm.wrist.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.RWristYaw));
-    nao->joints.rightArm.hand.touchLeft = handSensors.RHand_Touch_Left;
-    nao->joints.rightArm.hand.touchBack = handSensors.RHand_Touch_Back;
-    nao->joints.rightArm.hand.touchRight = handSensors.RHand_Touch_Right;
+    nao->joints.rightArm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.RShoulderPitch));
+    nao->joints.rightArm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.RShoulderRoll));
+    nao->joints.rightArm.elbow.yaw = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.RElbowYaw));
+    nao->joints.rightArm.elbow.roll = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.RElbowRoll));
+    nao->joints.rightArm.wrist.yaw = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.RWristYaw));
+    nao->joints.rightArm.hand.touchLeft = types.handSensors.RHand_Touch_Left;
+    nao->joints.rightArm.hand.touchBack = types.handSensors.RHand_Touch_Back;
+    nao->joints.rightArm.hand.touchRight = types.handSensors.RHand_Touch_Right;
     // Left Leg
-    nao->joints.leftLeg.hip.pitch = rad_f_to_deg_f(f_to_rad_f(legSensors.LHipPitch));
-    nao->joints.leftLeg.hip.yawPitch = rad_f_to_deg_f(f_to_rad_f(legSensors.LHipYawPitch));
-    nao->joints.leftLeg.hip.roll = rad_f_to_deg_f(f_to_rad_f(legSensors.LHipYawPitch));
-    nao->joints.leftLeg.knee.pitch = rad_f_to_deg_f(f_to_rad_f(legSensors.LKneePitch));
-    nao->joints.leftLeg.ankle.pitch = rad_f_to_deg_f(f_to_rad_f(legSensors.LAnklePitch));
-    nao->joints.leftLeg.ankle.roll = rad_f_to_deg_f(f_to_rad_f(legSensors.LAnkleRoll));
+    nao->joints.leftLeg.hip.pitch = rad_f_to_deg_f(f_to_rad_f(types.legSensors.LHipPitch));
+    nao->joints.leftLeg.hip.yawPitch = rad_f_to_deg_f(f_to_rad_f(types.legSensors.LHipYawPitch));
+    nao->joints.leftLeg.hip.roll = rad_f_to_deg_f(f_to_rad_f(types.legSensors.LHipYawPitch));
+    nao->joints.leftLeg.knee.pitch = rad_f_to_deg_f(f_to_rad_f(types.legSensors.LKneePitch));
+    nao->joints.leftLeg.ankle.pitch = rad_f_to_deg_f(f_to_rad_f(types.legSensors.LAnklePitch));
+    nao->joints.leftLeg.ankle.roll = rad_f_to_deg_f(f_to_rad_f(types.legSensors.LAnkleRoll));
     // Right Leg
-    nao->joints.rightLeg.hip.pitch = rad_f_to_deg_f(f_to_rad_f(legSensors.RHipPitch));
-    nao->joints.rightLeg.hip.yawPitch = rad_f_to_deg_f(f_to_rad_f(legSensors.RHipYawPitch));
-    nao->joints.rightLeg.hip.roll = rad_f_to_deg_f(f_to_rad_f(legSensors.RHipYawPitch));
-    nao->joints.rightLeg.knee.pitch = rad_f_to_deg_f(f_to_rad_f(legSensors.RKneePitch));
-    nao->joints.rightLeg.ankle.pitch = rad_f_to_deg_f(f_to_rad_f(legSensors.RAnklePitch));
-    nao->joints.rightLeg.ankle.roll = rad_f_to_deg_f(f_to_rad_f(legSensors.RAnkleRoll));
+    nao->joints.rightLeg.hip.pitch = rad_f_to_deg_f(f_to_rad_f(types.legSensors.RHipPitch));
+    nao->joints.rightLeg.hip.yawPitch = rad_f_to_deg_f(f_to_rad_f(types.legSensors.RHipYawPitch));
+    nao->joints.rightLeg.hip.roll = rad_f_to_deg_f(f_to_rad_f(types.legSensors.RHipYawPitch));
+    nao->joints.rightLeg.knee.pitch = rad_f_to_deg_f(f_to_rad_f(types.legSensors.RKneePitch));
+    nao->joints.rightLeg.ankle.pitch = rad_f_to_deg_f(f_to_rad_f(types.legSensors.RAnklePitch));
+    nao->joints.rightLeg.ankle.roll = rad_f_to_deg_f(f_to_rad_f(types.legSensors.RAnkleRoll));
     // Sightings
-    nao->sightings.ball = wb_location_to_optional_relative_coordinate(ballLocation);
-    nao->sightings.leftGoalPost = wb_location_to_optional_relative_coordinate(leftGoalPostLocation);
-    nao->sightings.rightGoalPost = wb_location_to_optional_relative_coordinate(rightGoalPostLocation);
-    nao->sightings.goal = wb_location_to_optional_relative_coordinate(goalLocation);
+    nao->sightings.ball = wb_location_to_optional_relative_coordinate(types.ballLocation);
+    nao->sightings.leftGoalPost = wb_location_to_optional_relative_coordinate(types.leftGoalPostLocation);
+    nao->sightings.rightGoalPost = wb_location_to_optional_relative_coordinate(types.rightGoalPostLocation);
+    nao->sightings.goal = wb_location_to_optional_relative_coordinate(types.goalLocation);
 }
 
 void gu_nao_empty(gu_nao * nao)

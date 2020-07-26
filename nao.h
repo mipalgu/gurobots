@@ -64,6 +64,13 @@
 #include <stdbool.h>
 
 #include <gusimplewhiteboard/gusimplewhiteboard.h>
+#include <gusimplewhiteboard/guwhiteboardtypelist_c_generated.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_sensors_head_sensors.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_sensors_hand_sensors.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_sensors_legjointsensors.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_location.h>
 
 #include "pitch_joint.h"
 #include "pitch_roll_joint.h"
@@ -139,6 +146,9 @@ typedef struct gu_nao {
     gu_soccer_sightings sightings;
 } gu_nao;
 
+bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs);
+void gu_nao_empty(gu_nao *);
+
 typedef struct gu_nao_wb_indexes {
     int torsoSensors;
     int topParticles;
@@ -154,10 +164,24 @@ typedef struct gu_nao_wb_indexes {
 bool gu_nao_wb_indexes_equals(const gu_nao_wb_indexes lhs, const gu_nao_wb_indexes rhs) __attribute__((const));
 gu_nao_wb_indexes gu_nao_wb_indexes_default(void) __attribute__((const));
 
-bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs);
+typedef struct gu_nao_wb_types {
+    struct wb_sensors_torsojointsensors torsoSensors;
+    struct wb_top_particles topParticles;
+    struct wb_sensors_hand_sensors handSensors;
+    struct wb_sensors_head_sensors headSensors;
+    struct wb_sensors_legjointsensors legSensors;
+    struct wb_location ballLocation;
+    struct wb_location leftGoalPostLocation;
+    struct wb_location rightGoalPostLocation;
+    struct wb_location goalLocation;
+} gu_nao_wb_types;
+
+gu_nao_wb_types gu_nao_wb_types_from_wb(gu_simple_whiteboard *) __attribute__((nonnull));
+gu_nao_wb_types gu_nao_wb_types_from_custom_wb(gu_simple_whiteboard *, const gu_nao_wb_indexes) __attribute__((nonnull));
+
 void gu_nao_update_from_wb(gu_nao *, gu_simple_whiteboard *) __attribute__((nonnull));
 void gu_nao_update_from_custom_wb(gu_nao *, gu_simple_whiteboard *, const gu_nao_wb_indexes) __attribute__((nonnull));
-void gu_nao_empty(gu_nao *);
+void gu_nao_update_from_wb_types(gu_nao *, const gu_nao_wb_types) __attribute__((nonnull));
 
 #ifdef __cplusplus
 }
