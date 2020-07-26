@@ -182,36 +182,6 @@ bool GU::NaoV5::goalSighting(GU::RelativeCoordinate & coordinate) const
     return true;
 }
 
-bool GU::NaoV5::topCameraRelativeCoordinate(const GU::CameraCoordinate & coordinate, GU::RelativeCoordinate & out)
-{
-    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_TOP_CAMERA_INDEX, out);
-}
-
-bool GU::NaoV5::topCameraRelativeCoordinate(const GU::PixelCoordinate & coordinate, GU::RelativeCoordinate & out)
-{
-    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_TOP_CAMERA_INDEX, out);
-}
-
-bool GU::NaoV5::topCameraRelativeCoordinate(const GU::PercentCoordinate & coordinate, GU::RelativeCoordinate & out)
-{
-    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_TOP_CAMERA_INDEX, out);
-}
-
-bool GU::NaoV5::bottomCameraRelativeCoordinate(const GU::CameraCoordinate & coordinate, GU::RelativeCoordinate & out)
-{
-    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_BOTTOM_CAMERA_INDEX, out);
-}
-
-bool GU::NaoV5::bottomCameraRelativeCoordinate(const GU::PixelCoordinate & coordinate, GU::RelativeCoordinate & out)
-{
-    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_BOTTOM_CAMERA_INDEX, out);
-}
-
-bool GU::NaoV5::bottomCameraRelativeCoordinate(const GU::PercentCoordinate & coordinate, GU::RelativeCoordinate & out)
-{
-    return coordinate.relativeCoordinate(cameraPivot(), GU_NAO_V5_BOTTOM_CAMERA_INDEX, out);
-}
-
 #if __cplusplus >= 201703L
 std::optional<GU::FieldCoordinate> GU::NaoV5::fieldPosition() const
 {

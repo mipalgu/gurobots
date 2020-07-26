@@ -103,13 +103,6 @@ namespace GU {
         bool rightGoalPostSighting(GU::RelativeCoordinate &) const;
         bool goalSighting(GU::RelativeCoordinate &) const;
 
-        bool topCameraRelativeCoordinate(const GU::CameraCoordinate &, GU::RelativeCoordinate &);
-        bool topCameraRelativeCoordinate(const GU::PixelCoordinate &, GU::RelativeCoordinate &);
-        bool topCameraRelativeCoordinate(const GU::PercentCoordinate &, GU::RelativeCoordinate &);
-        bool bottomCameraRelativeCoordinate(const GU::CameraCoordinate &, GU::RelativeCoordinate &);
-        bool bottomCameraRelativeCoordinate(const GU::PixelCoordinate &, GU::RelativeCoordinate &);
-        bool bottomCameraRelativeCoordinate(const GU::PercentCoordinate &, GU::RelativeCoordinate &);
-
 #if __cplusplus >= 201703L
         std::optional<GU::FieldCoordinate> fieldPosition() const;
         std::optional<GU::RelativeCoordinate> ballSighting() const;
