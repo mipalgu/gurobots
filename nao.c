@@ -129,6 +129,19 @@ bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs)
         && gu_soccer_sightings_equals(lhs.sightings, rhs.sightings);
 }
 
+bool gu_nao_wb_indexes_equals(const gu_nao_wb_indexes lhs, const gu_nao_wb_indexes rhs)
+{
+    return lhs.torsoSensors == rhs.torsoSensors
+        && lhs.topParticles == rhs.topParticles
+        && lhs.handSensors == rhs.handSensors
+        && lhs.headSensors == rhs.headSensors
+        && lhs.legSensors == rhs.legSensors
+        && lhs.ballLocation == rhs.ballLocation
+        && lhs.leftGoalPostLocation == rhs.leftGoalPostLocation
+        && lhs.rightGoalPostLocation == rhs.rightGoalPostLocation
+        && lhs.goalLocation == rhs.goalLocation;
+}
+
 gu_nao_wb_indexes gu_nao_wb_indexes_default()
 {
     const gu_nao_wb_indexes temp = {

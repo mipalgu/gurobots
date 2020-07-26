@@ -151,6 +151,7 @@ typedef struct gu_nao_wb_indexes {
     int goalLocation;
 } gu_nao_wb_indexes;
 
+bool gu_nao_wb_indexes_equals(const gu_nao_wb_indexes lhs, const gu_nao_wb_indexes rhs) __attribute__((const));
 gu_nao_wb_indexes gu_nao_wb_indexes_default(void) __attribute__((const));
 
 bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs);
