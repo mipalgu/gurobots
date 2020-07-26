@@ -129,17 +129,39 @@ bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs)
         && gu_soccer_sightings_equals(lhs.sightings, rhs.sightings);
 }
 
+gu_nao_wb_indexes gu_nao_wb_indexes_default()
+{
+    const gu_nao_wb_indexes temp = {
+        kSENSORSTorsoJointSensors_v,
+        kTopParticles_v,
+        kSensorsHandSensors_v,
+        kSensorsHeadSensors_v,
+        kSENSORSLegJointSensors_v,
+        kBallLocation_v,
+        kLeftGoalPostLocation_v,
+        kRightGoalPostLocation_v,
+        kRightGoalPostLocation_v
+    };
+    return temp;
+}
+
 void gu_nao_update_from_wb(gu_nao * nao, gu_simple_whiteboard * wb)
 {
-    const struct wb_sensors_torsojointsensors torsoSensors = *((struct wb_sensors_torsojointsensors *) gsw_current_message(wb, kSENSORSTorsoJointSensors_v));
-    const struct wb_top_particles topParticles = *((struct wb_top_particles*) gsw_current_message(wb, kTopParticles_v));
-    const struct wb_sensors_hand_sensors handSensors = *((struct wb_sensors_hand_sensors*) gsw_current_message(wb, kSensorsHandSensors_v));
-    const struct wb_sensors_head_sensors headSensors = *((struct wb_sensors_head_sensors*) gsw_current_message(wb, kSensorsHeadSensors_v));
-    const struct wb_sensors_legjointsensors legSensors = *((struct wb_sensors_legjointsensors*) gsw_current_message(wb, kSENSORSLegJointSensors_v));
-    const struct wb_location ballLocation = *((struct wb_location*) gsw_current_message(wb, kBallLocation_v));
-    const struct wb_location leftGoalPostLocation = *((struct wb_location*) gsw_current_message(wb, kLeftGoalPostLocation_v));
-    const struct wb_location rightGoalPostLocation = *((struct wb_location*) gsw_current_message(wb, kRightGoalPostLocation_v));
-    const struct wb_location goalLocation = *((struct wb_location*) gsw_current_message(wb, kGoalLocation_v));
+    const gu_nao_wb_indexes indexes = gu_nao_wb_indexes_default();
+    gu_nao_update_from_custom_wb(nao, wb, indexes);
+}
+
+void gu_nao_update_from_custom_wb(gu_nao * nao, gu_simple_whiteboard * wb, const gu_nao_wb_indexes indexes)
+{
+    const struct wb_sensors_torsojointsensors torsoSensors = *((struct wb_sensors_torsojointsensors *) gsw_current_message(wb, indexes.torsoSensors));
+    const struct wb_top_particles topParticles = *((struct wb_top_particles*) gsw_current_message(wb, indexes.topParticles));
+    const struct wb_sensors_hand_sensors handSensors = *((struct wb_sensors_hand_sensors*) gsw_current_message(wb, indexes.handSensors));
+    const struct wb_sensors_head_sensors headSensors = *((struct wb_sensors_head_sensors*) gsw_current_message(wb, indexes.headSensors));
+    const struct wb_sensors_legjointsensors legSensors = *((struct wb_sensors_legjointsensors*) gsw_current_message(wb, indexes.legSensors));
+    const struct wb_location ballLocation = *((struct wb_location*) gsw_current_message(wb, indexes.ballLocation));
+    const struct wb_location leftGoalPostLocation = *((struct wb_location*) gsw_current_message(wb, indexes.leftGoalPostLocation));
+    const struct wb_location rightGoalPostLocation = *((struct wb_location*) gsw_current_message(wb, indexes.rightGoalPostLocation));
+    const struct wb_location goalLocation = *((struct wb_location*) gsw_current_message(wb, indexes.goalLocation));
     // Head
     nao->joints.head.neck.pitch = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadPitch));
     nao->joints.head.neck.yaw = rad_f_to_deg_f(f_to_rad_f(torsoSensors.HeadYaw));

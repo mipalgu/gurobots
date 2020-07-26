@@ -139,8 +139,23 @@ typedef struct gu_nao {
     gu_soccer_sightings sightings;
 } gu_nao;
 
+typedef struct gu_nao_wb_indexes {
+    int torsoSensors;
+    int topParticles;
+    int handSensors;
+    int headSensors;
+    int legSensors;
+    int ballLocation;
+    int leftGoalPostLocation;
+    int rightGoalPostLocation;
+    int goalLocation;
+} gu_nao_wb_indexes;
+
+gu_nao_wb_indexes gu_nao_wb_indexes_default(void) __attribute__((const));
+
 bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs);
-void gu_nao_update_from_wb(gu_nao *, gu_simple_whiteboard *);
+void gu_nao_update_from_wb(gu_nao *, gu_simple_whiteboard *) __attribute__((nonnull));
+void gu_nao_update_from_custom_wb(gu_nao *, gu_simple_whiteboard *, const gu_nao_wb_indexes) __attribute__((nonnull));
 void gu_nao_empty(gu_nao *);
 
 #ifdef __cplusplus
