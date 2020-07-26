@@ -60,44 +60,44 @@
 
 GU::OptionalRelativeCoordinate::OptionalRelativeCoordinate() {}
 
-GU::OptionalRelativeCoordinate::OptionalRelativeCoordinate(const bool canSee, const GU::RelativeCoordinate coordinate)
+GU::OptionalRelativeCoordinate::OptionalRelativeCoordinate(const bool has_value, const GU::RelativeCoordinate coordinate)
 {
-    set_canSee(canSee);
-    set_coordinate(coordinate);
+    set_has_value(has_value);
+    set_value(coordinate);
 }
 
 GU::OptionalRelativeCoordinate::OptionalRelativeCoordinate(const GU::OptionalRelativeCoordinate& other)
 {
-    set_canSee(other.canSee());
-    set_coordinate(other.coordinate());
+    set_has_value(other.has_value());
+    set_value(other.value());
 }
 
 GU::OptionalRelativeCoordinate::OptionalRelativeCoordinate(const gu_optional_relative_coordinate &other)
 {
-    set_canSee(other.canSee);
-    set_coordinate(other.coordinate);
+    set_has_value(other.has_value);
+    set_value(other.value);
 }
 
 #if __cplusplus >= 201703L
 GU::OptionalRelativeCoordinate::OptionalRelativeCoordinate(const std::optional<GU::RelativeCoordinate>& other)
 {
-    set_canSee(other.has_value());
+    set_has_value(other.has_value());
     if (!other.has_value())
     {
-        set_coordinate(GU::RelativeCoordinate());
+        set_value(GU::RelativeCoordinate());
         return;
     }
-    set_coordinate(other.value());
+    set_value(other.value());
 }
 #endif
 
 #if __cplusplus >= 201103L
 GU::OptionalRelativeCoordinate::OptionalRelativeCoordinate(GU::OptionalRelativeCoordinate&& other)
 {
-    set_canSee(other.canSee());
-    other.set_canSee(0.0f);
-    set_coordinate(other.coordinate());
-    other.set_coordinate(GU::RelativeCoordinate());
+    set_has_value(other.has_value());
+    other.set_has_value(0.0f);
+    set_value(other.value());
+    other.set_value(GU::RelativeCoordinate());
 }
 #endif
 
@@ -109,8 +109,8 @@ GU::OptionalRelativeCoordinate& GU::OptionalRelativeCoordinate::operator=(const 
     {
         return *this;
     }
-    set_canSee(other.canSee());
-    set_coordinate(other.coordinate());
+    set_has_value(other.has_value());
+    set_value(other.value());
     return *this;
 }
 
@@ -120,21 +120,21 @@ GU::OptionalRelativeCoordinate& GU::OptionalRelativeCoordinate::operator=(const 
     {
         return *this;
     }
-    set_canSee(other.canSee);
-    set_coordinate(other.coordinate);
+    set_has_value(other.has_value);
+    set_value(other.value);
     return *this;
 }
 
 #if __cplusplus >= 201703L
 GU::OptionalRelativeCoordinate& GU::OptionalRelativeCoordinate::operator=(const std::optional<GU::RelativeCoordinate>& other)
 {
-    set_canSee(other.has_value());
+    set_has_value(other.has_value());
     if (!other.has_value())
     {
-        set_coordinate(GU::RelativeCoordinate());
+        set_value(GU::RelativeCoordinate());
         return *this;
     }
-    set_coordinate(other.value());
+    set_value(other.value());
     return *this;
 }
 #endif
@@ -146,39 +146,39 @@ GU::OptionalRelativeCoordinate& GU::OptionalRelativeCoordinate::operator=(GU::Op
     {
         return *this;
     }
-    set_canSee(other.canSee());
-    other.set_canSee(false);
-    set_coordinate(other.coordinate());
-    other.set_coordinate(GU::RelativeCoordinate());
+    set_has_value(other.has_value());
+    other.set_has_value(false);
+    set_value(other.value());
+    other.set_value(GU::RelativeCoordinate());
     return *this;
 }
 #endif
 
-bool GU::OptionalRelativeCoordinate::canSee() const
+bool GU::OptionalRelativeCoordinate::has_value() const
 {
-    return gu_optional_relative_coordinate::canSee;
+    return gu_optional_relative_coordinate::has_value;
 }
 
-void GU::OptionalRelativeCoordinate::set_canSee(const bool newValue)
+void GU::OptionalRelativeCoordinate::set_has_value(const bool newValue)
 {
-    gu_optional_relative_coordinate::canSee = newValue;
+    gu_optional_relative_coordinate::has_value = newValue;
 }
 
-GU::RelativeCoordinate GU::OptionalRelativeCoordinate::coordinate() const
+GU::RelativeCoordinate GU::OptionalRelativeCoordinate::value() const
 {
-    return gu_optional_relative_coordinate::coordinate;
+    return gu_optional_relative_coordinate::value;
 }
 
-void GU::OptionalRelativeCoordinate::set_coordinate(const GU::RelativeCoordinate newValue)
+void GU::OptionalRelativeCoordinate::set_value(const GU::RelativeCoordinate newValue)
 {
-    gu_optional_relative_coordinate::coordinate = newValue;
+    gu_optional_relative_coordinate::value = newValue;
 }
 
 #if __cplusplus >= 201703L
 std::optional<GU::RelativeCoordinate> GU::OptionalRelativeCoordinate::asOptional() const
 {
-    if (canSee())
-        return std::optional<GU::RelativeCoordinate>(coordinate());
+    if (has_value())
+        return std::optional<GU::RelativeCoordinate>(value());
     return std::nullopt;
 }
 #endif

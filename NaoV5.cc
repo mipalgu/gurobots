@@ -144,41 +144,41 @@ gu_soccer_sightings GU::NaoV5::sightings() const
 
 bool GU::NaoV5::fieldPosition(GU::FieldCoordinate & coordinate) const
 {
-    if (!gu_nao::fieldPosition.hasCoordinate)
+    if (!gu_nao::fieldPosition.has_value)
         return false;
-    coordinate = gu_nao::fieldPosition.field_coordinate;
+    coordinate = gu_nao::fieldPosition.value;
     return true;
 }
 
 bool GU::NaoV5::ballSighting(GU::RelativeCoordinate & coordinate) const
 {
-    if (!gu_nao::sightings.ball.canSee)
+    if (!gu_nao::sightings.ball.has_value)
         return false;
-    coordinate = gu_nao::sightings.ball.coordinate;
+    coordinate = gu_nao::sightings.ball.value;
     return true;
 }
 
 bool GU::NaoV5::leftGoalPostSighting(GU::RelativeCoordinate & coordinate) const
 {
-    if (!gu_nao::sightings.leftGoalPost.canSee)
+    if (!gu_nao::sightings.leftGoalPost.has_value)
         return false;
-    coordinate = gu_nao::sightings.leftGoalPost.coordinate;
+    coordinate = gu_nao::sightings.leftGoalPost.value;
     return true;
 }
 
 bool GU::NaoV5::rightGoalPostSighting(GU::RelativeCoordinate & coordinate) const
 {
-    if (!gu_nao::sightings.rightGoalPost.canSee)
+    if (!gu_nao::sightings.rightGoalPost.has_value)
         return false;
-    coordinate = gu_nao::sightings.rightGoalPost.coordinate;
+    coordinate = gu_nao::sightings.rightGoalPost.value;
     return true;
 }
 
 bool GU::NaoV5::goalSighting(GU::RelativeCoordinate & coordinate) const
 {
-    if (!gu_nao::sightings.goal.canSee)
+    if (!gu_nao::sightings.goal.has_value)
         return false;
-    coordinate = gu_nao::sightings.goal.coordinate;
+    coordinate = gu_nao::sightings.goal.value;
     return true;
 }
 
@@ -215,37 +215,37 @@ bool GU::NaoV5::bottomCameraRelativeCoordinate(const GU::PercentCoordinate & coo
 #if __cplusplus >= 201703L
 std::optional<GU::FieldCoordinate> GU::NaoV5::fieldPosition() const
 {
-    if (!gu_nao::fieldPosition.hasCoordinate)
+    if (!gu_nao::fieldPosition.has_value)
         return std::nullopt;
-    return std::optional<GU::FieldCoordinate>(gu_nao::fieldPosition.field_coordinate);
+    return std::optional<GU::FieldCoordinate>(gu_nao::fieldPosition.value);
 }
 
 std::optional<GU::RelativeCoordinate> GU::NaoV5::ballSighting() const
 {
-    if (!gu_nao::sightings.ball.canSee)
+    if (!gu_nao::sightings.ball.has_value)
         return std::nullopt;
-    return std::optional<GU::RelativeCoordinate>(gu_nao::sightings.ball.coordinate);
+    return std::optional<GU::RelativeCoordinate>(gu_nao::sightings.ball.value);
 }
 
 std::optional<GU::RelativeCoordinate> GU::NaoV5::leftGoalPostSighting() const
 {
-    if (!gu_nao::sightings.leftGoalPost.canSee)
+    if (!gu_nao::sightings.leftGoalPost.has_value)
         return std::nullopt;
-    return std::optional<GU::RelativeCoordinate>(gu_nao::sightings.leftGoalPost.coordinate);
+    return std::optional<GU::RelativeCoordinate>(gu_nao::sightings.leftGoalPost.value);
 }
 
 std::optional<GU::RelativeCoordinate> GU::NaoV5::rightGoalPostSighting() const
 {
-    if (!gu_nao::sightings.rightGoalPost.canSee)
+    if (!gu_nao::sightings.rightGoalPost.has_value)
         return std::nullopt;
-    return std::optional<GU::RelativeCoordinate>(gu_nao::sightings.rightGoalPost.coordinate);
+    return std::optional<GU::RelativeCoordinate>(gu_nao::sightings.rightGoalPost.value);
 }
 
 std::optional<GU::RelativeCoordinate> GU::NaoV5::goalSighting() const
 {
-    if (!gu_nao::sightings.goal.canSee)
+    if (!gu_nao::sightings.goal.has_value)
         return std::nullopt;
-    return std::optional<GU::RelativeCoordinate>(gu_nao::sightings.goal.coordinate);
+    return std::optional<GU::RelativeCoordinate>(gu_nao::sightings.goal.value);
 }
 
 std::optional<GU::RelativeCoordinate> GU::NaoV5::topCameraRelativeCoordinate(const GU::CameraCoordinate & coordinate)

@@ -93,11 +93,11 @@ namespace GU {
         OptionalRelativeCoordinate& operator=(OptionalRelativeCoordinate&& other);
 #endif
 
-        bool canSee() const;
-        void set_canSee(const bool);
+        bool has_value() const;
+        void set_has_value(const bool);
         
-        RelativeCoordinate coordinate() const;
-        void set_coordinate(const RelativeCoordinate);
+        RelativeCoordinate value() const;
+        void set_value(const RelativeCoordinate);
         
 #if __cplusplus >= 201703L
         std::optional<RelativeCoordinate> asOptional() const;

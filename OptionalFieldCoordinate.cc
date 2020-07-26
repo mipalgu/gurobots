@@ -60,31 +60,31 @@
 
 GU::OptionalFieldCoordinate::OptionalFieldCoordinate() {}
 
-GU::OptionalFieldCoordinate::OptionalFieldCoordinate(const bool hasCoordinate, const GU::FieldCoordinate fieldCoordinate)
+GU::OptionalFieldCoordinate::OptionalFieldCoordinate(const bool has_value, const GU::FieldCoordinate value)
 {
-    set_hasCoordinate(hasCoordinate);
-    set_fieldCoordinate(fieldCoordinate);
+    set_has_value(has_value);
+    set_value(value);
 }
 
 GU::OptionalFieldCoordinate::OptionalFieldCoordinate(const GU::OptionalFieldCoordinate& other)
 {
-    set_hasCoordinate(other.hasCoordinate());
-    set_fieldCoordinate(other.fieldCoordinate());
+    set_has_value(other.has_value());
+    set_value(other.value());
 }
 
 GU::OptionalFieldCoordinate::OptionalFieldCoordinate(const gu_optional_field_coordinate &other)
 {
-    set_hasCoordinate(other.hasCoordinate);
-    set_fieldCoordinate(other.field_coordinate);
+    set_has_value(other.has_value);
+    set_value(other.value);
 }
 
 #if __cplusplus >= 201103L
 GU::OptionalFieldCoordinate::OptionalFieldCoordinate(GU::OptionalFieldCoordinate&& other)
 {
-    set_hasCoordinate(other.hasCoordinate());
-    other.set_hasCoordinate(0.0f);
-    set_fieldCoordinate(other.fieldCoordinate());
-    other.set_fieldCoordinate(GU::FieldCoordinate());
+    set_has_value(other.has_value());
+    other.set_has_value(0.0f);
+    set_value(other.value());
+    other.set_value(GU::FieldCoordinate());
 }
 #endif
 
@@ -96,8 +96,8 @@ GU::OptionalFieldCoordinate& GU::OptionalFieldCoordinate::operator=(const GU::Op
     {
         return *this;
     }
-    set_hasCoordinate(other.hasCoordinate());
-    set_fieldCoordinate(other.fieldCoordinate());
+    set_has_value(other.has_value());
+    set_value(other.value());
     return *this;
 }
 
@@ -107,8 +107,8 @@ GU::OptionalFieldCoordinate& GU::OptionalFieldCoordinate::operator=(const gu_opt
     {
         return *this;
     }
-    set_hasCoordinate(other.hasCoordinate);
-    set_fieldCoordinate(other.field_coordinate);
+    set_has_value(other.has_value);
+    set_value(other.value);
     return *this;
 }
 
@@ -119,30 +119,30 @@ GU::OptionalFieldCoordinate& GU::OptionalFieldCoordinate::operator=(GU::Optional
     {
         return *this;
     }
-    set_hasCoordinate(other.hasCoordinate());
-    other.set_hasCoordinate(false);
-    set_fieldCoordinate(other.fieldCoordinate());
-    other.set_fieldCoordinate(GU::FieldCoordinate());
+    set_has_value(other.has_value());
+    other.set_has_value(false);
+    set_value(other.value());
+    other.set_value(GU::FieldCoordinate());
     return *this;
 }
 #endif
 
-bool GU::OptionalFieldCoordinate::hasCoordinate() const
+bool GU::OptionalFieldCoordinate::has_value() const
 {
-    return gu_optional_field_coordinate::hasCoordinate;
+    return gu_optional_field_coordinate::has_value;
 }
 
-void GU::OptionalFieldCoordinate::set_hasCoordinate(const bool newValue)
+void GU::OptionalFieldCoordinate::set_has_value(const bool newValue)
 {
-    gu_optional_field_coordinate::hasCoordinate = newValue;
+    gu_optional_field_coordinate::has_value = newValue;
 }
 
-GU::FieldCoordinate GU::OptionalFieldCoordinate::fieldCoordinate() const
+GU::FieldCoordinate GU::OptionalFieldCoordinate::value() const
 {
-    return gu_optional_field_coordinate::field_coordinate;
+    return gu_optional_field_coordinate::value;
 }
 
-void GU::OptionalFieldCoordinate::set_fieldCoordinate(const GU::FieldCoordinate newValue)
+void GU::OptionalFieldCoordinate::set_value(const GU::FieldCoordinate newValue)
 {
-    gu_optional_field_coordinate::field_coordinate = newValue;
+    gu_optional_field_coordinate::value = newValue;
 }

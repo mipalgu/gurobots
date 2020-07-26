@@ -61,6 +61,6 @@
 
 bool gu_optional_field_coordinate_equals(const gu_optional_field_coordinate lhs, const gu_optional_field_coordinate rhs)
 {
-    return lhs.hasCoordinate == rhs.hasCoordinate
-        && gu_field_coordinate_equals(lhs.field_coordinate, rhs.field_coordinate);
+    return lhs.has_value == rhs.has_value
+        && gu_field_coordinate_equals(lhs.value, rhs.value);
 }

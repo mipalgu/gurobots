@@ -83,11 +83,11 @@ namespace GU {
         OptionalFieldCoordinate& operator=(OptionalFieldCoordinate&& other);
 #endif
 
-        bool hasCoordinate() const;
-        void set_hasCoordinate(const bool);
+        bool has_value() const;
+        void set_has_value(const bool);
         
-        FieldCoordinate fieldCoordinate() const;
-        void set_fieldCoordinate(const FieldCoordinate);
+        FieldCoordinate value() const;
+        void set_value(const FieldCoordinate);
 
     };
 

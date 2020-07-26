@@ -203,10 +203,10 @@ void gu_nao_update_from_wb_types(gu_nao * nao, const gu_nao_wb_types types)
     nao->joints.head.buttons.touchMiddle = types.headSensors.Head_Touch_Middle;
     nao->joints.head.buttons.touchRear = types.headSensors.Head_Touch_Rear;
     // Field Position
-    nao->fieldPosition.hasCoordinate = types.topParticles.particles[0].confidence > 0.6f;
-    nao->fieldPosition.field_coordinate.position.x = i16_to_cm_t(types.topParticles.particles[0].position.x);
-    nao->fieldPosition.field_coordinate.position.y = i16_to_cm_t(types.topParticles.particles[0].position.y);
-    nao->fieldPosition.field_coordinate.heading = i16_to_deg_t(types.topParticles.particles[0].headingInDegrees);
+    nao->fieldPosition.has_value = types.topParticles.particles[0].confidence > 0.6f;
+    nao->fieldPosition.value.position.x = i16_to_cm_t(types.topParticles.particles[0].position.x);
+    nao->fieldPosition.value.position.y = i16_to_cm_t(types.topParticles.particles[0].position.y);
+    nao->fieldPosition.value.heading = i16_to_deg_t(types.topParticles.particles[0].headingInDegrees);
     // Left Arm
     nao->joints.leftArm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.LShoulderPitch));
     nao->joints.leftArm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.LShoulderRoll));

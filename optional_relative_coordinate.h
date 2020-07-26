@@ -68,8 +68,8 @@ extern "C" {
 #endif
 
 typedef struct gu_optional_relative_coordinate {
-    bool canSee;
-    gu_relative_coordinate coordinate;
+    bool has_value;
+    gu_relative_coordinate value;
 } gu_optional_relative_coordinate;
 
 bool gu_optional_relative_coordinate_equals(const gu_optional_relative_coordinate lhs, const gu_optional_relative_coordinate rhs);
