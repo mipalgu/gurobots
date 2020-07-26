@@ -65,6 +65,10 @@
 
 #include <cstdlib>
 
+#if __cplusplus >= 201703L
+#include <optional>
+#endif
+
 namespace GU {
 
     struct OptionalRelativeCoordinate: public gu_optional_relative_coordinate {
@@ -73,12 +77,18 @@ namespace GU {
         OptionalRelativeCoordinate(const bool, const RelativeCoordinate);
         OptionalRelativeCoordinate(const OptionalRelativeCoordinate& other);
         OptionalRelativeCoordinate(const gu_optional_relative_coordinate& other);
+#if __cplusplus >= 201703L
+        OptionalRelativeCoordinate(const std::optional<RelativeCoordinate>& other);
+#endif
 #if __cplusplus >= 201103L
         OptionalRelativeCoordinate(OptionalRelativeCoordinate&& other);
 #endif
         ~OptionalRelativeCoordinate();
         OptionalRelativeCoordinate& operator=(const OptionalRelativeCoordinate& other);
         OptionalRelativeCoordinate& operator=(const gu_optional_relative_coordinate& other);
+#if __cplusplus >= 201703L
+        OptionalRelativeCoordinate& operator=(const std::optional<RelativeCoordinate>& other);
+#endif
 #if __cplusplus >= 201103L
         OptionalRelativeCoordinate& operator=(OptionalRelativeCoordinate&& other);
 #endif
@@ -88,6 +98,10 @@ namespace GU {
         
         RelativeCoordinate coordinate() const;
         void set_coordinate(const RelativeCoordinate);
+        
+#if __cplusplus >= 201703L
+        std::optional<RelativeCoordinate> asOptional() const;
+#endif
 
     };
 
