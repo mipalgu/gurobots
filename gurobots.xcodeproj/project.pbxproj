@@ -33,6 +33,8 @@
 		F2F25C5524CDD13600810A55 /* yaw_roll_joint.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C0924CDD13600810A55 /* yaw_roll_joint.h */; };
 		F2F25C5824CDD25700810A55 /* PitchJoint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C5624CDD25700810A55 /* PitchJoint.hpp */; };
 		F2F25C5924CDD25700810A55 /* PitchJoint.cc in Sources */ = {isa = PBXBuildFile; fileRef = F2F25C5724CDD25700810A55 /* PitchJoint.cc */; };
+		F2F25C5C24CDD62B00810A55 /* PitchRollJoint.cc in Sources */ = {isa = PBXBuildFile; fileRef = F2F25C5A24CDD62A00810A55 /* PitchRollJoint.cc */; };
+		F2F25C5D24CDD62B00810A55 /* PitchRollJoint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C5B24CDD62B00810A55 /* PitchRollJoint.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +120,8 @@
 		F2F25C0924CDD13600810A55 /* yaw_roll_joint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yaw_roll_joint.h; sourceTree = "<group>"; };
 		F2F25C5624CDD25700810A55 /* PitchJoint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PitchJoint.hpp; sourceTree = "<group>"; };
 		F2F25C5724CDD25700810A55 /* PitchJoint.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PitchJoint.cc; sourceTree = "<group>"; };
+		F2F25C5A24CDD62A00810A55 /* PitchRollJoint.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PitchRollJoint.cc; sourceTree = "<group>"; };
+		F2F25C5B24CDD62B00810A55 /* PitchRollJoint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PitchRollJoint.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,8 @@
 				F2F25BFF24CDD13600810A55 /* NaoV5.hpp */,
 				F2F25C5724CDD25700810A55 /* PitchJoint.cc */,
 				F2F25C5624CDD25700810A55 /* PitchJoint.hpp */,
+				F2F25C5A24CDD62A00810A55 /* PitchRollJoint.cc */,
+				F2F25C5B24CDD62B00810A55 /* PitchRollJoint.hpp */,
 				F2F25BDE24CDD13500810A55 /* optional_field_coordinate.c */,
 				F2F25BBE24CDD13500810A55 /* optional_field_coordinate.h */,
 				F2F25BBA24CDD13500810A55 /* optional_relative_coordinate.c */,
@@ -261,6 +267,7 @@
 				F2F25C0E24CDD13600810A55 /* pitch_roll_joint.h in Headers */,
 				F2F25C2A24CDD13600810A55 /* yp_joint.h in Headers */,
 				F2F25C5424CDD13600810A55 /* nao.h in Headers */,
+				F2F25C5D24CDD62B00810A55 /* PitchRollJoint.hpp in Headers */,
 				F2F25C5524CDD13600810A55 /* yaw_roll_joint.h in Headers */,
 				F2F25C5024CDD13600810A55 /* optional_relative_coordinate.h in Headers */,
 			);
@@ -323,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2F25C5C24CDD62B00810A55 /* PitchRollJoint.cc in Sources */,
 				F2F25C2C24CDD13600810A55 /* Makefile in Sources */,
 				F2F25C0D24CDD13600810A55 /* pitch_joint.c in Sources */,
 				F2F25C4E24CDD13600810A55 /* pitch_yaw_joint.c in Sources */,
