@@ -47,6 +47,8 @@
 		F2F25C7124CDDAAA00810A55 /* OptionalFieldCoordinate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C6F24CDDAAA00810A55 /* OptionalFieldCoordinate.hpp */; };
 		F2F25C7424CDDC6600810A55 /* OptionalRelativeCoordinate.cc in Sources */ = {isa = PBXBuildFile; fileRef = F2F25C7224CDDC6500810A55 /* OptionalRelativeCoordinate.cc */; };
 		F2F25C7524CDDC6600810A55 /* OptionalRelativeCoordinate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C7324CDDC6600810A55 /* OptionalRelativeCoordinate.hpp */; };
+		F2F25C7824CDDDE100810A55 /* SoccerSightings.cc in Sources */ = {isa = PBXBuildFile; fileRef = F2F25C7624CDDDE000810A55 /* SoccerSightings.cc */; };
+		F2F25C7924CDDDE100810A55 /* SoccerSightings.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C7724CDDDE100810A55 /* SoccerSightings.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,6 +148,8 @@
 		F2F25C6F24CDDAAA00810A55 /* OptionalFieldCoordinate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OptionalFieldCoordinate.hpp; sourceTree = "<group>"; };
 		F2F25C7224CDDC6500810A55 /* OptionalRelativeCoordinate.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OptionalRelativeCoordinate.cc; sourceTree = "<group>"; };
 		F2F25C7324CDDC6600810A55 /* OptionalRelativeCoordinate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OptionalRelativeCoordinate.hpp; sourceTree = "<group>"; };
+		F2F25C7624CDDDE000810A55 /* SoccerSightings.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoccerSightings.cc; sourceTree = "<group>"; };
+		F2F25C7724CDDDE100810A55 /* SoccerSightings.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SoccerSightings.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +183,8 @@
 				F2F25C5B24CDD62B00810A55 /* PitchRollJoint.hpp */,
 				F2F25C5E24CDD6F500810A55 /* PitchYawJoint.cc */,
 				F2F25C5F24CDD6F500810A55 /* PitchYawJoint.hpp */,
+				F2F25C7624CDDDE000810A55 /* SoccerSightings.cc */,
+				F2F25C7724CDDDE100810A55 /* SoccerSightings.hpp */,
 				F2F25C6324CDD78F00810A55 /* YawJoint.cc */,
 				F2F25C6224CDD78F00810A55 /* YawJoint.hpp */,
 				F2F25C6624CDD90600810A55 /* YawRollJoint.cc */,
@@ -306,6 +312,7 @@
 				F2F25C0A24CDD13600810A55 /* yaw_joint.h in Headers */,
 				F2F25C0E24CDD13600810A55 /* pitch_roll_joint.h in Headers */,
 				F2F25C2A24CDD13600810A55 /* yp_joint.h in Headers */,
+				F2F25C7924CDDDE100810A55 /* SoccerSightings.hpp in Headers */,
 				F2F25C5424CDD13600810A55 /* nao.h in Headers */,
 				F2F25C6D24CDD9A500810A55 /* YPJoint.hpp in Headers */,
 				F2F25C5D24CDD62B00810A55 /* PitchRollJoint.hpp in Headers */,
@@ -374,6 +381,7 @@
 			files = (
 				F2F25C5C24CDD62B00810A55 /* PitchRollJoint.cc in Sources */,
 				F2F25C2C24CDD13600810A55 /* Makefile in Sources */,
+				F2F25C7824CDDDE100810A55 /* SoccerSightings.cc in Sources */,
 				F2F25C0D24CDD13600810A55 /* pitch_joint.c in Sources */,
 				F2F25C4E24CDD13600810A55 /* pitch_yaw_joint.c in Sources */,
 				F2F25C6824CDD90600810A55 /* YawRollJoint.cc in Sources */,
