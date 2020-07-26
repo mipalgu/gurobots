@@ -60,10 +60,10 @@
 
 GU::PitchYawJoint::PitchYawJoint() {}
 
-GU::PitchYawJoint::PitchYawJoint(const degrees_f pitch, const degrees_f yaw)
+GU::PitchYawJoint::PitchYawJoint(const degrees_f t_pitch, const degrees_f t_yaw)
 {
-    set_pitch(pitch);
-    set_yaw(yaw);
+    set_pitch(t_pitch);
+    set_yaw(t_yaw);
 }
 
 GU::PitchYawJoint::PitchYawJoint(const GU::PitchYawJoint& other)

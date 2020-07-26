@@ -59,7 +59,7 @@
 #ifndef GUROBOTS_SOCCER_SIGHTINGS_H
 #define GUROBOTS_SOCCER_SIGHTINGS_H
 
-#include "optional_relative_coordinate.h"
+#include <gucoordinates/gucoordinates.h>
 
 typedef struct gu_soccer_sightings {
     gu_optional_relative_coordinate ball;

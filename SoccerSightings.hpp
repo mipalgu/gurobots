@@ -60,7 +60,6 @@
 #define GUROBOTS_SOCCERSIGHTINGS_HPP
 
 #include "soccer_sightings.h"
-#include "OptionalRelativeCoordinate.hpp"
 
 #include <guunits/guunits.h>
 #include <gucoordinates/gucoordinates.h>

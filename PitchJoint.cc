@@ -60,9 +60,9 @@
 
 GU::PitchJoint::PitchJoint() {}
 
-GU::PitchJoint::PitchJoint(const degrees_f pitch)
+GU::PitchJoint::PitchJoint(const degrees_f t_pitch)
 {
-    set_pitch(pitch);
+    set_pitch(t_pitch);
 }
 
 GU::PitchJoint::PitchJoint(const GU::PitchJoint& other)

@@ -60,21 +60,21 @@
 
 GU::SoccerSightings::SoccerSightings() {}
 
-GU::SoccerSightings::SoccerSightings(const GU::OptionalRelativeCoordinate rawBall, const GU::OptionalRelativeCoordinate rawLeftGoalPost, const GU::OptionalRelativeCoordinate rawRightGoalPost, const GU::OptionalRelativeCoordinate rawGoal)
+GU::SoccerSightings::SoccerSightings(const GU::OptionalRelativeCoordinate t_rawBall, const GU::OptionalRelativeCoordinate t_rawLeftGoalPost, const GU::OptionalRelativeCoordinate t_rawRightGoalPost, const GU::OptionalRelativeCoordinate t_rawGoal)
 {
-    set_rawBall(rawBall);
-    set_rawLeftGoalPost(rawLeftGoalPost);
-    set_rawRightGoalPost(rawRightGoalPost);
-    set_rawGoal(rawGoal);
+    set_rawBall(t_rawBall);
+    set_rawLeftGoalPost(t_rawLeftGoalPost);
+    set_rawRightGoalPost(t_rawRightGoalPost);
+    set_rawGoal(t_rawGoal);
 }
 
 #if __cplusplus >= 201703L
-GU::SoccerSightings::SoccerSightings(const std::optional<GU::RelativeCoordinate> ball, const std::optional<GU::RelativeCoordinate> leftGoalPost, const std::optional<GU::RelativeCoordinate> rightGoalPost, const std::optional<GU::RelativeCoordinate> goal)
+GU::SoccerSightings::SoccerSightings(const std::optional<GU::RelativeCoordinate> t_ball, const std::optional<GU::RelativeCoordinate> t_leftGoalPost, const std::optional<GU::RelativeCoordinate> t_rightGoalPost, const std::optional<GU::RelativeCoordinate> t_goal)
 {
-    set_ball(ball);
-    set_leftGoalPost(leftGoalPost);
-    set_rightGoalPost(rightGoalPost);
-    set_goal(goal);
+    set_ball(t_ball);
+    set_leftGoalPost(t_leftGoalPost);
+    set_rightGoalPost(t_rightGoalPost);
+    set_goal(t_goal);
 }
 #endif
 

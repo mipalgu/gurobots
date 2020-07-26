@@ -78,8 +78,6 @@
 #include "yaw_roll_joint.h"
 #include "yaw_joint.h"
 #include "yp_joint.h"
-#include "optional_relative_coordinate.h"
-#include "optional_field_coordinate.h"
 #include "soccer_sightings.h"
 
 #ifdef __cplusplus

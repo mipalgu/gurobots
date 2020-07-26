@@ -60,9 +60,9 @@
 
 GU::YawJoint::YawJoint() {}
 
-GU::YawJoint::YawJoint(const degrees_f yaw)
+GU::YawJoint::YawJoint(const degrees_f t_yaw)
 {
-    set_yaw(yaw);
+    set_yaw(t_yaw);
 }
 
 GU::YawJoint::YawJoint(const GU::YawJoint& other)

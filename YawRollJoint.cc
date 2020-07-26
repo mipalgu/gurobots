@@ -60,10 +60,10 @@
 
 GU::YawRollJoint::YawRollJoint() {}
 
-GU::YawRollJoint::YawRollJoint(const degrees_f yaw, const degrees_f roll)
+GU::YawRollJoint::YawRollJoint(const degrees_f t_yaw, const degrees_f t_roll)
 {
-    set_yaw(yaw);
-    set_roll(roll);
+    set_yaw(t_yaw);
+    set_roll(t_roll);
 }
 
 GU::YawRollJoint::YawRollJoint(const GU::YawRollJoint& other)

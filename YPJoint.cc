@@ -60,10 +60,10 @@
 
 GU::YPJoint::YPJoint() {}
 
-GU::YPJoint::YPJoint(const degrees_f pitch, const degrees_f roll)
+GU::YPJoint::YPJoint(const degrees_f t_pitch, const degrees_f t_roll)
 {
-    set_pitch(pitch);
-    set_roll(roll);
+    set_pitch(t_pitch);
+    set_roll(t_roll);
 }
 
 GU::YPJoint::YPJoint(const GU::YPJoint& other)

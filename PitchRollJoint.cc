@@ -60,10 +60,10 @@
 
 GU::PitchRollJoint::PitchRollJoint() {}
 
-GU::PitchRollJoint::PitchRollJoint(const degrees_f pitch, const degrees_f roll)
+GU::PitchRollJoint::PitchRollJoint(const degrees_f t_pitch, const degrees_f t_roll)
 {
-    set_pitch(pitch);
-    set_roll(roll);
+    set_pitch(t_pitch);
+    set_roll(t_roll);
 }
 
 GU::PitchRollJoint::PitchRollJoint(const GU::PitchRollJoint& other)
