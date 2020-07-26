@@ -27,6 +27,7 @@ ALL_TARGETS=test robot-local
 C_SRCS!=ls *.c
 CC_SRCS!=ls *.cc
 ALL_HDRS!=ls *.h *.hpp
+DOC_HDRS=${ALL_HDRS}
 SPECIFIC_LIBS+=-lm
 SPECIFIC_LIBS+=-lguunits
 SPECIFIC_LIBS+=-lgusimplewhiteboard
