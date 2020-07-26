@@ -1,0 +1,518 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F2F25C0A24CDD13600810A55 /* yaw_joint.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F25BB924CDD13500810A55 /* yaw_joint.h */; };
+		F2F25C0B24CDD13600810A55 /* optional_relative_coordinate.c in Sources */ = {isa = PBXBuildFile; fileRef = F2F25BBA24CDD13500810A55 /* optional_relative_coordinate.c */; };
+		F2F25C0C24CDD13600810A55 /* yaw_joint.c in Sources */ = {isa = PBXBuildFile; fileRef = F2F25BBB24CDD13500810A55 /* yaw_joint.c */; };
+		F2F25C0D24CDD13600810A55 /* pitch_joint.c in Sources */ = {isa = PBXBuildFile; fileRef = F2F25BBC24CDD13500810A55 /* pitch_joint.c */; };
+		F2F25C0E24CDD13600810A55 /* pitch_roll_joint.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F25BBD24CDD13500810A55 /* pitch_roll_joint.h */; };
+		F2F25C0F24CDD13600810A55 /* optional_field_coordinate.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F25BBE24CDD13500810A55 /* optional_field_coordinate.h */; };
+		F2F25C2924CDD13600810A55 /* soccer_sightings.c in Sources */ = {isa = PBXBuildFile; fileRef = F2F25BDA24CDD13500810A55 /* soccer_sightings.c */; };
+		F2F25C2A24CDD13600810A55 /* yp_joint.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F25BDB24CDD13500810A55 /* yp_joint.h */; };
+		F2F25C2B24CDD13600810A55 /* pitch_roll_joint.c in Sources */ = {isa = PBXBuildFile; fileRef = F2F25BDC24CDD13500810A55 /* pitch_roll_joint.c */; };
+		F2F25C2C24CDD13600810A55 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = F2F25BDD24CDD13500810A55 /* Makefile */; };
+		F2F25C2D24CDD13600810A55 /* optional_field_coordinate.c in Sources */ = {isa = PBXBuildFile; fileRef = F2F25BDE24CDD13500810A55 /* optional_field_coordinate.c */; };
+		F2F25C2E24CDD13600810A55 /* yp_joint.c in Sources */ = {isa = PBXBuildFile; fileRef = F2F25BDF24CDD13500810A55 /* yp_joint.c */; };
+		F2F25C2F24CDD13600810A55 /* nao.c in Sources */ = {isa = PBXBuildFile; fileRef = F2F25BE024CDD13500810A55 /* nao.c */; };
+		F2F25C4B24CDD13600810A55 /* NaoV5.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F2F25BFF24CDD13600810A55 /* NaoV5.hpp */; };
+		F2F25C4C24CDD13600810A55 /* pitch_yaw_joint.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C0024CDD13600810A55 /* pitch_yaw_joint.h */; };
+		F2F25C4D24CDD13600810A55 /* gurobots.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C0124CDD13600810A55 /* gurobots.h */; };
+		F2F25C4E24CDD13600810A55 /* pitch_yaw_joint.c in Sources */ = {isa = PBXBuildFile; fileRef = F2F25C0224CDD13600810A55 /* pitch_yaw_joint.c */; };
+		F2F25C4F24CDD13600810A55 /* soccer_sightings.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C0324CDD13600810A55 /* soccer_sightings.h */; };
+		F2F25C5024CDD13600810A55 /* optional_relative_coordinate.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C0424CDD13600810A55 /* optional_relative_coordinate.h */; };
+		F2F25C5124CDD13600810A55 /* NaoV5.cc in Sources */ = {isa = PBXBuildFile; fileRef = F2F25C0524CDD13600810A55 /* NaoV5.cc */; };
+		F2F25C5224CDD13600810A55 /* pitch_joint.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C0624CDD13600810A55 /* pitch_joint.h */; };
+		F2F25C5324CDD13600810A55 /* yaw_roll_joint.c in Sources */ = {isa = PBXBuildFile; fileRef = F2F25C0724CDD13600810A55 /* yaw_roll_joint.c */; };
+		F2F25C5424CDD13600810A55 /* nao.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C0824CDD13600810A55 /* nao.h */; };
+		F2F25C5524CDD13600810A55 /* yaw_roll_joint.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C0924CDD13600810A55 /* yaw_roll_joint.h */; };
+		F2F25C5824CDD25700810A55 /* PitchJoint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C5624CDD25700810A55 /* PitchJoint.hpp */; };
+		F2F25C5924CDD25700810A55 /* PitchJoint.cc in Sources */ = {isa = PBXBuildFile; fileRef = F2F25C5724CDD25700810A55 /* PitchJoint.cc */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F2F25BB224CDD0F000810A55 /* libgurobots.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libgurobots.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2F25BB924CDD13500810A55 /* yaw_joint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yaw_joint.h; sourceTree = "<group>"; };
+		F2F25BBA24CDD13500810A55 /* optional_relative_coordinate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = optional_relative_coordinate.c; sourceTree = "<group>"; };
+		F2F25BBB24CDD13500810A55 /* yaw_joint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yaw_joint.c; sourceTree = "<group>"; };
+		F2F25BBC24CDD13500810A55 /* pitch_joint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pitch_joint.c; sourceTree = "<group>"; };
+		F2F25BBD24CDD13500810A55 /* pitch_roll_joint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pitch_roll_joint.h; sourceTree = "<group>"; };
+		F2F25BBE24CDD13500810A55 /* optional_field_coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = optional_field_coordinate.h; sourceTree = "<group>"; };
+		F2F25BC024CDD13500810A55 /* GNUmakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GNUmakefile; sourceTree = "<group>"; };
+		F2F25BC124CDD13500810A55 /* conversion_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = conversion_fakes.c; sourceTree = "<group>"; };
+		F2F25BC224CDD13500810A55 /* camera_pivot_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = camera_pivot_fakes.c; sourceTree = "<group>"; };
+		F2F25BC324CDD13500810A55 /* fff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fff.h; sourceTree = "<group>"; };
+		F2F25BC424CDD13500810A55 /* camera_coordinate_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = camera_coordinate_fakes.c; sourceTree = "<group>"; };
+		F2F25BC524CDD13500810A55 /* pixel_coordinate_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pixel_coordinate_fakes.h; sourceTree = "<group>"; };
+		F2F25BC624CDD13500810A55 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		F2F25BC724CDD13500810A55 /* cartesian_coordinate_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cartesian_coordinate_fakes.c; sourceTree = "<group>"; };
+		F2F25BC824CDD13500810A55 /* percent_coordinate_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = percent_coordinate_fakes.c; sourceTree = "<group>"; };
+		F2F25BC924CDD13500810A55 /* camera_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera_fakes.h; sourceTree = "<group>"; };
+		F2F25BCA24CDD13500810A55 /* field_coordinate_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = field_coordinate_fakes.h; sourceTree = "<group>"; };
+		F2F25BCB24CDD13500810A55 /* relative_coordinate_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = relative_coordinate_fakes.h; sourceTree = "<group>"; };
+		F2F25BCC24CDD13500810A55 /* custom_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = custom_fakes.h; sourceTree = "<group>"; };
+		F2F25BCD24CDD13500810A55 /* fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fakes.h; sourceTree = "<group>"; };
+		F2F25BCE24CDD13500810A55 /* conversion_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conversion_fakes.h; sourceTree = "<group>"; };
+		F2F25BCF24CDD13500810A55 /* camera_coordinate_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera_coordinate_fakes.h; sourceTree = "<group>"; };
+		F2F25BD024CDD13500810A55 /* camera_pivot_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera_pivot_fakes.h; sourceTree = "<group>"; };
+		F2F25BD124CDD13500810A55 /* fff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fff.c; sourceTree = "<group>"; };
+		F2F25BD224CDD13500810A55 /* gurobots_tests.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gurobots_tests.hpp; sourceTree = "<group>"; };
+		F2F25BD324CDD13500810A55 /* cartesian_coordinate_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cartesian_coordinate_fakes.h; sourceTree = "<group>"; };
+		F2F25BD424CDD13500810A55 /* pixel_coordinate_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pixel_coordinate_fakes.c; sourceTree = "<group>"; };
+		F2F25BD524CDD13500810A55 /* custom_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = custom_fakes.c; sourceTree = "<group>"; };
+		F2F25BD624CDD13500810A55 /* relative_coordinate_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = relative_coordinate_fakes.c; sourceTree = "<group>"; };
+		F2F25BD724CDD13500810A55 /* field_coordinate_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = field_coordinate_fakes.c; sourceTree = "<group>"; };
+		F2F25BD824CDD13500810A55 /* camera_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = camera_fakes.c; sourceTree = "<group>"; };
+		F2F25BD924CDD13500810A55 /* percent_coordinate_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = percent_coordinate_fakes.h; sourceTree = "<group>"; };
+		F2F25BDA24CDD13500810A55 /* soccer_sightings.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = soccer_sightings.c; sourceTree = "<group>"; };
+		F2F25BDB24CDD13500810A55 /* yp_joint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yp_joint.h; sourceTree = "<group>"; };
+		F2F25BDC24CDD13500810A55 /* pitch_roll_joint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pitch_roll_joint.c; sourceTree = "<group>"; };
+		F2F25BDD24CDD13500810A55 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		F2F25BDE24CDD13500810A55 /* optional_field_coordinate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = optional_field_coordinate.c; sourceTree = "<group>"; };
+		F2F25BDF24CDD13500810A55 /* yp_joint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yp_joint.c; sourceTree = "<group>"; };
+		F2F25BE024CDD13500810A55 /* nao.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nao.c; sourceTree = "<group>"; };
+		F2F25BE124CDD13500810A55 /* GNUmakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GNUmakefile; sourceTree = "<group>"; };
+		F2F25BE324CDD13500810A55 /* GNUmakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GNUmakefile; sourceTree = "<group>"; };
+		F2F25BE424CDD13500810A55 /* conversion_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = conversion_fakes.c; sourceTree = "<group>"; };
+		F2F25BE524CDD13500810A55 /* camera_pivot_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = camera_pivot_fakes.c; sourceTree = "<group>"; };
+		F2F25BE624CDD13500810A55 /* fff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fff.h; sourceTree = "<group>"; };
+		F2F25BE724CDD13500810A55 /* camera_coordinate_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = camera_coordinate_fakes.c; sourceTree = "<group>"; };
+		F2F25BE824CDD13500810A55 /* pixel_coordinate_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pixel_coordinate_fakes.h; sourceTree = "<group>"; };
+		F2F25BE924CDD13500810A55 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		F2F25BEA24CDD13500810A55 /* cartesian_coordinate_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cartesian_coordinate_fakes.c; sourceTree = "<group>"; };
+		F2F25BEB24CDD13500810A55 /* NaoV5Tests.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NaoV5Tests.cc; sourceTree = "<group>"; };
+		F2F25BEC24CDD13500810A55 /* percent_coordinate_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = percent_coordinate_fakes.c; sourceTree = "<group>"; };
+		F2F25BED24CDD13500810A55 /* camera_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera_fakes.h; sourceTree = "<group>"; };
+		F2F25BEE24CDD13600810A55 /* field_coordinate_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = field_coordinate_fakes.h; sourceTree = "<group>"; };
+		F2F25BEF24CDD13600810A55 /* relative_coordinate_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = relative_coordinate_fakes.h; sourceTree = "<group>"; };
+		F2F25BF024CDD13600810A55 /* custom_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = custom_fakes.h; sourceTree = "<group>"; };
+		F2F25BF124CDD13600810A55 /* fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fakes.h; sourceTree = "<group>"; };
+		F2F25BF224CDD13600810A55 /* conversion_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conversion_fakes.h; sourceTree = "<group>"; };
+		F2F25BF324CDD13600810A55 /* camera_coordinate_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera_coordinate_fakes.h; sourceTree = "<group>"; };
+		F2F25BF424CDD13600810A55 /* GUWrapperTests.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GUWrapperTests.hpp; sourceTree = "<group>"; };
+		F2F25BF524CDD13600810A55 /* camera_pivot_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera_pivot_fakes.h; sourceTree = "<group>"; };
+		F2F25BF624CDD13600810A55 /* fff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fff.c; sourceTree = "<group>"; };
+		F2F25BF724CDD13600810A55 /* cartesian_coordinate_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cartesian_coordinate_fakes.h; sourceTree = "<group>"; };
+		F2F25BF824CDD13600810A55 /* GURobotsTests.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GURobotsTests.hpp; sourceTree = "<group>"; };
+		F2F25BF924CDD13600810A55 /* pixel_coordinate_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pixel_coordinate_fakes.c; sourceTree = "<group>"; };
+		F2F25BFA24CDD13600810A55 /* custom_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = custom_fakes.c; sourceTree = "<group>"; };
+		F2F25BFB24CDD13600810A55 /* relative_coordinate_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = relative_coordinate_fakes.c; sourceTree = "<group>"; };
+		F2F25BFC24CDD13600810A55 /* field_coordinate_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = field_coordinate_fakes.c; sourceTree = "<group>"; };
+		F2F25BFD24CDD13600810A55 /* camera_fakes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = camera_fakes.c; sourceTree = "<group>"; };
+		F2F25BFE24CDD13600810A55 /* percent_coordinate_fakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = percent_coordinate_fakes.h; sourceTree = "<group>"; };
+		F2F25BFF24CDD13600810A55 /* NaoV5.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NaoV5.hpp; sourceTree = "<group>"; };
+		F2F25C0024CDD13600810A55 /* pitch_yaw_joint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pitch_yaw_joint.h; sourceTree = "<group>"; };
+		F2F25C0124CDD13600810A55 /* gurobots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gurobots.h; sourceTree = "<group>"; };
+		F2F25C0224CDD13600810A55 /* pitch_yaw_joint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pitch_yaw_joint.c; sourceTree = "<group>"; };
+		F2F25C0324CDD13600810A55 /* soccer_sightings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = soccer_sightings.h; sourceTree = "<group>"; };
+		F2F25C0424CDD13600810A55 /* optional_relative_coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = optional_relative_coordinate.h; sourceTree = "<group>"; };
+		F2F25C0524CDD13600810A55 /* NaoV5.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NaoV5.cc; sourceTree = "<group>"; };
+		F2F25C0624CDD13600810A55 /* pitch_joint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pitch_joint.h; sourceTree = "<group>"; };
+		F2F25C0724CDD13600810A55 /* yaw_roll_joint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yaw_roll_joint.c; sourceTree = "<group>"; };
+		F2F25C0824CDD13600810A55 /* nao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nao.h; sourceTree = "<group>"; };
+		F2F25C0924CDD13600810A55 /* yaw_roll_joint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yaw_roll_joint.h; sourceTree = "<group>"; };
+		F2F25C5624CDD25700810A55 /* PitchJoint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PitchJoint.hpp; sourceTree = "<group>"; };
+		F2F25C5724CDD25700810A55 /* PitchJoint.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PitchJoint.cc; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F2F25BB024CDD0F000810A55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F2F25BA924CDD0F000810A55 = {
+			isa = PBXGroup;
+			children = (
+				F2F25BBF24CDD13500810A55 /* ctests */,
+				F2F25BE124CDD13500810A55 /* GNUmakefile */,
+				F2F25C0124CDD13600810A55 /* gurobots.h */,
+				F2F25BDD24CDD13500810A55 /* Makefile */,
+				F2F25BE024CDD13500810A55 /* nao.c */,
+				F2F25C0824CDD13600810A55 /* nao.h */,
+				F2F25C0524CDD13600810A55 /* NaoV5.cc */,
+				F2F25BFF24CDD13600810A55 /* NaoV5.hpp */,
+				F2F25C5724CDD25700810A55 /* PitchJoint.cc */,
+				F2F25C5624CDD25700810A55 /* PitchJoint.hpp */,
+				F2F25BDE24CDD13500810A55 /* optional_field_coordinate.c */,
+				F2F25BBE24CDD13500810A55 /* optional_field_coordinate.h */,
+				F2F25BBA24CDD13500810A55 /* optional_relative_coordinate.c */,
+				F2F25C0424CDD13600810A55 /* optional_relative_coordinate.h */,
+				F2F25BBC24CDD13500810A55 /* pitch_joint.c */,
+				F2F25C0624CDD13600810A55 /* pitch_joint.h */,
+				F2F25BDC24CDD13500810A55 /* pitch_roll_joint.c */,
+				F2F25BBD24CDD13500810A55 /* pitch_roll_joint.h */,
+				F2F25C0224CDD13600810A55 /* pitch_yaw_joint.c */,
+				F2F25C0024CDD13600810A55 /* pitch_yaw_joint.h */,
+				F2F25BDA24CDD13500810A55 /* soccer_sightings.c */,
+				F2F25C0324CDD13600810A55 /* soccer_sightings.h */,
+				F2F25BE224CDD13500810A55 /* tests */,
+				F2F25BBB24CDD13500810A55 /* yaw_joint.c */,
+				F2F25BB924CDD13500810A55 /* yaw_joint.h */,
+				F2F25C0724CDD13600810A55 /* yaw_roll_joint.c */,
+				F2F25C0924CDD13600810A55 /* yaw_roll_joint.h */,
+				F2F25BDF24CDD13500810A55 /* yp_joint.c */,
+				F2F25BDB24CDD13500810A55 /* yp_joint.h */,
+				F2F25BB324CDD0F000810A55 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F2F25BB324CDD0F000810A55 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F2F25BB224CDD0F000810A55 /* libgurobots.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F2F25BBF24CDD13500810A55 /* ctests */ = {
+			isa = PBXGroup;
+			children = (
+				F2F25BC024CDD13500810A55 /* GNUmakefile */,
+				F2F25BC124CDD13500810A55 /* conversion_fakes.c */,
+				F2F25BC224CDD13500810A55 /* camera_pivot_fakes.c */,
+				F2F25BC324CDD13500810A55 /* fff.h */,
+				F2F25BC424CDD13500810A55 /* camera_coordinate_fakes.c */,
+				F2F25BC524CDD13500810A55 /* pixel_coordinate_fakes.h */,
+				F2F25BC624CDD13500810A55 /* Makefile */,
+				F2F25BC724CDD13500810A55 /* cartesian_coordinate_fakes.c */,
+				F2F25BC824CDD13500810A55 /* percent_coordinate_fakes.c */,
+				F2F25BC924CDD13500810A55 /* camera_fakes.h */,
+				F2F25BCA24CDD13500810A55 /* field_coordinate_fakes.h */,
+				F2F25BCB24CDD13500810A55 /* relative_coordinate_fakes.h */,
+				F2F25BCC24CDD13500810A55 /* custom_fakes.h */,
+				F2F25BCD24CDD13500810A55 /* fakes.h */,
+				F2F25BCE24CDD13500810A55 /* conversion_fakes.h */,
+				F2F25BCF24CDD13500810A55 /* camera_coordinate_fakes.h */,
+				F2F25BD024CDD13500810A55 /* camera_pivot_fakes.h */,
+				F2F25BD124CDD13500810A55 /* fff.c */,
+				F2F25BD224CDD13500810A55 /* gurobots_tests.hpp */,
+				F2F25BD324CDD13500810A55 /* cartesian_coordinate_fakes.h */,
+				F2F25BD424CDD13500810A55 /* pixel_coordinate_fakes.c */,
+				F2F25BD524CDD13500810A55 /* custom_fakes.c */,
+				F2F25BD624CDD13500810A55 /* relative_coordinate_fakes.c */,
+				F2F25BD724CDD13500810A55 /* field_coordinate_fakes.c */,
+				F2F25BD824CDD13500810A55 /* camera_fakes.c */,
+				F2F25BD924CDD13500810A55 /* percent_coordinate_fakes.h */,
+			);
+			path = ctests;
+			sourceTree = "<group>";
+		};
+		F2F25BE224CDD13500810A55 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				F2F25BE324CDD13500810A55 /* GNUmakefile */,
+				F2F25BE424CDD13500810A55 /* conversion_fakes.c */,
+				F2F25BE524CDD13500810A55 /* camera_pivot_fakes.c */,
+				F2F25BE624CDD13500810A55 /* fff.h */,
+				F2F25BE724CDD13500810A55 /* camera_coordinate_fakes.c */,
+				F2F25BE824CDD13500810A55 /* pixel_coordinate_fakes.h */,
+				F2F25BE924CDD13500810A55 /* Makefile */,
+				F2F25BEA24CDD13500810A55 /* cartesian_coordinate_fakes.c */,
+				F2F25BEB24CDD13500810A55 /* NaoV5Tests.cc */,
+				F2F25BEC24CDD13500810A55 /* percent_coordinate_fakes.c */,
+				F2F25BED24CDD13500810A55 /* camera_fakes.h */,
+				F2F25BEE24CDD13600810A55 /* field_coordinate_fakes.h */,
+				F2F25BEF24CDD13600810A55 /* relative_coordinate_fakes.h */,
+				F2F25BF024CDD13600810A55 /* custom_fakes.h */,
+				F2F25BF124CDD13600810A55 /* fakes.h */,
+				F2F25BF224CDD13600810A55 /* conversion_fakes.h */,
+				F2F25BF324CDD13600810A55 /* camera_coordinate_fakes.h */,
+				F2F25BF424CDD13600810A55 /* GUWrapperTests.hpp */,
+				F2F25BF524CDD13600810A55 /* camera_pivot_fakes.h */,
+				F2F25BF624CDD13600810A55 /* fff.c */,
+				F2F25BF724CDD13600810A55 /* cartesian_coordinate_fakes.h */,
+				F2F25BF824CDD13600810A55 /* GURobotsTests.hpp */,
+				F2F25BF924CDD13600810A55 /* pixel_coordinate_fakes.c */,
+				F2F25BFA24CDD13600810A55 /* custom_fakes.c */,
+				F2F25BFB24CDD13600810A55 /* relative_coordinate_fakes.c */,
+				F2F25BFC24CDD13600810A55 /* field_coordinate_fakes.c */,
+				F2F25BFD24CDD13600810A55 /* camera_fakes.c */,
+				F2F25BFE24CDD13600810A55 /* percent_coordinate_fakes.h */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F2F25BAE24CDD0F000810A55 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2F25C0F24CDD13600810A55 /* optional_field_coordinate.h in Headers */,
+				F2F25C5824CDD25700810A55 /* PitchJoint.hpp in Headers */,
+				F2F25C4F24CDD13600810A55 /* soccer_sightings.h in Headers */,
+				F2F25C4B24CDD13600810A55 /* NaoV5.hpp in Headers */,
+				F2F25C4C24CDD13600810A55 /* pitch_yaw_joint.h in Headers */,
+				F2F25C4D24CDD13600810A55 /* gurobots.h in Headers */,
+				F2F25C5224CDD13600810A55 /* pitch_joint.h in Headers */,
+				F2F25C0A24CDD13600810A55 /* yaw_joint.h in Headers */,
+				F2F25C0E24CDD13600810A55 /* pitch_roll_joint.h in Headers */,
+				F2F25C2A24CDD13600810A55 /* yp_joint.h in Headers */,
+				F2F25C5424CDD13600810A55 /* nao.h in Headers */,
+				F2F25C5524CDD13600810A55 /* yaw_roll_joint.h in Headers */,
+				F2F25C5024CDD13600810A55 /* optional_relative_coordinate.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F2F25BB124CDD0F000810A55 /* gurobots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2F25BB624CDD0F000810A55 /* Build configuration list for PBXNativeTarget "gurobots" */;
+			buildPhases = (
+				F2F25BAE24CDD0F000810A55 /* Headers */,
+				F2F25BAF24CDD0F000810A55 /* Sources */,
+				F2F25BB024CDD0F000810A55 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = gurobots;
+			productName = gurobots;
+			productReference = F2F25BB224CDD0F000810A55 /* libgurobots.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F2F25BAA24CDD0F000810A55 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = "Griffith University";
+				TargetAttributes = {
+					F2F25BB124CDD0F000810A55 = {
+						CreatedOnToolsVersion = 11.4;
+					};
+				};
+			};
+			buildConfigurationList = F2F25BAD24CDD0F000810A55 /* Build configuration list for PBXProject "gurobots" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F2F25BA924CDD0F000810A55;
+			productRefGroup = F2F25BB324CDD0F000810A55 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F2F25BB124CDD0F000810A55 /* gurobots */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F2F25BAF24CDD0F000810A55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2F25C2C24CDD13600810A55 /* Makefile in Sources */,
+				F2F25C0D24CDD13600810A55 /* pitch_joint.c in Sources */,
+				F2F25C4E24CDD13600810A55 /* pitch_yaw_joint.c in Sources */,
+				F2F25C2924CDD13600810A55 /* soccer_sightings.c in Sources */,
+				F2F25C2E24CDD13600810A55 /* yp_joint.c in Sources */,
+				F2F25C0C24CDD13600810A55 /* yaw_joint.c in Sources */,
+				F2F25C2D24CDD13600810A55 /* optional_field_coordinate.c in Sources */,
+				F2F25C5324CDD13600810A55 /* yaw_roll_joint.c in Sources */,
+				F2F25C2F24CDD13600810A55 /* nao.c in Sources */,
+				F2F25C5924CDD25700810A55 /* PitchJoint.cc in Sources */,
+				F2F25C0B24CDD13600810A55 /* optional_relative_coordinate.c in Sources */,
+				F2F25C2B24CDD13600810A55 /* pitch_roll_joint.c in Sources */,
+				F2F25C5124CDD13600810A55 /* NaoV5.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F2F25BB424CDD0F000810A55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F2F25BB524CDD0F000810A55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F2F25BB724CDD0F000810A55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CODE_SIGN_STYLE = Automatic;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = (
+					"-lguunits",
+					"-lgucoordinates",
+					"-lgusimplewhiteboard",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F2F25BB824CDD0F000810A55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CODE_SIGN_STYLE = Automatic;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = (
+					"-lguunits",
+					"-lgucoordinates",
+					"-lgusimplewhiteboard",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F2F25BAD24CDD0F000810A55 /* Build configuration list for PBXProject "gurobots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2F25BB424CDD0F000810A55 /* Debug */,
+				F2F25BB524CDD0F000810A55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2F25BB624CDD0F000810A55 /* Build configuration list for PBXNativeTarget "gurobots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2F25BB724CDD0F000810A55 /* Debug */,
+				F2F25BB824CDD0F000810A55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F2F25BAA24CDD0F000810A55 /* Project object */;
+}
