@@ -91,5 +91,4 @@ namespace GU {
 
 }
 
-
 #endif  /* GUROBOTS_PITCHJOINT_HPP */
