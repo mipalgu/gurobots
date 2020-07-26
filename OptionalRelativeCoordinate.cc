@@ -1,5 +1,5 @@
 /*
- * OptionalFieldCoordinate.hpp 
+ * OptionalRelativeCoordinate.cc 
  * gurobots 
  *
  * Created by Callum McColl on 27/07/2020.
@@ -56,41 +56,93 @@
  *
  */
 
-#ifndef GUROBOTS_OPTIONALFIELDCOORDINATE_HPP
-#define GUROBOTS_OPTIONALFIELDCOORDINATE_HPP
+#include "OptionalRelativeCoordinate.hpp"
 
-#include "optional_field_coordinate.h"
+GU::OptionalRelativeCoordinate::OptionalRelativeCoordinate() {}
 
-#include <gucoordinates/gucoordinates.h>
-
-#include <cstdlib>
-
-namespace GU {
-
-    struct OptionalFieldCoordinate: public gu_optional_field_coordinate {
-
-        OptionalFieldCoordinate();
-        OptionalFieldCoordinate(const bool, const FieldCoordinate);
-        OptionalFieldCoordinate(const OptionalFieldCoordinate& other);
-        OptionalFieldCoordinate(const gu_optional_field_coordinate& other);
-#if __cplusplus >= 201103L
-        OptionalFieldCoordinate(OptionalFieldCoordinate&& other);
-#endif
-        ~OptionalFieldCoordinate();
-        OptionalFieldCoordinate& operator=(const OptionalFieldCoordinate& other);
-        OptionalFieldCoordinate& operator=(const gu_optional_field_coordinate& other);
-#if __cplusplus >= 201103L
-        OptionalFieldCoordinate& operator=(OptionalFieldCoordinate&& other);
-#endif
-
-        bool hasCoordinate() const;
-        void set_hasCoordinate(const bool);
-        
-        FieldCoordinate fieldCoordinate() const;
-        void set_fieldCoordinate(const FieldCoordinate);
-
-    };
-
+GU::OptionalRelativeCoordinate::OptionalRelativeCoordinate(const bool canSee, const GU::RelativeCoordinate coordinate)
+{
+    set_canSee(canSee);
+    set_coordinate(coordinate);
 }
 
-#endif  /* GUROBOTS_OPTIONALFIELDCOORDINATE_HPP */
+GU::OptionalRelativeCoordinate::OptionalRelativeCoordinate(const GU::OptionalRelativeCoordinate& other)
+{
+    set_canSee(other.canSee());
+    set_coordinate(other.coordinate());
+}
+
+GU::OptionalRelativeCoordinate::OptionalRelativeCoordinate(const gu_optional_relative_coordinate &other)
+{
+    set_canSee(other.canSee);
+    set_coordinate(other.coordinate);
+}
+
+#if __cplusplus >= 201103L
+GU::OptionalRelativeCoordinate::OptionalRelativeCoordinate(GU::OptionalRelativeCoordinate&& other)
+{
+    set_canSee(other.canSee());
+    other.set_canSee(0.0f);
+    set_coordinate(other.coordinate());
+    other.set_coordinate(GU::RelativeCoordinate());
+}
+#endif
+
+GU::OptionalRelativeCoordinate::~OptionalRelativeCoordinate() {}
+
+GU::OptionalRelativeCoordinate& GU::OptionalRelativeCoordinate::operator=(const GU::OptionalRelativeCoordinate& other)
+{
+    if (&other == this)
+    {
+        return *this;
+    }
+    set_canSee(other.canSee());
+    set_coordinate(other.coordinate());
+    return *this;
+}
+
+GU::OptionalRelativeCoordinate& GU::OptionalRelativeCoordinate::operator=(const gu_optional_relative_coordinate& other)
+{
+    if (&other == this)
+    {
+        return *this;
+    }
+    set_canSee(other.canSee);
+    set_coordinate(other.coordinate);
+    return *this;
+}
+
+#if __cplusplus >= 201103L
+GU::OptionalRelativeCoordinate& GU::OptionalRelativeCoordinate::operator=(GU::OptionalRelativeCoordinate&& other)
+{
+    if (&other == this)
+    {
+        return *this;
+    }
+    set_canSee(other.canSee());
+    other.set_canSee(false);
+    set_coordinate(other.coordinate());
+    other.set_coordinate(GU::RelativeCoordinate());
+    return *this;
+}
+#endif
+
+bool GU::OptionalRelativeCoordinate::canSee() const
+{
+    return gu_optional_relative_coordinate::canSee;
+}
+
+void GU::OptionalRelativeCoordinate::set_canSee(const bool newValue)
+{
+    gu_optional_relative_coordinate::canSee = newValue;
+}
+
+GU::RelativeCoordinate GU::OptionalRelativeCoordinate::coordinate() const
+{
+    return gu_optional_relative_coordinate::coordinate;
+}
+
+void GU::OptionalRelativeCoordinate::set_coordinate(const GU::RelativeCoordinate newValue)
+{
+    gu_optional_relative_coordinate::coordinate = newValue;
+}

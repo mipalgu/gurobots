@@ -1,5 +1,5 @@
 /*
- * OptionalFieldCoordinate.hpp 
+ * OptionalRelativeCoordinate.hpp 
  * gurobots 
  *
  * Created by Callum McColl on 27/07/2020.
@@ -56,10 +56,10 @@
  *
  */
 
-#ifndef GUROBOTS_OPTIONALFIELDCOORDINATE_HPP
-#define GUROBOTS_OPTIONALFIELDCOORDINATE_HPP
+#ifndef GUROBOTS_OPTIONALRELATIVECOORDINATE_HPP
+#define GUROBOTS_OPTIONALRELATIVECOORDINATE_HPP
 
-#include "optional_field_coordinate.h"
+#include "optional_relative_coordinate.h"
 
 #include <gucoordinates/gucoordinates.h>
 
@@ -67,30 +67,30 @@
 
 namespace GU {
 
-    struct OptionalFieldCoordinate: public gu_optional_field_coordinate {
+    struct OptionalRelativeCoordinate: public gu_optional_relative_coordinate {
 
-        OptionalFieldCoordinate();
-        OptionalFieldCoordinate(const bool, const FieldCoordinate);
-        OptionalFieldCoordinate(const OptionalFieldCoordinate& other);
-        OptionalFieldCoordinate(const gu_optional_field_coordinate& other);
+        OptionalRelativeCoordinate();
+        OptionalRelativeCoordinate(const bool, const RelativeCoordinate);
+        OptionalRelativeCoordinate(const OptionalRelativeCoordinate& other);
+        OptionalRelativeCoordinate(const gu_optional_relative_coordinate& other);
 #if __cplusplus >= 201103L
-        OptionalFieldCoordinate(OptionalFieldCoordinate&& other);
+        OptionalRelativeCoordinate(OptionalRelativeCoordinate&& other);
 #endif
-        ~OptionalFieldCoordinate();
-        OptionalFieldCoordinate& operator=(const OptionalFieldCoordinate& other);
-        OptionalFieldCoordinate& operator=(const gu_optional_field_coordinate& other);
+        ~OptionalRelativeCoordinate();
+        OptionalRelativeCoordinate& operator=(const OptionalRelativeCoordinate& other);
+        OptionalRelativeCoordinate& operator=(const gu_optional_relative_coordinate& other);
 #if __cplusplus >= 201103L
-        OptionalFieldCoordinate& operator=(OptionalFieldCoordinate&& other);
+        OptionalRelativeCoordinate& operator=(OptionalRelativeCoordinate&& other);
 #endif
 
-        bool hasCoordinate() const;
-        void set_hasCoordinate(const bool);
+        bool canSee() const;
+        void set_canSee(const bool);
         
-        FieldCoordinate fieldCoordinate() const;
-        void set_fieldCoordinate(const FieldCoordinate);
+        RelativeCoordinate coordinate() const;
+        void set_coordinate(const RelativeCoordinate);
 
     };
 
 }
 
-#endif  /* GUROBOTS_OPTIONALFIELDCOORDINATE_HPP */
+#endif  /* GUROBOTS_OPTIONALRELATIVECOORDINATE_HPP */

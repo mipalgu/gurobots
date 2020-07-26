@@ -45,6 +45,8 @@
 		F2F25C6D24CDD9A500810A55 /* YPJoint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C6B24CDD9A500810A55 /* YPJoint.hpp */; };
 		F2F25C7024CDDAAA00810A55 /* OptionalFieldCoordinate.cc in Sources */ = {isa = PBXBuildFile; fileRef = F2F25C6E24CDDAAA00810A55 /* OptionalFieldCoordinate.cc */; };
 		F2F25C7124CDDAAA00810A55 /* OptionalFieldCoordinate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C6F24CDDAAA00810A55 /* OptionalFieldCoordinate.hpp */; };
+		F2F25C7424CDDC6600810A55 /* OptionalRelativeCoordinate.cc in Sources */ = {isa = PBXBuildFile; fileRef = F2F25C7224CDDC6500810A55 /* OptionalRelativeCoordinate.cc */; };
+		F2F25C7524CDDC6600810A55 /* OptionalRelativeCoordinate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F2F25C7324CDDC6600810A55 /* OptionalRelativeCoordinate.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,6 +144,8 @@
 		F2F25C6B24CDD9A500810A55 /* YPJoint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = YPJoint.hpp; sourceTree = "<group>"; };
 		F2F25C6E24CDDAAA00810A55 /* OptionalFieldCoordinate.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OptionalFieldCoordinate.cc; sourceTree = "<group>"; };
 		F2F25C6F24CDDAAA00810A55 /* OptionalFieldCoordinate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OptionalFieldCoordinate.hpp; sourceTree = "<group>"; };
+		F2F25C7224CDDC6500810A55 /* OptionalRelativeCoordinate.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OptionalRelativeCoordinate.cc; sourceTree = "<group>"; };
+		F2F25C7324CDDC6600810A55 /* OptionalRelativeCoordinate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OptionalRelativeCoordinate.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,8 @@
 				F2F25BFF24CDD13600810A55 /* NaoV5.hpp */,
 				F2F25C6E24CDDAAA00810A55 /* OptionalFieldCoordinate.cc */,
 				F2F25C6F24CDDAAA00810A55 /* OptionalFieldCoordinate.hpp */,
+				F2F25C7224CDDC6500810A55 /* OptionalRelativeCoordinate.cc */,
+				F2F25C7324CDDC6600810A55 /* OptionalRelativeCoordinate.hpp */,
 				F2F25C5724CDD25700810A55 /* PitchJoint.cc */,
 				F2F25C5624CDD25700810A55 /* PitchJoint.hpp */,
 				F2F25C5A24CDD62A00810A55 /* PitchRollJoint.cc */,
@@ -304,6 +310,7 @@
 				F2F25C6D24CDD9A500810A55 /* YPJoint.hpp in Headers */,
 				F2F25C5D24CDD62B00810A55 /* PitchRollJoint.hpp in Headers */,
 				F2F25C5524CDD13600810A55 /* yaw_roll_joint.h in Headers */,
+				F2F25C7524CDDC6600810A55 /* OptionalRelativeCoordinate.hpp in Headers */,
 				F2F25C5024CDD13600810A55 /* optional_relative_coordinate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +391,7 @@
 				F2F25C7024CDDAAA00810A55 /* OptionalFieldCoordinate.cc in Sources */,
 				F2F25C2B24CDD13600810A55 /* pitch_roll_joint.c in Sources */,
 				F2F25C5124CDD13600810A55 /* NaoV5.cc in Sources */,
+				F2F25C7424CDDC6600810A55 /* OptionalRelativeCoordinate.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
