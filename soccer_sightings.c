@@ -60,8 +60,8 @@
 
 bool gu_soccer_sightings_equals(const gu_soccer_sightings lhs, const gu_soccer_sightings rhs)
 {
-    return gu_optional_relative_coordinate_equals(lhs.ball, rhs.ball)
-        && gu_optional_relative_coordinate_equals(lhs.leftGoalPost, rhs.leftGoalPost)
-        && gu_optional_relative_coordinate_equals(lhs.rightGoalPost, rhs.rightGoalPost)
-        && gu_optional_relative_coordinate_equals(lhs.goal, rhs.goal);
+    return gu_optional_relative_coordinate_equals(lhs.ball, rhs.ball, 0.00001)
+        && gu_optional_relative_coordinate_equals(lhs.leftGoalPost, rhs.leftGoalPost, 0.00001)
+        && gu_optional_relative_coordinate_equals(lhs.rightGoalPost, rhs.rightGoalPost, 0.0001)
+        && gu_optional_relative_coordinate_equals(lhs.goal, rhs.goal, 0.00001);
 }

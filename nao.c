@@ -60,10 +60,10 @@
 
 #include <guunits/guunits.h>
 
-#define GU_NAO_V5_TOP_CAMERA gu_camera_make(6.364f, 5.871f, 1.2f, 47.64f, 60.97f) 
-#define GU_NAO_V5_BOTTOM_CAMERA gu_camera_make(1.774f, 5.071f, 39.7f, 47.64f, 60.97f)
+#define GU_NAO_V5_TOP_CAMERA gu_camera_make(6.364, 5.871, 1.2, 47.64, 60.97) 
+#define GU_NAO_V5_BOTTOM_CAMERA gu_camera_make(1.774, 5.071, 39.7, 47.64, 60.97)
 
-#define GU_NAO_V5_HEAD(p, y) (gu_camera_pivot) { .pitch = p, .yaw = y, .height = 41.7f, .cameras = {GU_NAO_V5_TOP_CAMERA, GU_NAO_V5_BOTTOM_CAMERA}, .numCameras = 2}
+#define GU_NAO_V5_HEAD(p, y) (gu_camera_pivot) { .pitch = p, .yaw = y, .height = 41.7, .cameras = {GU_NAO_V5_TOP_CAMERA, GU_NAO_V5_BOTTOM_CAMERA}, .numCameras = 2}
 
 bool gu_nao_head_sensors_equals(const gu_nao_head_sensors lhs, const gu_nao_head_sensors rhs)
 {
@@ -80,7 +80,7 @@ bool gu_nao_head_equals(const gu_nao_head lhs, const gu_nao_head rhs)
 
 gu_camera_pivot gu_nao_head_to_camera_pivot(const gu_nao_head head)
 {
-    const gu_camera_pivot pivot = GU_NAO_V5_HEAD(head.neck.pitch, head.neck.yaw);
+    const gu_camera_pivot pivot = GU_NAO_V5_HEAD((double) head.neck.pitch, (double) head.neck.yaw);
     return pivot;
 }
 
