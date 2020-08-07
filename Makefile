@@ -5,6 +5,8 @@
 
 .unexport SAY
 
+.ifndef TARGET
+
 STDS=98 03 11 14 17
 STD?=17
 
@@ -20,6 +22,8 @@ CXXSTDFL=-std=c++${STD}
 .  endif
 .else
 CXXSTDFL=-std=c++98
+.endif
+
 .endif
 
 ALL_TARGETS=test robot-local
@@ -40,7 +44,10 @@ PKGCONFIG_VERSION=1.0
 PKGCONFIG_DESCRIPTION=Utilities for monitoring sensors for specific robots.
 
 #WFLAGS=-Weverything wn-warning-option ${WERROR}
-WFLAGS=-Wall -Weverything -Wno-unknown-pragmas -Wno-unknown-warning-option -Wno-c99-extensions -Wno-padded -Werror
+WFLAGS=-Wall -Wno-unknown-pragmas -Wno-unknown-warning-option -Wno-c99-extensions -Wno-padded -Werror
+.ifndef TARGET
+WFLAGS+=-Weverything
+.endif
 CPP03_EXTRA_WFLAGS=-Wno-c++98-compat -Wno-c++98-compat-pedantic -Wc++98-compat-extra-semi
 CPP11_EXTRA_WFLAGS=-Wno-c++98-compat -Wno-c++98-compat-pedantic -Wc++98-compat-extra-semi
 CPP14_EXTRA_WFLAGS=-Wno-c++98-compat -Wno-c++98-compat-pedantic -Wc++98-compat-extra-semi
@@ -48,6 +55,7 @@ CPP17_EXTRA_WFLAGS=-Wno-c++98-compat -Wno-c++98-compat-pedantic -Wc++98-compat-e
 
 all:	all-real
 
+.ifndef TARGET
 .ifndef COVERAGE
 generate-coverage-report:
 	${MAKE} generate-coverage-report COVERAGE=yes
@@ -159,6 +167,7 @@ cpp${std}coverage:
 
 .ifdef TESTING
 HOST_LOCAL_OUTFLAGS=${HOST_LOCAL_SOFLAGS} ${COMMON_OFLAGS}
+.endif
 .endif
 
 .include "../../mk/mipal.mk"
