@@ -170,6 +170,10 @@ HOST_LOCAL_OUTFLAGS=${HOST_LOCAL_SOFLAGS} ${COMMON_OFLAGS}
 .endif
 .endif
 
+.include "../../mk/prefs.mk"
+
+${MODULE_BASE}_HDRS=${ALL_HDRS}
+
 .include "../../mk/mipal.mk"
 # vim:ft=make
 #
