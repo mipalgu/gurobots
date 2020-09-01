@@ -240,10 +240,10 @@ void gu_nao_update_from_wb_types(gu_nao * nao, const gu_nao_wb_types types)
     nao->joints.rightLeg.ankle.pitch = rad_f_to_deg_f(f_to_rad_f(types.legSensors.RAnklePitch));
     nao->joints.rightLeg.ankle.roll = rad_f_to_deg_f(f_to_rad_f(types.legSensors.RAnkleRoll));
     // Sightings
-    nao->sightings.ball = wb_location_to_optional_relative_coordinate(types.ballLocation);
-    nao->sightings.leftGoalPost = wb_location_to_optional_relative_coordinate(types.leftGoalPostLocation);
-    nao->sightings.rightGoalPost = wb_location_to_optional_relative_coordinate(types.rightGoalPostLocation);
-    nao->sightings.goal = wb_location_to_optional_relative_coordinate(types.goalLocation);
+    nao->sightings.ball = wb_location_to_opt_rr_coord(types.ballLocation, 50);
+    nao->sightings.leftGoalPost = wb_location_to_opt_rr_coord(types.leftGoalPostLocation, 50);
+    nao->sightings.rightGoalPost = wb_location_to_opt_rr_coord(types.rightGoalPostLocation, 50);
+    nao->sightings.goal = wb_location_to_opt_rr_coord(types.goalLocation, 50);
 }
 
 void gu_nao_empty(gu_nao * nao)
