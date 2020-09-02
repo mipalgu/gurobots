@@ -140,6 +140,7 @@ gu_nao_wb_indexes gu_nao_wb_indexes_default()
     const gu_nao_wb_indexes temp = {
         kSENSORSTorsoJointSensors_v,
         kTopParticles_v,
+        kBallPosition_v,
         kSensorsHandSensors_v,
         kSensorsHeadSensors_v,
         kSENSORSLegJointSensors_v,
@@ -161,6 +162,7 @@ gu_nao_wb_types gu_nao_wb_types_from_custom_wb(gu_simple_whiteboard * wb, const 
 {
     const struct wb_sensors_torsojointsensors torsoSensors = *((struct wb_sensors_torsojointsensors *) gsw_current_message(wb, indexes.torsoSensors));
     const struct wb_top_particles topParticles = *((struct wb_top_particles*) gsw_current_message(wb, indexes.topParticles));
+    const struct wb_ball_position ballPosition = *((struct wb_ball_position*) gsw_current_message(wb, indexes.ballPosition));
     const struct wb_sensors_hand_sensors handSensors = *((struct wb_sensors_hand_sensors*) gsw_current_message(wb, indexes.handSensors));
     const struct wb_sensors_head_sensors headSensors = *((struct wb_sensors_head_sensors*) gsw_current_message(wb, indexes.headSensors));
     const struct wb_sensors_legjointsensors legSensors = *((struct wb_sensors_legjointsensors*) gsw_current_message(wb, indexes.legSensors));
@@ -171,6 +173,7 @@ gu_nao_wb_types gu_nao_wb_types_from_custom_wb(gu_simple_whiteboard * wb, const 
     const gu_nao_wb_types temp = {
         torsoSensors,
         topParticles,
+        ballPosition,
         handSensors,
         headSensors,
         legSensors,
@@ -207,6 +210,13 @@ void gu_nao_update_from_wb_types(gu_nao * nao, const gu_nao_wb_types types)
     nao->fieldPosition.value.position.x = i16_to_cm_t(types.topParticles.particles[0].position.x);
     nao->fieldPosition.value.position.y = i16_to_cm_t(types.topParticles.particles[0].position.y);
     nao->fieldPosition.value.heading = i16_to_deg_t(types.topParticles.particles[0].headingInDegrees);
+    // Ball Position
+    nao->ballPosition.has_value = wb_ball_position_confidence_percent(types.ballPosition) > 0.6;
+    nao->ballPosition.value.position.x = i16_to_cm_t(types.ballPosition.x);
+    nao->ballPosition.value.position.y = i16_to_cm_t(types.ballPosition.y);
+    nao->ballPosition.value.orientation.pitch = i16_to_deg_f(types.ballPosition.pitchInDegrees);
+    nao->ballPosition.value.orientation.yaw = i16_to_deg_f(types.ballPosition.yawInDegrees);
+    nao->ballPosition.value.orientation.roll = i16_to_deg_f(types.ballPosition.rollInDegrees);
     // Left Arm
     nao->joints.leftArm.shoulder.pitch = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.LShoulderPitch));
     nao->joints.leftArm.shoulder.roll = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.LShoulderRoll));

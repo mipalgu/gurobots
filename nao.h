@@ -67,6 +67,7 @@
 #include <gusimplewhiteboard/guwhiteboardtypelist_c_generated.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_torsojointsensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_top_particles.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_ball_position.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_head_sensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_hand_sensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_legjointsensors.h>
@@ -79,6 +80,7 @@
 #include "yaw_joint.h"
 #include "yp_joint.h"
 #include "soccer_sightings.h"
+#include "optional_ball_position.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -140,6 +142,7 @@ bool gu_nao_joints_equals(const gu_nao_joints lhs, const gu_nao_joints rhs);
 
 typedef struct gu_nao {
     gu_optional_field_coordinate fieldPosition;
+    gu_optional_ball_position ballPosition;
     gu_nao_joints joints;
     gu_soccer_sightings sightings;
 } gu_nao;
@@ -150,6 +153,7 @@ void gu_nao_empty(gu_nao *);
 typedef struct gu_nao_wb_indexes {
     int torsoSensors;
     int topParticles;
+    int ballPosition;
     int handSensors;
     int headSensors;
     int legSensors;
@@ -165,6 +169,7 @@ gu_nao_wb_indexes gu_nao_wb_indexes_default(void) __attribute__((const));
 typedef struct gu_nao_wb_types {
     struct wb_sensors_torsojointsensors torsoSensors;
     struct wb_top_particles topParticles;
+    struct wb_ball_position ballPosition;
     struct wb_sensors_hand_sensors handSensors;
     struct wb_sensors_head_sensors headSensors;
     struct wb_sensors_legjointsensors legSensors;
