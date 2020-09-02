@@ -60,5 +60,5 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wcast-qual"
-DEFINE_FAKE_VALUE_FUNC(bool, gu_relative_coordinate_equals, const gu_relative_coordinate, const gu_relative_coordinate)
+DEFINE_FAKE_VALUE_FUNC(bool, gu_relative_coordinate_equals, const gu_relative_coordinate, const gu_relative_coordinate, const double)
 #pragma clang diagnostic pop

@@ -65,12 +65,12 @@ extern "C" {
 #endif
 
 #include "fff.h"
-#include <gucoordinates/gucoordinates.h>
+#include <gucoordinates/camera.h>
 
 #define CAMERA_FAKES(FAKE) \
     FAKE(gu_camera_equals)
 
-DECLARE_FAKE_VALUE_FUNC(bool, gu_camera_equals, const gu_camera, const gu_camera, const float)
+DECLARE_FAKE_VALUE_FUNC(bool, gu_camera_equals, const gu_camera, const gu_camera, const double)
 
 #ifdef __cplusplus
 }

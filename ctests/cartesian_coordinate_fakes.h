@@ -64,7 +64,7 @@ extern "C" {
 #endif
 
 #include "fff.h"
-#include <gucoordinates/gucoordinates.h>
+#include <gucoordinates/cartesian_coordinate.h>
 
 #define CARTESIAN_COORDINATE_FAKES(FAKE) \
     FAKE(gu_cartesian_coordinate_equals)

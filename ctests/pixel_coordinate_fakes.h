@@ -64,7 +64,7 @@ extern "C" {
 #endif
 
 #include "fff.h"
-#include <gucoordinates/gucoordinates.h>
+#include <gucoordinates/pixel_coordinate.h>
 
 #define PIXEL_COORDINATE_FAKES(FAKE) \
     FAKE(gu_pixel_coordinate_equals)

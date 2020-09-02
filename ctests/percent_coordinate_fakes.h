@@ -64,12 +64,12 @@ extern "C" {
 #endif
 
 #include "fff.h"
-#include <gucoordinates/gucoordinates.h>
+#include <gucoordinates/percent_coordinate.h>
 
 #define PERCENT_COORDINATE_FAKES(FAKE) \
     FAKE(gu_percent_coordinate_equals)
 
-DECLARE_FAKE_VALUE_FUNC(bool, gu_percent_coordinate_equals, const gu_percent_coordinate, const gu_percent_coordinate, const percent_f)
+DECLARE_FAKE_VALUE_FUNC(bool, gu_percent_coordinate_equals, const gu_percent_coordinate, const gu_percent_coordinate, const percent_d)
 
 #ifdef __cplusplus
 }

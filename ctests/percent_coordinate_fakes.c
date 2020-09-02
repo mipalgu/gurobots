@@ -60,5 +60,5 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wcast-qual"
-DEFINE_FAKE_VALUE_FUNC(bool, gu_percent_coordinate_equals, const gu_percent_coordinate, const gu_percent_coordinate, const percent_f)
+DEFINE_FAKE_VALUE_FUNC(bool, gu_percent_coordinate_equals, const gu_percent_coordinate, const gu_percent_coordinate, const percent_d)
 #pragma clang diagnostic pop

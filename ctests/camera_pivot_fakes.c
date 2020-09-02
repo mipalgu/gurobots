@@ -61,5 +61,5 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wcast-qual"
-DEFINE_FAKE_VALUE_FUNC(bool, gu_camera_pivot_equals, const gu_camera_pivot, const gu_camera_pivot, const float)
+DEFINE_FAKE_VALUE_FUNC(bool, gu_camera_pivot_equals, const gu_camera_pivot, const gu_camera_pivot, const double)
 #pragma clang diagnostic pop

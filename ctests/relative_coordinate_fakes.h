@@ -64,12 +64,12 @@ extern "C" {
 #endif
 
 #include "fff.h"
-#include <gucoordinates/gucoordinates.h>
+#include <gucoordinates/relative_coordinate.h>
 
 #define RELATIVE_COORDINATE_FAKES(FAKE) \
     FAKE(gu_relative_coordinate_equals)
 
-DECLARE_FAKE_VALUE_FUNC(bool, gu_relative_coordinate_equals, const gu_relative_coordinate, const gu_relative_coordinate)
+DECLARE_FAKE_VALUE_FUNC(bool, gu_relative_coordinate_equals, const gu_relative_coordinate, const gu_relative_coordinate, const double)
 
 #ifdef __cplusplus
 }
