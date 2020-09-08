@@ -141,6 +141,7 @@ typedef struct gu_nao_joints {
 bool gu_nao_joints_equals(const gu_nao_joints lhs, const gu_nao_joints rhs);
 
 typedef struct gu_nao {
+    uint8_t playerNumber;
     gu_optional_field_coordinate fieldPosition;
     gu_optional_ball_position ballPosition;
     gu_nao_joints joints;
@@ -151,6 +152,7 @@ bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs);
 void gu_nao_empty(gu_nao *);
 
 typedef struct gu_nao_wb_indexes {
+    int playerNumber;
     int torsoSensors;
     int topParticles;
     int ballPosition;
@@ -167,6 +169,7 @@ bool gu_nao_wb_indexes_equals(const gu_nao_wb_indexes lhs, const gu_nao_wb_index
 gu_nao_wb_indexes gu_nao_wb_indexes_default(void) __attribute__((const));
 
 typedef struct gu_nao_wb_types {
+    uint8_t playerNumber;
     struct wb_sensors_torsojointsensors torsoSensors;
     struct wb_top_particles topParticles;
     struct wb_ball_position ballPosition;

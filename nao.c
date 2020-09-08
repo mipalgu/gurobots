@@ -117,15 +117,19 @@ bool gu_nao_joints_equals(const gu_nao_joints lhs, const gu_nao_joints rhs)
 
 bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs)
 {
-    return gu_optional_field_coordinate_equals(lhs.fieldPosition, rhs.fieldPosition)
+    return lhs.playerNumber == rhs.playerNumber
+        && gu_optional_field_coordinate_equals(lhs.fieldPosition, rhs.fieldPosition)
+        && gu_optional_ball_position_equals(lhs.ballPosition, rhs.ballPosition, 0.001f)
         && gu_nao_joints_equals(lhs.joints, rhs.joints)
         && gu_soccer_sightings_equals(lhs.sightings, rhs.sightings);
 }
 
 bool gu_nao_wb_indexes_equals(const gu_nao_wb_indexes lhs, const gu_nao_wb_indexes rhs)
 {
-    return lhs.torsoSensors == rhs.torsoSensors
+    return lhs.playerNumber == rhs.playerNumber
+        && lhs.torsoSensors == rhs.torsoSensors
         && lhs.topParticles == rhs.topParticles
+        && lhs.ballPosition == rhs.ballPosition
         && lhs.handSensors == rhs.handSensors
         && lhs.headSensors == rhs.headSensors
         && lhs.legSensors == rhs.legSensors
@@ -138,6 +142,7 @@ bool gu_nao_wb_indexes_equals(const gu_nao_wb_indexes lhs, const gu_nao_wb_index
 gu_nao_wb_indexes gu_nao_wb_indexes_default()
 {
     const gu_nao_wb_indexes temp = {
+        kPlayerNumber_v,
         kSENSORSTorsoJointSensors_v,
         kTopParticles_v,
         kBallPosition_v,
@@ -160,6 +165,7 @@ gu_nao_wb_types gu_nao_wb_types_from_wb(gu_simple_whiteboard * wb)
 
 gu_nao_wb_types gu_nao_wb_types_from_custom_wb(gu_simple_whiteboard * wb, const gu_nao_wb_indexes indexes)
 {
+    const uint8_t playerNumber = *((uint8_t *) gsw_current_message(wb, indexes.playerNumber));
     const struct wb_sensors_torsojointsensors torsoSensors = *((struct wb_sensors_torsojointsensors *) gsw_current_message(wb, indexes.torsoSensors));
     const struct wb_top_particles topParticles = *((struct wb_top_particles*) gsw_current_message(wb, indexes.topParticles));
     const struct wb_ball_position ballPosition = *((struct wb_ball_position*) gsw_current_message(wb, indexes.ballPosition));
@@ -171,6 +177,7 @@ gu_nao_wb_types gu_nao_wb_types_from_custom_wb(gu_simple_whiteboard * wb, const 
     const struct wb_location rightGoalPostLocation = *((struct wb_location*) gsw_current_message(wb, indexes.rightGoalPostLocation));
     const struct wb_location goalLocation = *((struct wb_location*) gsw_current_message(wb, indexes.goalLocation));
     const gu_nao_wb_types temp = {
+        playerNumber,
         torsoSensors,
         topParticles,
         ballPosition,
@@ -199,6 +206,8 @@ void gu_nao_update_from_custom_wb(gu_nao * nao, gu_simple_whiteboard * wb, const
 
 void gu_nao_update_from_wb_types(gu_nao * nao, const gu_nao_wb_types types)
 {
+    // Player Data
+    nao->playerNumber = types.playerNumber;
     // Head
     nao->joints.head.neck.pitch = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.HeadPitch));
     nao->joints.head.neck.yaw = rad_f_to_deg_f(f_to_rad_f(types.torsoSensors.HeadYaw));
