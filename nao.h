@@ -72,6 +72,11 @@
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_hand_sensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_sensors_legjointsensors.h>
 #include <gusimplewhiteboard/typeClassDefs/wb_location.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_balls.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_goals.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_horizons.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_lines.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_field_features.h>
 
 #include "pitch_joint.h"
 #include "pitch_roll_joint.h"
@@ -80,6 +85,7 @@
 #include "yaw_joint.h"
 #include "yp_joint.h"
 #include "soccer_locations.h"
+#include "soccer_sightings.h"
 #include "optional_ball_position.h"
 
 #ifdef __cplusplus
@@ -146,6 +152,8 @@ typedef struct gu_nao {
     gu_optional_ball_position ballPosition;
     gu_nao_joints joints;
     gu_soccer_locations locations;
+    gu_soccer_sightings topCameraSightings;
+    gu_soccer_sightings bottomCameraSightings;
 } gu_nao;
 
 bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs);
@@ -163,6 +171,12 @@ typedef struct gu_nao_wb_indexes {
     int leftGoalPostLocation;
     int rightGoalPostLocation;
     int goalLocation;
+    int ballSightings;
+    int goalSightings;
+    int horizonSightings;
+    int topLineSightings;
+    int bottomLineSightings;
+    int fieldFeatureSightings;
 } gu_nao_wb_indexes;
 
 bool gu_nao_wb_indexes_equals(const gu_nao_wb_indexes lhs, const gu_nao_wb_indexes rhs) __attribute__((const));
@@ -180,6 +194,12 @@ typedef struct gu_nao_wb_types {
     struct wb_location leftGoalPostLocation;
     struct wb_location rightGoalPostLocation;
     struct wb_location goalLocation;
+    struct wb_vision_detection_balls ballSightings;
+    struct wb_vision_detection_goals goalSightings;
+    struct wb_vision_detection_horizons horizonSightings;
+    struct wb_vision_lines topLineSightings;
+    struct wb_vision_lines bottomLineSightings;
+    struct wb_vision_field_features fieldFeatureSightings;
 } gu_nao_wb_types;
 
 gu_nao_wb_types gu_nao_wb_types_from_wb(gu_simple_whiteboard *) __attribute__((nonnull));

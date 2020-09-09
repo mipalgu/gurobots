@@ -152,7 +152,13 @@ gu_nao_wb_indexes gu_nao_wb_indexes_default()
         kBallLocation_v,
         kLeftGoalPostLocation_v,
         kRightGoalPostLocation_v,
-        kRightGoalPostLocation_v
+        kRightGoalPostLocation_v,
+        kVisionDetectionBalls_v,
+        kVisionDetectionGoals_v,
+        kVisionDetectionHorizons_v,
+        kTopVisionLines_v,
+        kBottomVisionLines_v,
+        kVisionFieldFeatures_v
     };
     return temp;
 }
@@ -176,6 +182,12 @@ gu_nao_wb_types gu_nao_wb_types_from_custom_wb(gu_simple_whiteboard * wb, const 
     const struct wb_location leftGoalPostLocation = *((struct wb_location*) gsw_current_message(wb, indexes.leftGoalPostLocation));
     const struct wb_location rightGoalPostLocation = *((struct wb_location*) gsw_current_message(wb, indexes.rightGoalPostLocation));
     const struct wb_location goalLocation = *((struct wb_location*) gsw_current_message(wb, indexes.goalLocation));
+    const struct wb_vision_detection_balls ballSightings = *((struct wb_vision_detection_balls*) gsw_current_message(wb, indexes.ballSightings));
+    const struct wb_vision_detection_goals goalSightings = *((struct wb_vision_detection_goals*) gsw_current_message(wb, indexes.goalSightings));
+    const struct wb_vision_detection_horizons horizonSightings = *((struct wb_vision_detection_horizons*) gsw_current_message(wb, indexes.horizonSightings));
+    const struct wb_vision_lines topLineSightings = *((struct wb_vision_lines*) gsw_current_message(wb, indexes.topLineSightings));
+    const struct wb_vision_lines bottomLineSightings = *((struct wb_vision_lines*) gsw_current_message(wb, indexes.bottomLineSightings));
+    const struct wb_vision_field_features fieldFeatureSightings = *((struct wb_vision_field_features*) gsw_current_message(wb, indexes.fieldFeatureSightings));
     const gu_nao_wb_types temp = {
         playerNumber,
         torsoSensors,
@@ -187,7 +199,13 @@ gu_nao_wb_types gu_nao_wb_types_from_custom_wb(gu_simple_whiteboard * wb, const 
         ballLocation,
         leftGoalPostLocation,
         rightGoalPostLocation,
-        goalLocation
+        goalLocation,
+        ballSightings,
+        goalSightings,
+        horizonSightings,
+        topLineSightings,
+        bottomLineSightings,
+        fieldFeatureSightings
     };
     return temp;
 }
