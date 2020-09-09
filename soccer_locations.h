@@ -1,5 +1,5 @@
 /*
- * soccer_sightings.c 
+ * soccer_locations.h 
  * gurobots 
  *
  * Created by Callum McColl on 26/07/2020.
@@ -56,12 +56,18 @@
  *
  */
 
-#include "soccer_sightings.h"
+#ifndef GUROBOTS_SOCCER_LOCATIONS_H
+#define GUROBOTS_SOCCER_LOCATIONS_H
 
-bool gu_soccer_sightings_equals(const gu_soccer_sightings lhs, const gu_soccer_sightings rhs)
-{
-    return gu_optional_relative_coordinate_equals(lhs.ball, rhs.ball, 0.00001)
-        && gu_optional_relative_coordinate_equals(lhs.leftGoalPost, rhs.leftGoalPost, 0.00001)
-        && gu_optional_relative_coordinate_equals(lhs.rightGoalPost, rhs.rightGoalPost, 0.0001)
-        && gu_optional_relative_coordinate_equals(lhs.goal, rhs.goal, 0.00001);
-}
+#include <gucoordinates/gucoordinates.h>
+
+typedef struct gu_soccer_locations {
+    gu_optional_relative_coordinate ball;
+    gu_optional_relative_coordinate leftGoalPost;
+    gu_optional_relative_coordinate rightGoalPost;
+    gu_optional_relative_coordinate goal;
+} gu_soccer_locations;
+
+bool gu_soccer_locations_equals(const gu_soccer_locations lhs, const gu_soccer_locations rhs);
+
+#endif  /* GUROBOTS_SOCCER_LOCATIONS_H */

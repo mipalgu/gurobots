@@ -1,5 +1,5 @@
 /*
- * SoccerSightings.cc 
+ * SoccerLocations.cc 
  * gurobots 
  *
  * Created by Callum McColl on 27/07/2020.
@@ -56,11 +56,11 @@
  *
  */
 
-#include "SoccerSightings.hpp"
+#include "SoccerLocations.hpp"
 
-GU::SoccerSightings::SoccerSightings() {}
+GU::SoccerLocations::SoccerLocations() {}
 
-GU::SoccerSightings::SoccerSightings(const GU::OptionalRelativeCoordinate t_rawBall, const GU::OptionalRelativeCoordinate t_rawLeftGoalPost, const GU::OptionalRelativeCoordinate t_rawRightGoalPost, const GU::OptionalRelativeCoordinate t_rawGoal)
+GU::SoccerLocations::SoccerLocations(const GU::OptionalRelativeCoordinate t_rawBall, const GU::OptionalRelativeCoordinate t_rawLeftGoalPost, const GU::OptionalRelativeCoordinate t_rawRightGoalPost, const GU::OptionalRelativeCoordinate t_rawGoal)
 {
     set_rawBall(t_rawBall);
     set_rawLeftGoalPost(t_rawLeftGoalPost);
@@ -69,7 +69,7 @@ GU::SoccerSightings::SoccerSightings(const GU::OptionalRelativeCoordinate t_rawB
 }
 
 #if __cplusplus >= 201703L
-GU::SoccerSightings::SoccerSightings(const std::optional<GU::RelativeCoordinate> t_ball, const std::optional<GU::RelativeCoordinate> t_leftGoalPost, const std::optional<GU::RelativeCoordinate> t_rightGoalPost, const std::optional<GU::RelativeCoordinate> t_goal)
+GU::SoccerLocations::SoccerLocations(const std::optional<GU::RelativeCoordinate> t_ball, const std::optional<GU::RelativeCoordinate> t_leftGoalPost, const std::optional<GU::RelativeCoordinate> t_rightGoalPost, const std::optional<GU::RelativeCoordinate> t_goal)
 {
     set_ball(t_ball);
     set_leftGoalPost(t_leftGoalPost);
@@ -78,7 +78,7 @@ GU::SoccerSightings::SoccerSightings(const std::optional<GU::RelativeCoordinate>
 }
 #endif
 
-GU::SoccerSightings::SoccerSightings(const GU::SoccerSightings& other)
+GU::SoccerLocations::SoccerLocations(const GU::SoccerLocations& other)
 {
     set_rawBall(other.rawBall());
     set_rawLeftGoalPost(other.rawLeftGoalPost());
@@ -86,7 +86,7 @@ GU::SoccerSightings::SoccerSightings(const GU::SoccerSightings& other)
     set_rawGoal(other.rawGoal());
 }
 
-GU::SoccerSightings::SoccerSightings(const gu_soccer_sightings &other)
+GU::SoccerLocations::SoccerLocations(const gu_soccer_locations &other)
 {
     set_rawBall(other.ball);
     set_rawLeftGoalPost(other.leftGoalPost);
@@ -95,7 +95,7 @@ GU::SoccerSightings::SoccerSightings(const gu_soccer_sightings &other)
 }
 
 #if __cplusplus >= 201103L
-GU::SoccerSightings::SoccerSightings(GU::SoccerSightings&& other)
+GU::SoccerLocations::SoccerLocations(GU::SoccerLocations&& other)
 {
     set_rawBall(other.rawBall());
     other.set_rawBall(GU::OptionalRelativeCoordinate());
@@ -108,9 +108,9 @@ GU::SoccerSightings::SoccerSightings(GU::SoccerSightings&& other)
 }
 #endif
 
-GU::SoccerSightings::~SoccerSightings() {}
+GU::SoccerLocations::~SoccerLocations() {}
 
-GU::SoccerSightings& GU::SoccerSightings::operator=(const GU::SoccerSightings& other)
+GU::SoccerLocations& GU::SoccerLocations::operator=(const GU::SoccerLocations& other)
 {
     if (&other == this)
     {
@@ -123,7 +123,7 @@ GU::SoccerSightings& GU::SoccerSightings::operator=(const GU::SoccerSightings& o
     return *this;
 }
 
-GU::SoccerSightings& GU::SoccerSightings::operator=(const gu_soccer_sightings& other)
+GU::SoccerLocations& GU::SoccerLocations::operator=(const gu_soccer_locations& other)
 {
     if (&other == this)
     {
@@ -137,7 +137,7 @@ GU::SoccerSightings& GU::SoccerSightings::operator=(const gu_soccer_sightings& o
 }
 
 #if __cplusplus >= 201103L
-GU::SoccerSightings& GU::SoccerSightings::operator=(GU::SoccerSightings&& other)
+GU::SoccerLocations& GU::SoccerLocations::operator=(GU::SoccerLocations&& other)
 {
     if (&other == this)
     {
@@ -155,85 +155,85 @@ GU::SoccerSightings& GU::SoccerSightings::operator=(GU::SoccerSightings&& other)
 }
 #endif
 
-GU::OptionalRelativeCoordinate GU::SoccerSightings::rawBall() const
+GU::OptionalRelativeCoordinate GU::SoccerLocations::rawBall() const
 {
-    return gu_soccer_sightings::ball;
+    return gu_soccer_locations::ball;
 }
 
-void GU::SoccerSightings::set_rawBall(const GU::OptionalRelativeCoordinate newValue)
+void GU::SoccerLocations::set_rawBall(const GU::OptionalRelativeCoordinate newValue)
 {
-    gu_soccer_sightings::ball = newValue;
+    gu_soccer_locations::ball = newValue;
 }
 
-GU::OptionalRelativeCoordinate GU::SoccerSightings::rawLeftGoalPost() const
+GU::OptionalRelativeCoordinate GU::SoccerLocations::rawLeftGoalPost() const
 {
-    return gu_soccer_sightings::leftGoalPost;
+    return gu_soccer_locations::leftGoalPost;
 }
 
-void GU::SoccerSightings::set_rawLeftGoalPost(const GU::OptionalRelativeCoordinate newValue)
+void GU::SoccerLocations::set_rawLeftGoalPost(const GU::OptionalRelativeCoordinate newValue)
 {
-    gu_soccer_sightings::leftGoalPost = newValue;
+    gu_soccer_locations::leftGoalPost = newValue;
 }
 
-GU::OptionalRelativeCoordinate GU::SoccerSightings::rawRightGoalPost() const
+GU::OptionalRelativeCoordinate GU::SoccerLocations::rawRightGoalPost() const
 {
-    return gu_soccer_sightings::rightGoalPost;
+    return gu_soccer_locations::rightGoalPost;
 }
 
-void GU::SoccerSightings::set_rawRightGoalPost(const GU::OptionalRelativeCoordinate newValue)
+void GU::SoccerLocations::set_rawRightGoalPost(const GU::OptionalRelativeCoordinate newValue)
 {
-    gu_soccer_sightings::rightGoalPost = newValue;
+    gu_soccer_locations::rightGoalPost = newValue;
 }
 
-GU::OptionalRelativeCoordinate GU::SoccerSightings::rawGoal() const
+GU::OptionalRelativeCoordinate GU::SoccerLocations::rawGoal() const
 {
-    return gu_soccer_sightings::goal;
+    return gu_soccer_locations::goal;
 }
 
-void GU::SoccerSightings::set_rawGoal(const GU::OptionalRelativeCoordinate newValue)
+void GU::SoccerLocations::set_rawGoal(const GU::OptionalRelativeCoordinate newValue)
 {
-    gu_soccer_sightings::goal = newValue;
+    gu_soccer_locations::goal = newValue;
 }
 
 #if __cplusplus >= 201703L
-std::optional<GU::RelativeCoordinate> GU::SoccerSightings::ball() const
+std::optional<GU::RelativeCoordinate> GU::SoccerLocations::ball() const
 {
-    return GU::OptionalRelativeCoordinate(gu_soccer_sightings::ball).asOptional();
+    return GU::OptionalRelativeCoordinate(gu_soccer_locations::ball).asOptional();
 }
 
-void GU::SoccerSightings::set_ball(const std::optional<GU::RelativeCoordinate> newValue)
+void GU::SoccerLocations::set_ball(const std::optional<GU::RelativeCoordinate> newValue)
 {
-    gu_soccer_sightings::ball = GU::OptionalRelativeCoordinate(newValue);
+    gu_soccer_locations::ball = GU::OptionalRelativeCoordinate(newValue);
 }
 
-std::optional<GU::RelativeCoordinate> GU::SoccerSightings::leftGoalPost() const
+std::optional<GU::RelativeCoordinate> GU::SoccerLocations::leftGoalPost() const
 {
-    return GU::OptionalRelativeCoordinate(gu_soccer_sightings::leftGoalPost).asOptional();
+    return GU::OptionalRelativeCoordinate(gu_soccer_locations::leftGoalPost).asOptional();
 }
 
-void GU::SoccerSightings::set_leftGoalPost(const std::optional<GU::RelativeCoordinate> newValue)
+void GU::SoccerLocations::set_leftGoalPost(const std::optional<GU::RelativeCoordinate> newValue)
 {
-    gu_soccer_sightings::leftGoalPost = GU::OptionalRelativeCoordinate(newValue);
+    gu_soccer_locations::leftGoalPost = GU::OptionalRelativeCoordinate(newValue);
 }
 
-std::optional<GU::RelativeCoordinate> GU::SoccerSightings::rightGoalPost() const
+std::optional<GU::RelativeCoordinate> GU::SoccerLocations::rightGoalPost() const
 {
-    return GU::OptionalRelativeCoordinate(gu_soccer_sightings::rightGoalPost).asOptional();
+    return GU::OptionalRelativeCoordinate(gu_soccer_locations::rightGoalPost).asOptional();
 }
 
-void GU::SoccerSightings::set_rightGoalPost(const std::optional<GU::RelativeCoordinate> newValue)
+void GU::SoccerLocations::set_rightGoalPost(const std::optional<GU::RelativeCoordinate> newValue)
 {
-    gu_soccer_sightings::rightGoalPost = GU::OptionalRelativeCoordinate(newValue);
+    gu_soccer_locations::rightGoalPost = GU::OptionalRelativeCoordinate(newValue);
 }
 
-std::optional<GU::RelativeCoordinate> GU::SoccerSightings::goal() const
+std::optional<GU::RelativeCoordinate> GU::SoccerLocations::goal() const
 {
-    return GU::OptionalRelativeCoordinate(gu_soccer_sightings::goal).asOptional();
+    return GU::OptionalRelativeCoordinate(gu_soccer_locations::goal).asOptional();
 }
 
-void GU::SoccerSightings::set_goal(const std::optional<GU::RelativeCoordinate> newValue)
+void GU::SoccerLocations::set_goal(const std::optional<GU::RelativeCoordinate> newValue)
 {
-    gu_soccer_sightings::goal = GU::OptionalRelativeCoordinate(newValue);
+    gu_soccer_locations::goal = GU::OptionalRelativeCoordinate(newValue);
 }
 #endif
 

@@ -79,7 +79,7 @@
 #include "yaw_roll_joint.h"
 #include "yaw_joint.h"
 #include "yp_joint.h"
-#include "soccer_sightings.h"
+#include "soccer_locations.h"
 #include "optional_ball_position.h"
 
 #ifdef __cplusplus
@@ -145,7 +145,7 @@ typedef struct gu_nao {
     gu_optional_field_coordinate fieldPosition;
     gu_optional_ball_position ballPosition;
     gu_nao_joints joints;
-    gu_soccer_sightings sightings;
+    gu_soccer_locations locations;
 } gu_nao;
 
 bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs);

@@ -1,5 +1,5 @@
 /*
- * SoccerSightings.hpp 
+ * SoccerLocations.hpp 
  * gurobots 
  *
  * Created by Callum McColl on 27/07/2020.
@@ -56,10 +56,10 @@
  *
  */
 
-#ifndef GUROBOTS_SOCCERSIGHTINGS_HPP
-#define GUROBOTS_SOCCERSIGHTINGS_HPP
+#ifndef GUROBOTS_SOCCERLOCATIONS_HPP
+#define GUROBOTS_SOCCERLOCATIONS_HPP
 
-#include "soccer_sightings.h"
+#include "soccer_locations.h"
 
 #include <guunits/guunits.h>
 #include <gucoordinates/gucoordinates.h>
@@ -72,23 +72,23 @@
 
 namespace GU {
 
-    struct SoccerSightings: public gu_soccer_sightings {
+    struct SoccerLocations: public gu_soccer_locations {
 
-        SoccerSightings();
-        SoccerSightings(const OptionalRelativeCoordinate, const OptionalRelativeCoordinate, const OptionalRelativeCoordinate, const OptionalRelativeCoordinate);
+        SoccerLocations();
+        SoccerLocations(const OptionalRelativeCoordinate, const OptionalRelativeCoordinate, const OptionalRelativeCoordinate, const OptionalRelativeCoordinate);
 #if __cplusplus >= 201703L
-        SoccerSightings(const std::optional<RelativeCoordinate>, const std::optional<RelativeCoordinate>, const std::optional<RelativeCoordinate>, const std::optional<RelativeCoordinate>);
+        SoccerLocations(const std::optional<RelativeCoordinate>, const std::optional<RelativeCoordinate>, const std::optional<RelativeCoordinate>, const std::optional<RelativeCoordinate>);
 #endif
-        SoccerSightings(const SoccerSightings& other);
-        SoccerSightings(const gu_soccer_sightings& other);
+        SoccerLocations(const SoccerLocations& other);
+        SoccerLocations(const gu_soccer_locations& other);
 #if __cplusplus >= 201103L
-        SoccerSightings(SoccerSightings&& other);
+        SoccerLocations(SoccerLocations&& other);
 #endif
-        ~SoccerSightings();
-        SoccerSightings& operator=(const SoccerSightings& other);
-        SoccerSightings& operator=(const gu_soccer_sightings& other);
+        ~SoccerLocations();
+        SoccerLocations& operator=(const SoccerLocations& other);
+        SoccerLocations& operator=(const gu_soccer_locations& other);
 #if __cplusplus >= 201103L
-        SoccerSightings& operator=(SoccerSightings&& other);
+        SoccerLocations& operator=(SoccerLocations&& other);
 #endif
 
         OptionalRelativeCoordinate rawBall() const;
@@ -121,4 +121,4 @@ namespace GU {
 
 }
 
-#endif  /* GUROBOTS_SOCCERSIGHTINGS_HPP */
+#endif  /* GUROBOTS_SOCCERLOCATIONS_HPP */

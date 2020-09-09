@@ -121,7 +121,7 @@ bool gu_nao_equals(const gu_nao lhs, const gu_nao rhs)
         && gu_optional_field_coordinate_equals(lhs.fieldPosition, rhs.fieldPosition)
         && gu_optional_ball_position_equals(lhs.ballPosition, rhs.ballPosition, 0.001f)
         && gu_nao_joints_equals(lhs.joints, rhs.joints)
-        && gu_soccer_sightings_equals(lhs.sightings, rhs.sightings);
+        && gu_soccer_locations_equals(lhs.locations, rhs.locations);
 }
 
 bool gu_nao_wb_indexes_equals(const gu_nao_wb_indexes lhs, const gu_nao_wb_indexes rhs)
@@ -259,10 +259,10 @@ void gu_nao_update_from_wb_types(gu_nao * nao, const gu_nao_wb_types types)
     nao->joints.rightLeg.ankle.pitch = rad_f_to_deg_f(f_to_rad_f(types.legSensors.RAnklePitch));
     nao->joints.rightLeg.ankle.roll = rad_f_to_deg_f(f_to_rad_f(types.legSensors.RAnkleRoll));
     // Sightings
-    nao->sightings.ball = wb_location_to_opt_rr_coord(types.ballLocation, 50);
-    nao->sightings.leftGoalPost = wb_location_to_opt_rr_coord(types.leftGoalPostLocation, 50);
-    nao->sightings.rightGoalPost = wb_location_to_opt_rr_coord(types.rightGoalPostLocation, 50);
-    nao->sightings.goal = wb_location_to_opt_rr_coord(types.goalLocation, 50);
+    nao->locations.ball = wb_location_to_opt_rr_coord(types.ballLocation, 50);
+    nao->locations.leftGoalPost = wb_location_to_opt_rr_coord(types.leftGoalPostLocation, 50);
+    nao->locations.rightGoalPost = wb_location_to_opt_rr_coord(types.rightGoalPostLocation, 50);
+    nao->locations.goal = wb_location_to_opt_rr_coord(types.goalLocation, 50);
 }
 
 void gu_nao_empty(gu_nao * nao)
