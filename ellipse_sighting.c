@@ -1,5 +1,5 @@
 /*
- * soccer_sightings.h 
+ * ellipse_sighting.c 
  * gurobots 
  *
  * Created by Callum McColl on 10/09/2020.
@@ -56,18 +56,12 @@
  *
  */
 
-#ifndef GUROBOTS_SOCCER_SIGHTINGS_H
-#define GUROBOTS_SOCCER_SIGHTINGS_H
+#include "ellipse_sighting.h"
 
-#include <gucoordinates/gucoordinates.h>
+bool gu_ellipse_sighting_equals(const gu_ellipse_sighting lhs, const gu_ellipse_sighting rhs)
+{
+    return gu_pixel_coordinate_equals(lhs.centerPoint, rhs.centerPoint)
+        && lhs.verticalRadius == rhs.verticalRadius
+        && lhs.horizontalRadius == rhs.horizontalRadius;
+}
 
-typedef struct gu_soccer_sightings {
-    gu_optional_pixel_coordinate ball;
-    gu_optional_pixel_coordinate leftGoalPost;
-    gu_optional_pixel_coordinate rightGoalPost;
-    gu_optional_pixel_coordinate goal;
-} gu_soccer_sightings;
-
-bool gu_soccer_sightings_equals(const gu_soccer_sightings lhs, const gu_soccer_sightings rhs);
-
-#endif  /* GUROBOTS_SOCCER_SIGHTINGS_H */
