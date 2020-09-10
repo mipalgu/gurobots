@@ -1,5 +1,5 @@
 /*
- * optional_ellipse_sighting.c 
+ * optional_rectangle_sighting.h 
  * gurobots 
  *
  * Created by Callum McColl on 10/09/2020.
@@ -56,10 +56,25 @@
  *
  */
 
-#include "optional_ellipse_sighting.h"
+#ifndef GUROBOTS_OPTIONAL_RECTANGLE_SIGHTING_H
+#define GUROBOTS_OPTIONAL_RECTANGLE_SIGHTING_H
 
-bool gu_optional_ellipse_sighting_equals(const gu_optional_ellipse_sighting lhs, const gu_optional_ellipse_sighting rhs)
-{
-    return lhs.has_value == rhs.has_value
-        && gu_ellipse_sighting_equals(lhs.value, rhs.value);
+#include "rectangle_sighting.h"
+#include <stdbool.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef struct gu_optional_rectangle_sighting {
+    bool has_value;
+    gu_rectangle_sighting value;
+} gu_optional_rectangle_sighting;
+
+bool gu_optional_rectangle_sighting_equals(const gu_optional_rectangle_sighting lhs, const gu_optional_rectangle_sighting rhs) __attribute__((const));
+
+#ifdef __cplusplus
 }
+#endif
+
+#endif  /* GUROBOTS_OPTIONAL_RECTANGLE_SIGHTING_H */
