@@ -65,3 +65,32 @@ bool gu_horizon_sighting_equals(const gu_horizon_sighting lhs, const gu_horizon_
     if (lhs.sightingType == GUHorizonSightingLine) return gu_line_sighting_equals(lhs.lineSighting, rhs.lineSighting);
     return gu_corner_sighting_equals(lhs.cornerSighting, rhs.cornerSighting);
 }
+
+gu_horizon_sighting wb_vision_detection_horizon_to_horizon_sighting(const struct wb_vision_detection_horizon horizon, const int16_t resWidth, const int16_t resHeight)
+{
+    if (horizon.horizonType == OnlyField || horizon.horizonType == HorizonFailed)
+    {
+        const gu_horizon_sighting temp = { .sightingType = GUHorizonSightingField };
+        return temp;
+    }
+    if (horizon.horizonType == SingleHorizon)
+    {
+        const gu_horizon_sighting temp = {
+            .sightingType = GUHorizonSightingLine,
+            .lineSighting = {
+                .leftOrBottomPoint = wb_vision_detection_horizon_leftCoordinate_px_coord(horizon, resWidth, resHeight),
+                .rightOrTopPoint = wb_vision_detection_horizon_rightCoordinate_px_coord(horizon, resWidth, resHeight)
+            }
+        };
+        return temp;
+    }
+    const gu_horizon_sighting temp = {
+        .sightingType = GUHorizonSightingCorner,
+        .cornerSighting = {
+            .leftOrBottomPoint = wb_vision_detection_horizon_leftCoordinate_px_coord(horizon, resWidth, resHeight),
+            .centerPoint = wb_vision_detection_horizon_centerCoordinate_px_coord(horizon, resWidth, resHeight),
+            .rightOrTopPoint = wb_vision_detection_horizon_rightCoordinate_px_coord(horizon, resWidth, resHeight)
+        }
+    };
+    return temp;
+}

@@ -63,3 +63,17 @@ bool gu_optional_horizon_sighting_equals(const gu_optional_horizon_sighting lhs,
     return lhs.has_value == rhs.has_value
         && gu_horizon_sighting_equals(lhs.value, rhs.value);
 }
+
+gu_optional_horizon_sighting wb_vision_detection_horizon_to_opt_horizon_sighting(const struct wb_vision_detection_horizon horizon, const int16_t resWidth, const int16_t resHeight)
+{
+    if (horizon.horizonType == HorizonFailed)
+    {
+        const gu_optional_horizon_sighting temp = { .has_value = false };
+        return temp;
+    }
+    const gu_optional_horizon_sighting temp = {
+        .has_value = true,
+        .value = wb_vision_detection_horizon_to_horizon_sighting(horizon, resWidth, resHeight)
+    };
+    return temp;
+}
