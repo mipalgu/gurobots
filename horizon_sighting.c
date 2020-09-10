@@ -60,7 +60,8 @@
 
 bool gu_horizon_sighting_equals(const gu_horizon_sighting lhs, const gu_horizon_sighting rhs)
 {
-    if (lhs.isCornerSighting != rhs.isCornerSighting) return false;
-    if (lhs.isCornerSighting) return gu_corner_sighting_equals(lhs.cornerSighting, rhs.cornerSighting);
-    return gu_line_sighting_equals(lhs.lineSighting, rhs.lineSighting);
+    if (lhs.sightingType != rhs.sightingType) return false;
+    if (lhs.sightingType == GUHorizonSightingField) return true;
+    if (lhs.sightingType == GUHorizonSightingLine) return gu_line_sighting_equals(lhs.lineSighting, rhs.lineSighting);
+    return gu_corner_sighting_equals(lhs.cornerSighting, rhs.cornerSighting);
 }

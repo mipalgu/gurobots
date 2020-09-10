@@ -70,8 +70,14 @@
 extern "C" {
 #endif
 
+typedef enum gu_horizon_sighting_type {
+    GUHorizonSightingField,
+    GUHorizonSightingLine,
+    GUHorizonSightingCorner
+} gu_horizon_sighting_type;
+
 typedef struct gu_horizon_sighting {
-    bool isCornerSighting;
+    gu_horizon_sighting_type sightingType;
     gu_line_sighting lineSighting;
     gu_corner_sighting cornerSighting;
 } gu_horizon_sighting;
