@@ -61,15 +61,35 @@
 
 #include <gucoordinates/gucoordinates.h>
 
+#include "optional_ellipse_sighting.h"
+#include "optional_rectangle_sighting.h"
+#include "optional_horizon_sighting.h"
+#include "optional_line_sighting.h"
+
+#define GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_SIGHTINGS 7
+#define GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_CORNER_SIGHTINGS 8
+#define GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_T_INTERSECTION_SIGHTINGS 8
+#define GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_CROSS_SIGHTINGS 3
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 typedef struct gu_soccer_sightings {
-    gu_optional_pixel_coordinate ball;
-    gu_optional_pixel_coordinate leftGoalPost;
-    gu_optional_pixel_coordinate rightGoalPost;
-    gu_optional_pixel_coordinate goal;
+    gu_optional_ellipse_sighting ball;
+    gu_optional_rectangle_sighting genericPost;
+    gu_optional_rectangle_sighting leftGoalPost;
+    gu_optional_rectangle_sighting rightGoalPost;
+    gu_optional_rectangle_sighting crossbar;
+    gu_optional_horizon_sighting horizon;
+    gu_line_sighting lines[GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_SIGHTINGS];
+    gu_pixel_coordinate lineCorners[GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_CORNER_SIGHTINGS];
+    gu_pixel_coordinate lineTIntersections[GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_T_INTERSECTION_SIGHTINGS];
+    gu_pixel_coordinate lineCrosses[GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_CROSS_SIGHTINGS];
+    int numLines;
+    int numCorners;
+    int numTIntersections;
+    int numCrosses;
 } gu_soccer_sightings;
 
 bool gu_soccer_sightings_equals(const gu_soccer_sightings lhs, const gu_soccer_sightings rhs);

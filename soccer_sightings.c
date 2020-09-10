@@ -60,8 +60,28 @@
 
 bool gu_soccer_sightings_equals(const gu_soccer_sightings lhs, const gu_soccer_sightings rhs)
 {
-    return gu_optional_pixel_coordinate_equals(lhs.ball, rhs.ball)
-        && gu_optional_pixel_coordinate_equals(lhs.leftGoalPost, rhs.leftGoalPost)
-        && gu_optional_pixel_coordinate_equals(lhs.rightGoalPost, rhs.rightGoalPost)
-        && gu_optional_pixel_coordinate_equals(lhs.goal, rhs.goal);
+    if (lhs.numLines != rhs.numLines || lhs.numCorners != rhs.numCorners || lhs.numTIntersections != rhs.numTIntersections || lhs.numCrosses != rhs.numCrosses) return false;
+    const bool simpleEquals = gu_optional_ellipse_sighting_equals(lhs.ball, rhs.ball)
+        && gu_optional_rectangle_sighting_equals(lhs.genericPost, rhs.genericPost)
+        && gu_optional_rectangle_sighting_equals(lhs.leftGoalPost, rhs.leftGoalPost)
+        && gu_optional_rectangle_sighting_equals(lhs.rightGoalPost, rhs.rightGoalPost)
+        && gu_optional_rectangle_sighting_equals(lhs.crossbar, rhs.crossbar);
+    if (!simpleEquals) return false;
+    for (int i = 0; i < lhs.numLines; i++)
+    {
+        if (!(gu_line_sighting_equals(lhs.lines[i], rhs.lines[i]))) return false;
+    }
+    for (int i = 0; i < lhs.numCorners; i++)
+    {
+        if (!(gu_pixel_coordinate_equals(lhs.lineCorners[i], rhs.lineCorners[i]))) return false;
+    }
+    for (int i = 0; i < lhs.numTIntersections; i++)
+    {
+        if (!(gu_pixel_coordinate_equals(lhs.lineTIntersections[i], rhs.lineTIntersections[i]))) return false;
+    }
+    for (int i = 0; i < lhs.numCrosses; i++)
+    {
+        if (!(gu_pixel_coordinate_equals(lhs.lineCrosses[i], rhs.lineCrosses[i]))) return false;
+    }
+    return true;
 }
