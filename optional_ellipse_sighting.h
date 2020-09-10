@@ -61,6 +61,9 @@
 
 #include "ellipse_sighting.h"
 #include <stdbool.h>
+#include <stdint.h>
+
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_ball.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -72,6 +75,8 @@ typedef struct gu_optional_ellipse_sighting {
 } gu_optional_ellipse_sighting;
 
 bool gu_optional_ellipse_sighting_equals(const gu_optional_ellipse_sighting lhs, const gu_optional_ellipse_sighting rhs) __attribute__((const));
+
+gu_optional_ellipse_sighting wb_vision_detection_ball_to_opt_ellipse_sighting(const struct wb_vision_detection_ball sighting, const uint16_t resWidth, const uint16_t resHeight) __attribute__((const));
 
 #ifdef __cplusplus
 }

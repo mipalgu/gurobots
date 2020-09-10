@@ -63,3 +63,21 @@ bool gu_optional_ellipse_sighting_equals(const gu_optional_ellipse_sighting lhs,
     return lhs.has_value == rhs.has_value
         && gu_ellipse_sighting_equals(lhs.value, rhs.value);
 }
+
+gu_optional_ellipse_sighting wb_vision_detection_ball_to_opt_ellipse_sighting(const struct wb_vision_detection_ball sighting, const uint16_t resWidth, const uint16_t resHeight)
+{
+    if (sighting.sightingType == NoBallDetected)
+    {
+        const gu_optional_ellipse_sighting temp = { .has_value = false };
+        return temp;
+    }
+    const gu_optional_ellipse_sighting temp = {
+        .has_value = true,
+        .value = {
+            .centerPoint = wb_vision_detection_ball_coordinate_px_coord(sighting, resWidth, resHeight),
+            .verticalRadius = u16_to_px_u(sighting.verticalRadius),
+            .horizontalRadius = u16_to_px_u(sighting.horizontalRadius)
+        } 
+    };
+    return temp;
+}
