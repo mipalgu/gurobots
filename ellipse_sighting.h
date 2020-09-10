@@ -62,6 +62,10 @@
 #include <guunits/guunits.h>
 #include <gucoordinates/gucoordinates.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct gu_ellipse_sighting {
     gu_pixel_coordinate centerPoint;
     pixels_u verticalRadius;
@@ -69,5 +73,9 @@ typedef struct gu_ellipse_sighting {
 } gu_ellipse_sighting;
 
 bool gu_ellipse_sighting_equals(const gu_ellipse_sighting lhs, const gu_ellipse_sighting rhs);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* GUROBOTS_ELLIPSE_SIGHTING_H */

@@ -61,6 +61,10 @@
 
 #include <gucoordinates/gucoordinates.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct gu_soccer_locations {
     gu_optional_relative_coordinate ball;
     gu_optional_relative_coordinate leftGoalPost;
@@ -69,5 +73,9 @@ typedef struct gu_soccer_locations {
 } gu_soccer_locations;
 
 bool gu_soccer_locations_equals(const gu_soccer_locations lhs, const gu_soccer_locations rhs);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* GUROBOTS_SOCCER_LOCATIONS_H */

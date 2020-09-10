@@ -62,6 +62,10 @@
 #include <guunits/guunits.h>
 #include <gucoordinates/gucoordinates.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct gu_rectangle_sighting {
     gu_pixel_coordinate topLeftPoint;
     gu_pixel_coordinate topRightPoint;
@@ -70,5 +74,9 @@ typedef struct gu_rectangle_sighting {
 } gu_rectangle_sighting;
 
 bool gu_rectangle_sighting_equals(const gu_rectangle_sighting lhs, const gu_rectangle_sighting rhs);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* GUROBOTS_RECTANGLE_SIGHTING_H */

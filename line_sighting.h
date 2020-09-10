@@ -62,11 +62,19 @@
 #include <guunits/guunits.h>
 #include <gucoordinates/gucoordinates.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct gu_line_sighting {
     gu_pixel_coordinate leftOrBottomPoint;
     gu_pixel_coordinate rightOrTopPoint;
 } gu_line_sighting;
 
 bool gu_line_sighting_equals(const gu_line_sighting lhs, const gu_line_sighting rhs);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* GUROBOTS_LINE_SIGHTING_H */

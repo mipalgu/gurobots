@@ -62,6 +62,10 @@
 #include <guunits/guunits.h>
 #include <gucoordinates/gucoordinates.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct gu_corner_sighting {
     gu_pixel_coordinate leftOrBottomPoint;
     gu_pixel_coordinate centerPoint;
@@ -69,5 +73,9 @@ typedef struct gu_corner_sighting {
 } gu_corner_sighting;
 
 bool gu_corner_sighting_equals(const gu_corner_sighting lhs, const gu_corner_sighting rhs);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* GUROBOTS_CORNER_SIGHTING_H */
