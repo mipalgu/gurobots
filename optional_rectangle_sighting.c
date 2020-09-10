@@ -63,3 +63,22 @@ bool gu_optional_rectangle_sighting_equals(const gu_optional_rectangle_sighting 
     return lhs.has_value == rhs.has_value
         && gu_rectangle_sighting_equals(lhs.value, rhs.value);
 }
+
+gu_optional_rectangle_sighting wb_vision_detection_goal_post_to_opt_rectangle_sighting(const struct wb_vision_detection_goal_post sighting, const uint16_t resWidth, const uint16_t resHeight)
+{
+    if (sighting.sightingType == NoPostDetected)
+    {
+        const gu_optional_rectangle_sighting temp = { .has_value = false };
+        return temp;
+    }
+    const gu_optional_rectangle_sighting temp = {
+        .has_value = true,
+        .value = {
+            .topLeftPoint = wb_vision_detection_goal_post_topLeftCoordinate_px_coord(sighting, resWidth, resHeight),
+            .topRightPoint = wb_vision_detection_goal_post_topRightCoordinate_px_coord(sighting, resWidth, resHeight),
+            .bottomLeftPoint = wb_vision_detection_goal_post_bottomLeftCoordinate_px_coord(sighting, resWidth, resHeight),
+            .bottomRightPoint= wb_vision_detection_goal_post_bottomRightCoordinate_px_coord(sighting, resWidth, resHeight),
+        }
+    };
+    return temp;
+}

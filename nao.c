@@ -59,6 +59,7 @@
 #include "nao.h"
 
 #include <guunits/guunits.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_control_status.h>
 
 #define GU_NAO_V5_TOP_CAMERA gu_camera_make(6.364, 5.871, 1.2, 47.64, 60.97) 
 #define GU_NAO_V5_BOTTOM_CAMERA gu_camera_make(1.774, 5.071, 39.7, 47.64, 60.97)
@@ -276,11 +277,16 @@ void gu_nao_update_from_wb_types(gu_nao * nao, const gu_nao_wb_types types)
     nao->joints.rightLeg.knee.pitch = rad_f_to_deg_f(f_to_rad_f(types.legSensors.RKneePitch));
     nao->joints.rightLeg.ankle.pitch = rad_f_to_deg_f(f_to_rad_f(types.legSensors.RAnklePitch));
     nao->joints.rightLeg.ankle.roll = rad_f_to_deg_f(f_to_rad_f(types.legSensors.RAnkleRoll));
-    // Sightings
+    // Locations
     nao->locations.ball = wb_location_to_opt_rr_coord(types.ballLocation, 50);
     nao->locations.leftGoalPost = wb_location_to_opt_rr_coord(types.leftGoalPostLocation, 50);
     nao->locations.rightGoalPost = wb_location_to_opt_rr_coord(types.rightGoalPostLocation, 50);
     nao->locations.goal = wb_location_to_opt_rr_coord(types.goalLocation, 50);
+    // Vision Sightings
+    nao->topCameraSightings.ball = wb_vision_detection_ball_to_opt_ellipse_sighting(types.ballSightings.balls[Top], types.ballSightings.res_width, types.ballSightings.res_height);
+    nao->bottomCameraSightings.ball = wb_vision_detection_ball_to_opt_ellipse_sighting(types.ballSightings.balls[Bottom], types.ballSightings.res_width, types.ballSightings.res_height);
+    gu_soccer_sightings_update_from_wb_vision_detection_goal(&nao->topCameraSightings, types.goalSightings.goals[Top], types.goalSightings.res_width, types.goalSightings.res_height);
+    gu_soccer_sightings_update_from_wb_vision_detection_goal(&nao->bottomCameraSightings, types.goalSightings.goals[Bottom], types.goalSightings.res_width, types.goalSightings.res_height);
 }
 
 void gu_nao_empty(gu_nao * nao)

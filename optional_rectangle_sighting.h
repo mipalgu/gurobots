@@ -61,6 +61,9 @@
 
 #include "rectangle_sighting.h"
 #include <stdbool.h>
+#include <stdint.h>
+
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_goal_post.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -72,6 +75,8 @@ typedef struct gu_optional_rectangle_sighting {
 } gu_optional_rectangle_sighting;
 
 bool gu_optional_rectangle_sighting_equals(const gu_optional_rectangle_sighting lhs, const gu_optional_rectangle_sighting rhs) __attribute__((const));
+
+gu_optional_rectangle_sighting wb_vision_detection_goal_post_to_opt_rectangle_sighting(const struct wb_vision_detection_goal_post sighting, const uint16_t resWidth, const uint16_t resHeight) __attribute__((const));
 
 #ifdef __cplusplus
 }

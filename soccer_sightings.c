@@ -85,3 +85,41 @@ bool gu_soccer_sightings_equals(const gu_soccer_sightings lhs, const gu_soccer_s
     }
     return true;
 }
+
+void gu_soccer_sightings_update_from_wb_vision_detection_goal(gu_soccer_sightings *sightings, const struct wb_vision_detection_goal goal, const uint16_t resWidth, const uint16_t resHeight)
+{
+    sightings->genericPost.has_value = false;
+    sightings->leftGoalPost.has_value = false;
+    sightings->rightGoalPost.has_value = false;
+    if (goal.sightingType == NoGoalDetected) return;
+    if (goal.post1.sightingType != NoPostDetected)
+    {
+        switch (goal.post1.sightingType)
+        {
+            case GenericPost:
+                sightings->genericPost = wb_vision_detection_goal_post_to_opt_rectangle_sighting(goal.post1, resWidth, resHeight);
+                break;
+            case LeftPost:
+                sightings->leftGoalPost = wb_vision_detection_goal_post_to_opt_rectangle_sighting(goal.post1, resWidth, resHeight);
+                break;
+            case RightPost:
+                sightings->rightGoalPost = wb_vision_detection_goal_post_to_opt_rectangle_sighting(goal.post1, resWidth, resHeight);
+                break;
+        }
+    }
+    if (goal.post2.sightingType != NoPostDetected && goal.sightingType == DoublePostGoal)
+    {
+        switch (goal.post2.sightingType)
+        {
+            case GenericPost:
+                sightings->genericPost = wb_vision_detection_goal_post_to_opt_rectangle_sighting(goal.post2, resWidth, resHeight);
+                break;
+            case LeftPost:
+                sightings->leftGoalPost = wb_vision_detection_goal_post_to_opt_rectangle_sighting(goal.post2, resWidth, resHeight);
+                break;
+            case RightPost:
+                sightings->rightGoalPost = wb_vision_detection_goal_post_to_opt_rectangle_sighting(goal.post2, resWidth, resHeight);
+                break;
+        }
+    }
+}

@@ -59,12 +59,16 @@
 #ifndef GUROBOTS_SOCCER_SIGHTINGS_H
 #define GUROBOTS_SOCCER_SIGHTINGS_H
 
+#include <stdint.h>
+
 #include <gucoordinates/gucoordinates.h>
 
 #include "optional_ellipse_sighting.h"
 #include "optional_rectangle_sighting.h"
 #include "optional_horizon_sighting.h"
 #include "optional_line_sighting.h"
+
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_goal.h>
 
 #define GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_SIGHTINGS 7
 #define GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_CORNER_SIGHTINGS 8
@@ -93,6 +97,8 @@ typedef struct gu_soccer_sightings {
 } gu_soccer_sightings;
 
 bool gu_soccer_sightings_equals(const gu_soccer_sightings lhs, const gu_soccer_sightings rhs);
+
+void gu_soccer_sightings_update_from_wb_vision_detection_goal(gu_soccer_sightings *sightings, const struct wb_vision_detection_goal, const uint16_t resWidth, const uint16_t resHeight) __attribute__((nonnull));
 
 #ifdef __cplusplus
 }
