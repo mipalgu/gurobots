@@ -58,6 +58,8 @@
 
 #include "soccer_sightings.h"
 
+#include <math.h>
+
 bool gu_soccer_sightings_equals(const gu_soccer_sightings lhs, const gu_soccer_sightings rhs)
 {
     if (lhs.numLines != rhs.numLines || lhs.numCorners != rhs.numCorners || lhs.numTIntersections != rhs.numTIntersections || lhs.numCrosses != rhs.numCrosses) return false;
@@ -121,4 +123,13 @@ void gu_soccer_sightings_update_from_wb_vision_detection_goal(gu_soccer_sighting
                 break;
         }
     }
+}
+
+void gu_soccer_sightings_update_from_wb_vision_line_array(gu_soccer_sightings *sightings, const struct wb_vision_line *lines, const int numLines, const uint16_t resWidth, const uint16_t resHeight)
+{
+    for (int i = 0; i < (numLines < GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_SIGHTINGS ? numLines : GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_SIGHTINGS); i++)
+    {
+        sightings->lines[i] = wb_vision_line_to_rectangle_sighting(lines[i], resWidth, resHeight);
+    }
+    sightings->numLines = (numLines < GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_SIGHTINGS ? numLines : GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_SIGHTINGS);
 }

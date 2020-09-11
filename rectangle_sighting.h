@@ -62,6 +62,8 @@
 #include <guunits/guunits.h>
 #include <gucoordinates/gucoordinates.h>
 
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_line.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -74,6 +76,8 @@ typedef struct gu_rectangle_sighting {
 } gu_rectangle_sighting;
 
 bool gu_rectangle_sighting_equals(const gu_rectangle_sighting lhs, const gu_rectangle_sighting rhs);
+
+gu_rectangle_sighting wb_vision_line_to_rectangle_sighting(const struct wb_vision_line sighting, const uint16_t resWidth, const uint16_t resHeight) __attribute__((const));
 
 #ifdef __cplusplus
 }

@@ -69,6 +69,7 @@
 #include "optional_line_sighting.h"
 
 #include <gusimplewhiteboard/typeClassDefs/wb_vision_detection_goal.h>
+#include <gusimplewhiteboard/typeClassDefs/wb_vision_line.h>
 
 #define GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_SIGHTINGS 7
 #define GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_CORNER_SIGHTINGS 8
@@ -98,6 +99,8 @@ typedef struct gu_soccer_sightings {
 bool gu_soccer_sightings_equals(const gu_soccer_sightings lhs, const gu_soccer_sightings rhs);
 
 void gu_soccer_sightings_update_from_wb_vision_detection_goal(gu_soccer_sightings *sightings, const struct wb_vision_detection_goal, const uint16_t resWidth, const uint16_t resHeight) __attribute__((nonnull));
+
+void gu_soccer_sightings_update_from_wb_vision_line_array(gu_soccer_sightings *sightings, const struct wb_vision_line *lines, const int numLines, const uint16_t resWidth, const uint16_t resHeight) __attribute__((nonnull));
 
 #ifdef __cplusplus
 }

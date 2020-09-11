@@ -65,3 +65,30 @@ bool gu_rectangle_sighting_equals(const gu_rectangle_sighting lhs, const gu_rect
         && gu_pixel_coordinate_equals(lhs.bottomLeftPoint, rhs.bottomLeftPoint)
         && gu_pixel_coordinate_equals(lhs.bottomRightPoint, rhs.bottomRightPoint);
 }
+
+gu_rectangle_sighting wb_vision_line_to_rectangle_sighting(const struct wb_vision_line sighting, const uint16_t resWidth, const uint16_t resHeight)
+{
+    gu_pixel_coordinate topLeftPoint = wb_pixel_coordinate_line_start_px_coord(sighting.lineEdgeTop, resWidth, resHeight);
+    gu_pixel_coordinate topRightPoint = wb_pixel_coordinate_line_end_px_coord(sighting.lineEdgeTop, resWidth, resHeight);
+    if (topLeftPoint.x > topRightPoint.x)
+    {
+        const gu_pixel_coordinate temp = topLeftPoint;
+        topLeftPoint = topRightPoint;
+        topRightPoint = temp;
+    }
+    gu_pixel_coordinate bottomLeftPoint = wb_pixel_coordinate_line_start_px_coord(sighting.lineEdgeBottom, resWidth, resHeight);
+    gu_pixel_coordinate bottomRightPoint = wb_pixel_coordinate_line_end_px_coord(sighting.lineEdgeBottom, resWidth, resHeight);
+    if (bottomLeftPoint.x > bottomRightPoint.x)
+    {
+        const gu_pixel_coordinate temp = bottomLeftPoint;
+        bottomLeftPoint = bottomRightPoint;
+        bottomRightPoint = temp;
+    }
+    const gu_rectangle_sighting out = {
+        .topLeftPoint = topLeftPoint,
+        .topRightPoint = topRightPoint,
+        .bottomLeftPoint = bottomLeftPoint,
+        .bottomRightPoint = bottomRightPoint
+    };
+    return out;
+}

@@ -289,6 +289,8 @@ void gu_nao_update_from_wb_types(gu_nao * nao, const gu_nao_wb_types types)
     gu_soccer_sightings_update_from_wb_vision_detection_goal(&nao->bottomCameraSightings, types.goalSightings.goals[Bottom], types.goalSightings.res_width, types.goalSightings.res_height);
     nao->topCameraSightings.horizon = wb_vision_detection_horizon_to_opt_horizon_sighting(types.horizonSightings.horizons[Top], types.horizonSightings.res_width, types.horizonSightings.res_height);
     nao->bottomCameraSightings.horizon = wb_vision_detection_horizon_to_opt_horizon_sighting(types.horizonSightings.horizons[Bottom], types.horizonSightings.res_width, types.horizonSightings.res_height);
+    gu_soccer_sightings_update_from_wb_vision_line_array(&nao->topCameraSightings, types.topLineSightings.lines, (int) types.topLineSightings.numLines, types.topLineSightings.res_width, types.topLineSightings.res_height);
+    gu_soccer_sightings_update_from_wb_vision_line_array(&nao->bottomCameraSightings, types.bottomLineSightings.lines, (int) types.bottomLineSightings.numLines, types.bottomLineSightings.res_width, types.bottomLineSightings.res_height);
 }
 
 void gu_nao_empty(gu_nao * nao)
