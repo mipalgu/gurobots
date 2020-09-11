@@ -81,12 +81,11 @@ extern "C" {
 
 typedef struct gu_soccer_sightings {
     gu_optional_ellipse_sighting ball;
-    gu_optional_rectangle_sighting genericPost;
+    gu_optional_rectangle_sighting genericGoalPost;
     gu_optional_rectangle_sighting leftGoalPost;
     gu_optional_rectangle_sighting rightGoalPost;
-    gu_optional_rectangle_sighting crossbar;
     gu_optional_horizon_sighting horizon;
-    gu_line_sighting lines[GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_SIGHTINGS];
+    gu_rectangle_sighting lines[GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_SIGHTINGS];
     gu_pixel_coordinate lineCorners[GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_CORNER_SIGHTINGS];
     gu_pixel_coordinate lineTIntersections[GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_T_INTERSECTION_SIGHTINGS];
     gu_pixel_coordinate lineCrosses[GUROBOTS_SOCCER_SIGHTINGS_MAX_LINE_CROSS_SIGHTINGS];

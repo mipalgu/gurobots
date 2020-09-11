@@ -62,14 +62,13 @@ bool gu_soccer_sightings_equals(const gu_soccer_sightings lhs, const gu_soccer_s
 {
     if (lhs.numLines != rhs.numLines || lhs.numCorners != rhs.numCorners || lhs.numTIntersections != rhs.numTIntersections || lhs.numCrosses != rhs.numCrosses) return false;
     const bool simpleEquals = gu_optional_ellipse_sighting_equals(lhs.ball, rhs.ball)
-        && gu_optional_rectangle_sighting_equals(lhs.genericPost, rhs.genericPost)
+        && gu_optional_rectangle_sighting_equals(lhs.genericGoalPost, rhs.genericGoalPost)
         && gu_optional_rectangle_sighting_equals(lhs.leftGoalPost, rhs.leftGoalPost)
-        && gu_optional_rectangle_sighting_equals(lhs.rightGoalPost, rhs.rightGoalPost)
-        && gu_optional_rectangle_sighting_equals(lhs.crossbar, rhs.crossbar);
+        && gu_optional_rectangle_sighting_equals(lhs.rightGoalPost, rhs.rightGoalPost);
     if (!simpleEquals) return false;
     for (int i = 0; i < lhs.numLines; i++)
     {
-        if (!(gu_line_sighting_equals(lhs.lines[i], rhs.lines[i]))) return false;
+        if (!(gu_rectangle_sighting_equals(lhs.lines[i], rhs.lines[i]))) return false;
     }
     for (int i = 0; i < lhs.numCorners; i++)
     {
@@ -88,7 +87,7 @@ bool gu_soccer_sightings_equals(const gu_soccer_sightings lhs, const gu_soccer_s
 
 void gu_soccer_sightings_update_from_wb_vision_detection_goal(gu_soccer_sightings *sightings, const struct wb_vision_detection_goal goal, const uint16_t resWidth, const uint16_t resHeight)
 {
-    sightings->genericPost.has_value = false;
+    sightings->genericGoalPost.has_value = false;
     sightings->leftGoalPost.has_value = false;
     sightings->rightGoalPost.has_value = false;
     if (goal.sightingType == NoGoalDetected) return;
@@ -97,7 +96,7 @@ void gu_soccer_sightings_update_from_wb_vision_detection_goal(gu_soccer_sighting
         switch (goal.post1.sightingType)
         {
             case GenericPost:
-                sightings->genericPost = wb_vision_detection_goal_post_to_opt_rectangle_sighting(goal.post1, resWidth, resHeight);
+                sightings->genericGoalPost = wb_vision_detection_goal_post_to_opt_rectangle_sighting(goal.post1, resWidth, resHeight);
                 break;
             case LeftPost:
                 sightings->leftGoalPost = wb_vision_detection_goal_post_to_opt_rectangle_sighting(goal.post1, resWidth, resHeight);
@@ -112,7 +111,7 @@ void gu_soccer_sightings_update_from_wb_vision_detection_goal(gu_soccer_sighting
         switch (goal.post2.sightingType)
         {
             case GenericPost:
-                sightings->genericPost = wb_vision_detection_goal_post_to_opt_rectangle_sighting(goal.post2, resWidth, resHeight);
+                sightings->genericGoalPost = wb_vision_detection_goal_post_to_opt_rectangle_sighting(goal.post2, resWidth, resHeight);
                 break;
             case LeftPost:
                 sightings->leftGoalPost = wb_vision_detection_goal_post_to_opt_rectangle_sighting(goal.post2, resWidth, resHeight);
