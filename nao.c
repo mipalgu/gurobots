@@ -235,8 +235,8 @@ void gu_nao_update_from_wb_types(gu_nao * nao, const gu_nao_wb_types types)
     nao->joints.head.buttons.touchRear = types.headSensors.Head_Touch_Rear;
     // Field Position
     nao->fieldPosition.has_value = types.topParticles.particles[0].confidence > 0.6f;
-    nao->fieldPosition.value.position.x = i16_to_cm_t(types.topParticles.particles[0].position.x);
-    nao->fieldPosition.value.position.y = i16_to_cm_t(types.topParticles.particles[0].position.y);
+    nao->fieldPosition.value.position.x = cm_t_to_mm_t(i16_to_cm_t(types.topParticles.particles[0].position.x));
+    nao->fieldPosition.value.position.y = cm_t_to_mm_t(i16_to_cm_t(types.topParticles.particles[0].position.y));
     nao->fieldPosition.value.heading = i16_to_deg_t(types.topParticles.particles[0].headingInDegrees);
     // Ball Position
     nao->ballPosition.has_value = wb_ball_position_confidence_percent(types.ballPosition) > 0.6;
