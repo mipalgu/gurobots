@@ -76,7 +76,7 @@ typedef struct gu_optional_horizon_sighting {
 
 bool gu_optional_horizon_sighting_equals(const gu_optional_horizon_sighting lhs, const gu_optional_horizon_sighting rhs) __attribute__((const));
 
-gu_optional_horizon_sighting wb_vision_detection_horizon_to_opt_horizon_sighting(const struct wb_vision_detection_horizon horizon, const int16_t resWidth, const int16_t resHeight) __attribute__((const));
+gu_optional_horizon_sighting wb_vision_detection_horizon_to_opt_horizon_sighting(const struct wb_vision_detection_horizon horizon, const uint16_t resWidth, const uint16_t resHeight) __attribute__((const));
 
 #ifdef __cplusplus
 }

@@ -64,7 +64,7 @@ bool gu_optional_horizon_sighting_equals(const gu_optional_horizon_sighting lhs,
         && gu_horizon_sighting_equals(lhs.value, rhs.value);
 }
 
-gu_optional_horizon_sighting wb_vision_detection_horizon_to_opt_horizon_sighting(const struct wb_vision_detection_horizon horizon, const int16_t resWidth, const int16_t resHeight)
+gu_optional_horizon_sighting wb_vision_detection_horizon_to_opt_horizon_sighting(const struct wb_vision_detection_horizon horizon, const uint16_t resWidth, const uint16_t resHeight)
 {
     if (horizon.horizonType == HorizonFailed)
     {

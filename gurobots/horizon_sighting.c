@@ -66,7 +66,7 @@ bool gu_horizon_sighting_equals(const gu_horizon_sighting lhs, const gu_horizon_
     return gu_corner_sighting_equals(lhs.cornerSighting, rhs.cornerSighting);
 }
 
-gu_horizon_sighting wb_vision_detection_horizon_to_horizon_sighting(const struct wb_vision_detection_horizon horizon, const int16_t resWidth, const int16_t resHeight)
+gu_horizon_sighting wb_vision_detection_horizon_to_horizon_sighting(const struct wb_vision_detection_horizon horizon, const uint16_t resWidth, const uint16_t resHeight)
 {
     if (horizon.horizonType == OnlyField || horizon.horizonType == HorizonFailed)
     {
