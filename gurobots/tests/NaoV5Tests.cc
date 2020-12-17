@@ -74,7 +74,7 @@ namespace CGTEST {
         {
             struct wb_sensors_torsojointsensors *currentMessage = reinterpret_cast<struct wb_sensors_torsojointsensors *>(gsw_current_message(wb, kSENSORSTorsoJointSensors_v));
             struct wb_sensors_torsojointsensors *nextMessage = reinterpret_cast<struct wb_sensors_torsojointsensors *>(gsw_next_message(wb, kSENSORSTorsoJointSensors_v));
-            currentMessage->set_HeadPitch(pitch);
+            currentMessage->HeadPitch = pitch;
             *nextMessage = *currentMessage;
             (void) gsw_increment(wb, kSENSORSTorsoJointSensors_v);
         }
