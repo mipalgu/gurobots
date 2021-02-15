@@ -72,6 +72,8 @@
 #pragma clang diagnostic ignored "-Wc++11-long-long"
 #pragma clang diagnostic ignored "-Wc++11-extensions"
 #pragma clang diagnostic ignored "-Wdeprecated"
+#pragma clan diagnostic ignored "-Wsuggest-override"
+#pragma clan diagnostic ignored "-Wsuggest-destructor-override"
 #include <gtest/gtest.h>
 #pragma clang diagnostic pop
 
