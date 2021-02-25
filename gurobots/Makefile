@@ -21,8 +21,7 @@ PKGCONFIG_VERSION=1.0
 PKGCONFIG_DESCRIPTION=Utilities for monitoring sensors for specific robots.
 
 
-.include "../../../mk/cxxstd.mk"
-
+.include "../../../mk/testdir.mk"
 .include "../../../mk/mipal.mk"
 # vim:ft=make
 #
