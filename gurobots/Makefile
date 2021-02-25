@@ -3,7 +3,7 @@
 # Callum McColl, 2019-06-05 11:58
 #
 
-ALL_TARGETS=test robot-local
+ALL_TARGETS=test host-local atom-local atom1-local geode-local xc doc
 
 C_SRCS!=ls *.c
 CC_SRCS!=ls *.cc
@@ -13,12 +13,11 @@ SPECIFIC_LIBS+=-lm
 SPECIFIC_LIBS+=-lguunits
 SPECIFIC_LIBS+=-lgusimplewhiteboard
 SPECIFIC_LIBS+=-lgucoordinates
-LOCAL=_LOCAL
 
 ${MODULE_BASE}_HDRS=${ALL_HDRS}
 PKGCONFIG_NAME=gurobots
 PKGCONFIG_VERSION=1.0
-PKGCONFIG_DESCRIPTION=Utilities for monitoring sensors for specific robots.
+PKGCONFIG_DESCRIPTION=Provides structures which make dealing with robots easier.
 
 
 .include "../../../mk/testdir.mk"
