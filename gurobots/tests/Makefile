@@ -9,3 +9,4 @@ CXXFLAGS+=-I../../../../../Common -I../../../../gusimplewhiteboard
 SPECIFIC_LIBS=-lguunits -lgucoordinates -lgusimplewhiteboard
 
 .include "../../../../mk/gtest.mk"
+.include "../../../../mk/mipal.mk"

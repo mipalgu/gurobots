@@ -7,3 +7,4 @@ SPECIFIC_LIBS=-lguunits -lgusimplewhiteboard -lgucoordinates
 WFLAGS=
 
 .include "../../../../mk/gtest.mk"
+.include "../../../../mk/mipal.mk"
