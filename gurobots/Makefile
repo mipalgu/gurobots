@@ -14,11 +14,13 @@ SPECIFIC_LIBS+=-lguunits
 SPECIFIC_LIBS+=-lgusimplewhiteboard
 SPECIFIC_LIBS+=-lgucoordinates
 
-${MODULE_BASE}_HDRS=${ALL_HDRS}
 PKGCONFIG_NAME=gurobots
 PKGCONFIG_VERSION=1.0
 PKGCONFIG_DESCRIPTION=Provides structures which make dealing with robots easier.
 
+.include "../../../mk/prefs.mk"
+
+${MODULE_BASE}_HDRS=${ALL_HDRS}
 
 .include "../../../mk/testdir.mk"
 .include "../../../mk/mipal.mk"
