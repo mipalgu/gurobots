@@ -1,0 +1,3 @@
+[submodule "swift_GURobots"]
+	path = swift_GURobots
+	url = https://github.com/mipalgu/swift_GURobots.git
