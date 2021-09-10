@@ -5,6 +5,8 @@
 
 ALL_TARGETS=test host-local atom-local atom1-local geode-local xc doc
 
+DEPENDS?=gu_util guunits gucoordinates gusimplewhiteboard guvision_utils
+
 C_SRCS!=ls *.c
 CC_SRCS!=ls *.cc
 ALL_HDRS!=ls *.h *.hpp
