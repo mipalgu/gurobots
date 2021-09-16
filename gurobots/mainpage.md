@@ -17,7 +17,7 @@ You need a posix system a C/C++ compiler, [cmake](https://cmake.org),
 and a build system supported by cmake, such as
 [Ninja](https://ninja-build.org) or
 [gmake](https://www.gnu.org/software/make/).
-If you are running linux, then you will need to install [libdispatch](https://apple.github.io/swift-corelibs-libdispatch/)
+If you are running linux, then you will need to install [libdispatch](https://apple.github.io/swift-corelibs-libdispatch/).
 You will also need to install the following pre-requisite packages.
 Follow the links below for instructions:
 
