@@ -2,7 +2,7 @@
 ===================================================================
 \tableofcontents
 
-A library for simple 2D coordinates.
+A library for abstracting robots that utilises gusimplewhiteboard for local communication.
 
 ## Online Documentation
 
