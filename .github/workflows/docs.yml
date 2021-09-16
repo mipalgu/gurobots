@@ -97,10 +97,21 @@ jobs:
           repository: mipalgu/gurobots
           path: gurobots
 
+      - name: Clone theme
+        uses: actions/checkout@v2
+        with:
+          repository: jothepro/doxygen-awesome-css.git
+          ref: v1.5.0
+          path: doxygen-awesome-css
+
+      - name: Add theme to Doxyfile
+        run: |
+          sed -e 's|HTML_EXTRA_STYLESHEET .*|HTML_EXTRA_STYLESHEET = ../doxygen-awesome-css/doxygen-awesome.css ../doxygen-awesome-css/doxygen-awesome-sidebar-only.css|' -e 's|DOT_TRANSPARENT.*|DOT_TRANSPARENT = YES|' -e 's|DOT_IMAGE_FORMAT.*|DOT_IMAGE_FORMAT = svg|' -e 's|HTML_COLORSTYLE_GAMMA.*|HTML_COLORSTYLE_GAMMA = 113|' -e 's|HTML_COLORSTYLE_SAT.*|HTML_COLORSTYLE_SAT = 255|' -e 's|HTML_COLORSTYLE_HUE.*|HTML_COLORSTYLE_HUE = 209|' -e 's|GENERATE_TREEVIEW.*|GENERATE_TREEVIEW = YES|' < gurobots/gurobots/Doxyfile > gurobots/gurobots/Doxyfile.awesome
+
       - name: Doxygen
         uses: mattnotmitt/doxygen-action@v1.1.0
         with:
-          doxyfile-path: ./Doxyfile
+          doxyfile-path: ./Doxyfile.awesome
           working-directory: ./gurobots/gurobots
 
       - name: Page Deployment
