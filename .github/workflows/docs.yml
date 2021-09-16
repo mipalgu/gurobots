@@ -13,6 +13,9 @@ jobs:
       - name: Install Ninja
         run: sudo apt install ninja-build
 
+      - name: Install libdispatch
+        run: sudo apt install libdispatch-dev
+
       - name: Clone gu_util
         uses: actions/checkout@v2
         with:
