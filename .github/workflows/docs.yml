@@ -58,6 +58,21 @@ jobs:
           ninja
           sudo ninja install
 
+      - name: Clone guvision_utils
+        uses: actions/checkout@v2
+        with:
+          repository: mipalgu/guvision_utils
+          path: guvision_utils
+
+      - name: Install guvision_utils
+        run: |
+          cd guvision_utils
+          mkdir build
+          cd build
+          cmake -G Ninja ..
+          ninja
+          sudo ninja install
+
       - name: Clone gusimplewhiteboard
         uses: actions/checkout@v2
         with:

@@ -23,6 +23,7 @@ Follow the links below for instructions:
  * [gu_util](https://github.com/mipalgu/gu_util)
  * [guunits](https://github.com/mipalgu/guunits)
  * [gucoordinates](https://github.com/mipalgu/gucoordinates)
+ * [guvision_utils](https://github.com/mipalgu/guvision_utils)
  * [gusimplewhiteboard](https://github.com/mipalgu/gusimplewhiteboard)
 
 ## Building and Installation
