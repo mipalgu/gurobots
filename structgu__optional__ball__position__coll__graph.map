@@ -1,0 +1,5 @@
+<map id="gu_optional_ball_position" name="gu_optional_ball_position">
+<area shape="rect" id="node1" title="Provides the ability to specify whether we have a valid value for a gu_ball_position or not." alt="" coords="5,315,172,392"/>
+<area shape="rect" id="node2" href="$structgu__ball__position.html" title="A data structure representing the position and orientation of the soccer ball on the soccer field." alt="" coords="31,175,146,252"/>
+<area shape="rect" id="node3" href="$structgu__orientation.html" title="The configuration of the orientation of the object with respect to the three angular coordinates." alt="" coords="37,5,140,112"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="gu_ball_position" name="gu_ball_position">
+<area shape="rect" id="node1" title="A data structure representing the position and orientation of the soccer ball on the soccer field." alt="" coords="5,175,120,252"/>
+<area shape="rect" id="node2" href="$structgu__orientation.html" title="The configuration of the orientation of the object with respect to the three angular coordinates." alt="" coords="11,5,114,112"/>
+</map>

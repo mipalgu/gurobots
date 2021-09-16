@@ -1,0 +1,11 @@
+<map id="gu_soccer_sightings" name="gu_soccer_sightings">
+<area shape="rect" id="node1" title=" " alt="" coords="161,543,302,708"/>
+<area shape="rect" id="node2" href="$structgu__optional__ellipse__sighting.html" title=" " alt="" coords="5,359,137,451"/>
+<area shape="rect" id="node3" href="$structgu__ellipse__sighting.html" title=" " alt="" coords="5,182,137,289"/>
+<area shape="rect" id="node4" href="$structgu__optional__rectangle__sighting.html" title=" " alt="" coords="249,359,397,451"/>
+<area shape="rect" id="node5" href="$structgu__rectangle__sighting.html" title=" " alt="" coords="184,175,332,296"/>
+<area shape="rect" id="node6" href="$structgu__optional__horizon__sighting.html" title=" " alt="" coords="421,359,557,451"/>
+<area shape="rect" id="node7" href="$structgu__horizon__sighting.html" title=" " alt="" coords="421,197,557,274"/>
+<area shape="rect" id="node8" href="$structgu__line__sighting.html" title=" " alt="" coords="340,13,477,105"/>
+<area shape="rect" id="node9" href="$structgu__corner__sighting.html" title=" " alt="" coords="501,5,639,112"/>
+</map>

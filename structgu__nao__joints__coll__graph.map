@@ -1,0 +1,14 @@
+<map id="gu_nao_joints" name="gu_nao_joints">
+<area shape="rect" id="node1" title=" " alt="" coords="457,329,559,407"/>
+<area shape="rect" id="node2" href="$structgu__nao__head.html" title=" " alt="" coords="199,175,297,252"/>
+<area shape="rect" id="node3" href="$structgu__pitch__yaw__joint.html" title=" " alt="" coords="182,13,314,105"/>
+<area shape="rect" id="node4" href="$structgu__nao__head__sensors.html" title=" " alt="" coords="5,5,157,112"/>
+<area shape="rect" id="node5" href="$structgu__nao__arm.html" title=" " alt="" coords="740,175,833,252"/>
+<area shape="rect" id="node6" href="$structgu__pitch__roll__joint.html" title=" " alt="" coords="575,13,702,105"/>
+<area shape="rect" id="node10" href="$structgu__nao__leg.html" title=" " alt="" coords="464,175,552,252"/>
+<area shape="rect" id="node7" href="$structgu__yaw__roll__joint.html" title=" " alt="" coords="726,13,847,105"/>
+<area shape="rect" id="node8" href="$structgu__yaw__joint.html" title=" " alt="" coords="871,20,969,97"/>
+<area shape="rect" id="node9" href="$structgu__nao__hand__sensors.html" title=" " alt="" coords="993,5,1145,112"/>
+<area shape="rect" id="node11" href="$structgu__yp__joint.html" title=" " alt="" coords="465,5,551,112"/>
+<area shape="rect" id="node12" href="$structgu__pitch__joint.html" title=" " alt="" coords="338,20,441,97"/>
+</map>

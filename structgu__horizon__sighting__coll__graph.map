@@ -1,0 +1,5 @@
+<map id="gu_horizon_sighting" name="gu_horizon_sighting">
+<area shape="rect" id="node1" title=" " alt="" coords="86,175,222,252"/>
+<area shape="rect" id="node2" href="$structgu__line__sighting.html" title=" " alt="" coords="5,13,143,105"/>
+<area shape="rect" id="node3" href="$structgu__corner__sighting.html" title=" " alt="" coords="167,5,304,112"/>
+</map>

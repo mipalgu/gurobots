@@ -1,0 +1,5 @@
+<map id="gu_nao_head" name="gu_nao_head">
+<area shape="rect" id="node1" title=" " alt="" coords="105,175,203,252"/>
+<area shape="rect" id="node2" href="$structgu__pitch__yaw__joint.html" title=" " alt="" coords="5,13,137,105"/>
+<area shape="rect" id="node3" href="$structgu__nao__head__sensors.html" title=" " alt="" coords="162,5,314,112"/>
+</map>
