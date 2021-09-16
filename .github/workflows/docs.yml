@@ -51,7 +51,7 @@ jobs:
 
       - name: Install gucoordinates
         run: |
-          cd gucoordinates
+          cd gucoordinates/gucoordinates
           mkdir build
           cd build
           cmake -G Ninja ..
